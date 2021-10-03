@@ -13,10 +13,10 @@ Submarine::Submarine()
 
 void Submarine::topSide()
 {
-	cout << "******************************************************************\n"
-		<< "You are topside of the submarine. The weather outside is quite nice.\n"
-		<< "The sea is calm and the sky is clear. The reflection of the sun glimmers.\n"
-		<< "******************************************************************\n";
+	cout << "************************************LOCATION: TOPSIDE************************************\n"
+		   << "You are topside of the submarine. The weather outside is quite nice.\n"
+		   << "The sea is calm and the sky is clear. The reflection of the sun glimmers.\n"
+		   << "*****************************************************************************************\n";
 
 	cout << "You see: \n1. Hatch\n";
 

@@ -11,7 +11,7 @@ int main()
   Submarine submarine;
 
   player1.setName();
-  cout << "\nHello " << player1.getName() << endl;
+  cout << "\nHello " << player1.getName() << endl << endl;
   submarine.topSide();
 
 }
