@@ -21,9 +21,15 @@
     <ClCompile Include="PLAYER.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SUBMARINE.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PLAYER.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SUBMARINE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
