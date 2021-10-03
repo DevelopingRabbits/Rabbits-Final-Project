@@ -5,6 +5,7 @@ using namespace std;
 Player::Player() 
 {
   playerName = "";
+
 }
 
 string Player::getName()
@@ -25,8 +26,10 @@ void Player::setName()
     cin >> playerName;
   } while (playerName.length() >= MAX_STRING_SIZE);
 
+  clearBuffer();
 };
 
-void inputValidation(string arg)
+void Player::clearBuffer()
 {
+  cin.ignore(numeric_limits<streamsize>::max(), '\n');
 };
