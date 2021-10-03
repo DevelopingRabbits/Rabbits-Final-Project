@@ -19,7 +19,7 @@ private:
 public:
 
   Submarine();
-  void playerLocation();
+  void playGame();
   void topSide();
   void controlRoom();
   void clearBuffer();

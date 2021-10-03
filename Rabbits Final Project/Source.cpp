@@ -12,6 +12,7 @@ int main()
 
   player1.setName();
   cout << "\nHello " << player1.getName() << endl << endl;
-  submarine.playerLocation();
+
+  submarine.playGame();
 
 }

@@ -15,7 +15,7 @@ Submarine::Submarine()
 }
 
 
-void Submarine::playerLocation()
+void Submarine::playGame()
 {
 	do
 	{
