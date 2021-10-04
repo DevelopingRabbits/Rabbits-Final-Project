@@ -5,6 +5,7 @@ using namespace std;
 Player::Player()
 {
   playerName = "";
+  playerLocation = "Unknown";
 
 };
 
@@ -28,6 +29,17 @@ void Player::setName()
 
   clearBuffer();
 };
+
+string Player::getLocation()
+{
+    return playerLocation;
+}
+
+void Player::setLocation(string currentLocation)
+{
+
+    playerLocation = currentLocation;
+}
 
 void Player::clearBuffer()
 {

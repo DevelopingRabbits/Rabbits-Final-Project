@@ -1,5 +1,7 @@
 #include "PLAYER.h"
 #include "SUBMARINE.h"
+#include "Game.h"
+#include "TOPSIDE.h"
 #include<iostream>
 
 using namespace std;
@@ -9,10 +11,19 @@ int main()
   cout << "Hello Developing Rabbits!\n";
   Player player1;
   Submarine submarine;
+  Game game;
+  TopSide topside;
  
 
   player1.setName();
   cout << "\nHello " << player1.getName() << endl << endl;
+
+
+  game.startGame();
+  player1.setLocation(topside.getLocation());
+  game.displayOptions(topside.getAdjacentRooms(),topside.getRoomAmount());
+  
+
 
   /*
   Start Game - Loop that checks if gameOver = True;

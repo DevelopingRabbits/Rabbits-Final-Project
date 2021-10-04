@@ -9,12 +9,16 @@ class Player
 private:
   int MAX_STRING_SIZE = 25;
   string playerName;
+  string playerLocation;
 
 public:
   Player(); // Constructor
 
   string getName();
   void setName();
+
+  string getLocation();
+  void setLocation(string currentLocation);
 
   void clearBuffer();
 };

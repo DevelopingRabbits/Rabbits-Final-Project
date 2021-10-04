@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <vector>
 using namespace std;
 
 
@@ -15,7 +16,10 @@ private:
 public:
   Game();
   bool getGameOver();
+  void startGame();
   void setGameOver(bool state);
+
+  void displayOptions(string rooms[], int size);
 
 };
 

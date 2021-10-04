@@ -2,17 +2,28 @@
 #ifndef TOPSIDE_H
 #define TOPSIDE_H
 #include<iostream>
+#include<vector>
 using namespace std;
+
+const int ADJACENTROOMS = 1;
 
 class TopSide
 {
 private:
-  bool surfaced;
+    string Location;
+    bool surfaced;
+    string adjacentRooms[ADJACENTROOMS];
+
+   
 public:
 
   TopSide(); // Constructor
   void TopSideSurfaced();
   void CheckSubSurfaced(bool state);
+
+  string getLocation();
+  string* getAdjacentRooms();
+  int getRoomAmount();
 
 };
 #endif
