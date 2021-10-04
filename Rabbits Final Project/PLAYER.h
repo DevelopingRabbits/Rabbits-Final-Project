@@ -15,6 +15,7 @@ public:
 
   string getName();
   void setName();
+
   void clearBuffer();
 };
 #endif
