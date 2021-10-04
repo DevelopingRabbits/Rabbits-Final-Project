@@ -10,9 +10,9 @@ class Submarine
 {
 private:
   bool isDark;
-  bool isSurfaced;
   bool gameOver;
   int choice;
+
   enum class Location {TopSide, ControlRoom};
   Location location = Location::TopSide;
 
@@ -23,5 +23,6 @@ public:
   void topSide();
   void controlRoom();
   void clearBuffer();
+  void delay();
 };
 #endif
