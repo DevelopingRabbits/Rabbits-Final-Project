@@ -12,6 +12,7 @@ private:
 
 public:
   Player(); // Constructor
+
   string getName();
   void setName();
   void clearBuffer();

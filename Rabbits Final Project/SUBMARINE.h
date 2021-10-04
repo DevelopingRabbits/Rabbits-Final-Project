@@ -9,14 +9,21 @@ using namespace std;
 class Submarine
 {
 private:
-  bool isDark;
+  bool powerOn;
+  bool surfaced;
   bool gameOver;
   int choice;
 
-  enum class Location {TopSide, ControlRoom};
+  enum class Location { TopSide, ControlRoom };
   Location location = Location::TopSide;
 
 public:
+
+  bool getPowerOn();
+  void setPowerOn(bool state);
+
+  bool getSurfaced();
+  void setSurfaced(bool state);
 
   Submarine();
   void playGame();

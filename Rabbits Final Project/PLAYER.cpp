@@ -2,11 +2,11 @@
 #include <iostream>
 using namespace std;
 
-Player::Player() 
+Player::Player()
 {
   playerName = "";
 
-}
+};
 
 string Player::getName()
 {
