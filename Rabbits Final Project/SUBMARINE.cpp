@@ -9,7 +9,6 @@ Submarine::Submarine()
   powerOn = false;
 	surfaced = true;
 	choice = NULL;
-	gameOver = false;
 
 
 	enum class Location {TopSide, ControlRoom};

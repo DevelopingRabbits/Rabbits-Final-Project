@@ -11,7 +11,7 @@ class Submarine
 private:
   bool powerOn;
   bool surfaced;
-  bool gameOver;
+
   int choice;
 
   enum class Location { TopSide, ControlRoom };
@@ -26,9 +26,7 @@ public:
   void setSurfaced(bool state);
 
   Submarine();
-  void playGame();
-  void topSide();
-  void controlRoom();
+
   void clearBuffer();
   void delay();
 };
