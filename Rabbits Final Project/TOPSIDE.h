@@ -20,6 +20,9 @@ public:
   TopSide(); // Constructor
   void TopSideSurfaced();
   void CheckSubSurfaced(bool state);
+  void setSurfaced(bool state);
+
+  void playScenario();
 
   string getLocation();
   string* getAdjacentRooms();

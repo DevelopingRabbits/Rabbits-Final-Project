@@ -12,14 +12,16 @@ class Game
 {
 private:
   bool gameOver;
+  int userInput;
 
 public:
   Game();
   bool getGameOver();
   void startGame();
   void setGameOver(bool state);
-
   void displayOptions(string rooms[], int size);
+  void setUserInput(int choice);
+  int getUserInput();
 
 };
 

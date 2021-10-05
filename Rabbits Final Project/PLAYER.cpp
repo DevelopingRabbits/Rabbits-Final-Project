@@ -5,7 +5,7 @@ using namespace std;
 Player::Player()
 {
   playerName = "";
-  playerLocation = "Unknown";
+  playerLocation = 0;
 
 };
 

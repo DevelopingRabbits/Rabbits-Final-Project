@@ -9,7 +9,7 @@ class Player
 private:
   int MAX_STRING_SIZE = 25;
   string playerName;
-  string playerLocation;
+  int playerLocation;
 
 public:
   Player(); // Constructor
@@ -17,7 +17,7 @@ public:
   string getName();
   void setName();
 
-  string getLocation();
+  int getLocation();
   void setLocation(string currentLocation);
 
   void clearBuffer();
