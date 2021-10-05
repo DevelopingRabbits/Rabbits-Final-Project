@@ -10,22 +10,19 @@ Game::Game()
 
 void Game::startGame()
 {
+	cout << "Start Game!\n\n";
 }
 
 
 void Game::displayOptions(string rooms[],int size)
 {
-	int options = 1;
-	
-	
+	int options = 1;	
 	cout << "You see:"<<endl;
 	for (int i = 0; i < size; i++)
 	{
 		cout << "(" << options << ")" << rooms[i]<<endl;
 		options++;
 	}
-
-
 }
 
 bool Game::getGameOver()

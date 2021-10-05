@@ -13,16 +13,17 @@ private:
     string Location;
     bool surfaced;
     string adjacentRooms[ADJACENTROOMS];
+    int playerChoice;
 
    
 public:
-
+  friend class Player;
   TopSide(); // Constructor
   void TopSideSurfaced();
   void CheckSubSurfaced(bool state);
   void setSurfaced(bool state);
 
-  void playScenario();
+  int playScenario();
 
   string getLocation();
   string* getAdjacentRooms();

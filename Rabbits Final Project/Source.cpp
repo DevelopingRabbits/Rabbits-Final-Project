@@ -8,40 +8,40 @@ using namespace std;
 
 int main()
 {
-  cout << "Hello Developing Rabbits!\n";
   Player player1;
   Submarine submarine;
   Game game;
   TopSide topside;
-  
-
-  enum class Location {TopSide, ControlRoom};
+  enum class Location { TopSide = 0, ControlRoom = 1 };
   Location location = Location::TopSide;
+  int locationIndex;
+
+
+  cout << "\nWelcome to a Developing Rabbits Production!\n\n";
+
 
   player1.setName();
-  cout << "\nHello " << player1.getName() << endl << endl;
-
-  int playerChoice;
+  cout << "\nWelcome Aboard Captain " << player1.getName() << endl << endl;
 
   game.startGame();
+
   do
   {
-    location = player1.getLocation(); //WIP
+    locationIndex = player1.getLocation();
+    location = static_cast<Location>(locationIndex);
     switch (location)
     {
     case Location::TopSide:
       topside.setSurfaced(submarine.getSurfaced());
-      topside.playScenario();
-      game.displayOptions(topside.getAdjacentRooms(), topside.getRoomAmount());
-      cin >> playerChoice;
-      game.setUserInput(playerChoice);
+      player1.setLocation(topside.playScenario());
+      //game.displayOptions(topside.getAdjacentRooms(), topside.getRoomAmount());
 
-      // if userInput == 1, set player Location to Control Room.
-      //userInput = 1;
-      //1 == Player1.setLocation(ControlRoom);
-      //
+      return 0;
       break;
     case Location::ControlRoom:
+
+      //controlRoom.playerScenario();
+      break;
 
 
     default:
@@ -49,26 +49,24 @@ int main()
     }
 
   } while (game.getGameOver() == false);
+};
 
 
-  /*
-  Start Game - Loop that checks if gameOver = True;
-  
-  INIT TURN PHASE
-  The Turn phase should consist of the following:
+    /*
+    Start Game - Loop that checks if gameOver = True;
 
-  - Outputting Information related to space
-      - Location of the player
-      - State of the Sub
-      - State of the room
-  - Provide the player a choice
+    INIT TURN PHASE
+    The Turn phase should consist of the following:
 
-  ACTION PHASE
-  - Take the choice and determine consequences of choice
-  - Resets the loop
+    - Outputting Information related to space
+        - Location of the player
+        - State of the Sub
+        - State of the room
+    - Provide the player a choice
 
-  CONSEQUENCE PHASE
-  */
+    ACTION PHASE
+    - Take the choice and determine consequences of choice
+    - Resets the loop
 
-
-}
+    CONSEQUENCE PHASE
+    */

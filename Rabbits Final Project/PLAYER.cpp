@@ -5,7 +5,7 @@ using namespace std;
 Player::Player()
 {
   playerName = "";
-  playerLocation = 0;
+  playerLocationIndex = 0;
 
 };
 
@@ -30,15 +30,15 @@ void Player::setName()
   clearBuffer();
 };
 
-string Player::getLocation()
+int Player::getLocation()
 {
-    return playerLocation;
+    return PLAYER_LOCATION[playerLocationIndex];
 }
 
-void Player::setLocation(string currentLocation)
+void Player::setLocation(int currentLocation)
 {
 
-    playerLocation = currentLocation;
+    playerLocationIndex = currentLocation;
 }
 
 void Player::clearBuffer()

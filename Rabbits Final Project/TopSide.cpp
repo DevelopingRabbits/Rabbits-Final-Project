@@ -36,7 +36,7 @@ int TopSide::getRoomAmount()
 }
 
 
-void TopSide::playScenario()
+int TopSide::playScenario()
 {
 	cout << "\n\n************************************LOCATION: TOPSIDE************************************\n"
 			<< "You are topside of the submarine. The weather outside is quite nice.\n"
@@ -45,4 +45,14 @@ void TopSide::playScenario()
 
 		cout << "You see: \n1. Hatch\n"
 			<< "Your Choice: ";
+		cin >> playerChoice;
+
+		switch (playerChoice)
+		{
+		case 1:
+			return 1;
+			// changePlayerLocation;
+		default:
+			cout << "Game Error";
+		}
 };

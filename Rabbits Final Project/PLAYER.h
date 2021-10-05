@@ -9,7 +9,13 @@ class Player
 private:
   int MAX_STRING_SIZE = 25;
   string playerName;
-  int playerLocation;
+  const int PLAYER_LOCATION[2] =
+  {
+    0, // TOPSIDE
+    1  // CONTROL ROOM
+  };
+  int playerLocationIndex;
+
 
 public:
   Player(); // Constructor
@@ -18,7 +24,7 @@ public:
   void setName();
 
   int getLocation();
-  void setLocation(string currentLocation);
+  void setLocation(int currentLocation);
 
   void clearBuffer();
 };
