@@ -22,6 +22,7 @@ public:
 
   string getName();
   void setName();
+ string nameInputValidation(string name);
 
   int getLocation();
   void setLocation(int currentLocation);
