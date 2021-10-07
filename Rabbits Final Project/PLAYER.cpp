@@ -30,7 +30,7 @@ string Player::nameInputValidation(string name)
    
         for (int i = 0; i <= stringSize; i++)//iterate through the string and check that there is only letters.
         {
-            cout << name[i] << endl;
+            
             if (!isalpha(name[i]))
             {
                 cout << "Your name may only consist of letters. Try again." << endl;
