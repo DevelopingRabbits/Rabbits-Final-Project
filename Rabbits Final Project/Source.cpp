@@ -32,11 +32,13 @@ int main()
     switch (location)
     {
     case Location::TopSide:
-      topside.setSurfaced(submarine.getSurfaced());
-      player1.setLocation(topside.playScenario());
+      topside.setSurfaced(submarine.getSurfaced()); // Check if Sub is surfaced.
+      player1.setLocation(topside.playScenario());  // Results from scenario will set location.
+      if (player1.getLocation() == 0) // Player location remains the same, they interacted with an item.
+      {
+        player1.setBattleLantern(topside.getBattleLantern());
+      }
       //game.displayOptions(topside.getAdjacentRooms(), topside.getRoomAmount());
-
-      return 0;
       break;
     case Location::ControlRoom:
 

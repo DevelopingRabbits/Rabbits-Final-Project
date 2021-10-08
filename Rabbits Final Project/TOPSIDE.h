@@ -12,6 +12,7 @@ class TopSide
 private:
     string Location;
     bool surfaced;
+    bool battleLanternAvailable;
     string adjacentRooms[ADJACENTROOMS];
     int playerChoice;
 
@@ -22,6 +23,8 @@ public:
   void TopSideSurfaced();
   void CheckSubSurfaced(bool state);
   void setSurfaced(bool state);
+
+  bool getBattleLantern();
 
   int playScenario();
 

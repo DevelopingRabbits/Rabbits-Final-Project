@@ -9,6 +9,7 @@ class Player
 private:
   int MAX_STRING_SIZE = 25;
   string playerName;
+  bool hasBattleLantern;
   const int PLAYER_LOCATION[2] =
   {
     0, // TOPSIDE
@@ -18,15 +19,17 @@ private:
 
 
 public:
-  Player(); // Constructor
+ Player(); // Constructor
 
-  string getName();
-  void setName();
+ string getName();
+ void setName();
  string nameInputValidation(string name);
 
-  int getLocation();
-  void setLocation(int currentLocation);
+ void setBattleLantern(bool state);
 
-  void clearBuffer();
+ int getLocation();
+ void setLocation(int currentLocation);
+
+ void clearBuffer();
 };
 #endif

@@ -6,6 +6,8 @@ Player::Player()
 {
   playerName = "";
   playerLocationIndex = 0;
+  hasBattleLantern = false;
+
 
 };
 
@@ -82,3 +84,8 @@ void Player::clearBuffer()
 {
   cin.ignore(numeric_limits<streamsize>::max(), '\n');
 };
+
+void Player::setBattleLantern(bool state)
+{
+  hasBattleLantern = state;
+}

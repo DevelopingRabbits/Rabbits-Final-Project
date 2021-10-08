@@ -5,6 +5,7 @@ using namespace std;
 TopSide::TopSide()
 {
 	bool surfaced = NULL;
+	battleLanternAvailable = true;
 	Location = "TopSide";
 	adjacentRooms[0] = "Hatch";
 
@@ -35,23 +36,45 @@ int TopSide::getRoomAmount()
 	return ADJACENTROOMS;
 }
 
+bool TopSide::getBattleLantern()
+{
+	battleLanternAvailable = false;
+	return true;
+}
 
 int TopSide::playScenario()
 {
 	cout << "\n\n************************************LOCATION: TOPSIDE************************************\n"
-			<< "You are topside of the submarine. The weather outside is quite nice.\n"
-			<< "The sea is calm and the sky is clear. The reflection of the sun glimmers.\n"
-			<< "************************************LOCATION: TOPSIDE************************************\n";
-
-		cout << "You see: \n1. Hatch\n"
+		<< "You are topside of the submarine. The weather outside is quite nice.\n"
+		<< "The sea is calm and the sky is clear. The reflection of the sun glimmers.\n"
+		<< "************************************LOCATION: TOPSIDE************************************\n"
+	  << "You see: \n1. Hatch\n";
+	if (battleLanternAvailable == true) 
+	{
+		cout << "2. Battle lantern\n"
 			<< "Your Choice: ";
-		cin >> playerChoice;
-
+	}
+	else
+	{
+		cout << "Your Choice: ";
+	}
+	cin >> playerChoice;
 		switch (playerChoice)
 		{
 		case 1:
 			return 1;
 			// changePlayerLocation;
+		case 2:
+			if (battleLanternAvailable == true)
+			{
+				cout << "You pick up the battle lantern.";
+			}
+			else
+			{
+				cout << "Invalid Input";
+			}
+			return 0; //player does not change locations. stays topside.
+
 		default:
 			cout << "Game Error";
 		}
