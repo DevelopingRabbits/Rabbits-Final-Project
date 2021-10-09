@@ -4,9 +4,11 @@
 #include<iostream>
 #include<vector>
 
+
 #include"Item.h"
 
 using namespace std;
+
 
 class Player
 {
@@ -28,8 +30,8 @@ public:
  Player(); // Constructor
 
  string getName();
- void setName();
- string nameInputValidation(string name);
+ void setName(string input);
+
 
  void setBattleLantern(bool state);
 

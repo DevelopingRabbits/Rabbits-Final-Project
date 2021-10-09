@@ -4,16 +4,22 @@
 #include "TOPSIDE.h"
 #include "Room.h"
 #include "Item.h"
+#include "UI.h"
 
 #include<iostream>
+#include<string>
+
 
 using namespace std;
 
 int main()
 {
+  string playerName;
+
   Player player1;
   Submarine submarine;
   Game game;
+  UI ui;
   //TopSide topside;
   enum class Location { TopSide = 0, DarkControlRoom = 1, ControlRoom = 2 };
   Location location = Location::TopSide;
@@ -50,9 +56,11 @@ int main()
 
 
   cout << "\nWelcome to a Developing Rabbits Production!\n\n";
+  
+  playerName=ui.getPlayerName();
+  playerName=ui.stringInputValidation(playerName);
+  player1.setName(playerName);
 
-
-  player1.setName();
   cout << "\nWelcome Aboard Captain " << player1.getName() << endl << endl;
 
   game.startGame();
