@@ -11,6 +11,11 @@ Player::Player()
 
 };
 
+void Player::addToInventory(Item item)
+{
+  inventory.push_back(item);
+}
+
 string Player::nameInputValidation(string name)
 {
     int stringSize;

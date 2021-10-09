@@ -9,12 +9,16 @@ Submarine::Submarine()
   powerOn = false;
 	surfaced = true;
 	choice = NULL;
-
+	
 
 	enum class Location {TopSide, ControlRoom};
 	Location location = Location::TopSide;
 }
 
+void Submarine::addRoom(Room newRoom)
+{
+	listOfRooms.push_back(newRoom);
+};
 bool Submarine::getSurfaced()
 {
 	return surfaced;

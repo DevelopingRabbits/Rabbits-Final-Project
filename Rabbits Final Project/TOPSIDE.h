@@ -18,7 +18,6 @@ private:
 
    
 public:
-  friend class Player;
   TopSide(); // Constructor
   void TopSideSurfaced();
   void CheckSubSurfaced(bool state);
