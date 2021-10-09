@@ -14,6 +14,7 @@ private:
 public:
     string stringInputValidation(string input);
     string getPlayerName();
+    int integerInputValidation(int input);
     void clearBuffer();
 };
 

@@ -23,7 +23,11 @@ string UI::stringInputValidation(string input)
         cin >> input;
     }
 
-
+    /*The following block of code ensures that each character in the string is a letter.
+    * The string is measured for size and then each element of the string is checked (the for loop)
+    * If the element is not a letter, prompt the user to input a new string.
+    * If the string has been fully iterated through, break the while loop by setting the flag to true.
+    */
     while (flag == false)
     {
         stringSize = input.length();
@@ -33,7 +37,7 @@ string UI::stringInputValidation(string input)
 
             if (!isalpha(input[i]))
             {
-                cout << "The name may only contain letters. Try again." << endl;
+                cout << "The input may only contain letters. Try again." << endl;
                 cin.clear(); //reset the buffer
 
                 cin.ignore(numeric_limits<streamsize>::max(), '\n');//empty the buffer
@@ -54,6 +58,37 @@ string UI::stringInputValidation(string input)
 
 }
 
+int UI::integerInputValidation(int input)
+{
+    /*
+       Test to see if an integer value is infact valid. 
+       If it is not valid clear the input and prompt the user for a new input.
+    */
+    bool valid = false;
+    while (!valid)
+    {
+        
+        if (cin.good())
+        {
+            //the input is a valid integer, break out of the loop.
+            valid = true;
+        }
+        else
+        {
+            cin.clear(); //reset the buffer
+
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');//empty the buffer
+            cout << "Invalid Input..." << endl;
+
+            cout << " Enter your choice: "; // Display Options to user
+            cin >> input; // Collect User Input and compare it to the switch statement.
+        }
+    }
+       
+    
+
+    return input;//return the name that now only consists of letters
+}
 void UI::clearBuffer()
 {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
