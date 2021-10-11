@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Game.h"
 
+
 using namespace std;
 
 Game::Game()
@@ -32,6 +33,8 @@ void Game::startGame()
 	cout << "Start Game!\n\n";
 	cout << "What is your name? ";
 	cin >> stringUserInput;
+	
+	stringUserInput=gameSystemsProgramming.stringInputValidation(stringUserInput);
 	players->setName(stringUserInput);
 	cout << "\nWelcome Aboard Captain " << players->getName() << endl << endl;
 };
@@ -135,6 +138,7 @@ void Game::playerTurn()
 		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n ";
 		// Items or Move
 		cin >> userInput;
+		userInput=gameSystemsProgramming.integerInputValidation(userInput);
 		switch (userInput)
 		{
 		case 1:

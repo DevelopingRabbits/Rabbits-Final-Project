@@ -1,15 +1,15 @@
-#include "UI.h"
+#include "GameSystemsProgramming.h"
 #include <iostream>
 using namespace std;
 
-string UI::getPlayerName()
+string GameSystemsProgramming::getPlayerName()
 {
     cout << "Enter your name: ";
     cin >> playerName;
     return playerName;
 }
 
-string UI::stringInputValidation(string input)
+string GameSystemsProgramming::stringInputValidation(string input)
 {
     int stringSize;
     bool flag = false;
@@ -58,16 +58,16 @@ string UI::stringInputValidation(string input)
 
 }
 
-int UI::integerInputValidation(int input)
+int GameSystemsProgramming::integerInputValidation(int input)
 {
     /*
-       Test to see if an integer value is infact valid. 
+       Test to see if an integer value is infact valid.
        If it is not valid clear the input and prompt the user for a new input.
     */
     bool valid = false;
     while (!valid)
     {
-        
+
         if (cin.good())
         {
             //the input is a valid integer, break out of the loop.
@@ -84,13 +84,12 @@ int UI::integerInputValidation(int input)
             cin >> input; // Collect User Input and compare it to the switch statement.
         }
     }
-       
-    
+
+
 
     return input;//return the name that now only consists of letters
 }
-
-void UI::clearBuffer()
+void GameSystemsProgramming::clearBuffer()
 {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }

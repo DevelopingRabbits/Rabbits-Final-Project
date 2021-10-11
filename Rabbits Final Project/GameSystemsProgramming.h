@@ -1,12 +1,12 @@
 #pragma once
-#ifndef UI_H
-#define UI_h
+#ifndef GameSystemsProgramming_H
+#define GameSystemsProgramming_h
 #include <iostream>
 #include <string>
 
 using namespace std;
 
-class UI
+class GameSystemsProgramming
 {
 private:
     const int MAX_STRING_LENGTH = 25;
