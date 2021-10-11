@@ -30,7 +30,6 @@ void Player::addToInventory(Item* item)
   inventory.push_back(item);
 }
 
-
 string Player::getName()
 {
   return playerName;

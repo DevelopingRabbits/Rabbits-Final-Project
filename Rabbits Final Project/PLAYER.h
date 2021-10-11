@@ -32,7 +32,6 @@ public:
  void setName(string input);
 
 
-
  void addToInventory(Item* item);
 };
 #endif
