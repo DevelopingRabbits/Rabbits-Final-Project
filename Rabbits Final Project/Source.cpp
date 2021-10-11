@@ -64,6 +64,24 @@ int main()
   // END: Control Room Room/Door Objects
   // *****************************************************************
 
+    // START: Nuclear Power Room/Door Objects
+  // *****************************************************************
+  Room nuclearPowerRoom;
+  Door controlRoomDoor;
+  controlRoomDoor.createDoor("Control Room", true, controlRoomDoor);
+  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
+  nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");
+  nuclearPowerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(nuclearPowerRoom, nuclearPowerRoom.getRoomRow(), nuclearPowerRoom.getRoomCol());
+
+
+    // END: Nuclear Power Room/Door Objects
+  // *****************************************************************
+
+
+
+
+
 
   /******************************************************************
   GAME STARTS BELOW
