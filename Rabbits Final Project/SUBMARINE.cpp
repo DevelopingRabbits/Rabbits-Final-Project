@@ -13,6 +13,11 @@ Submarine::Submarine()
 	
 }
 
+void Submarine::createSubmarine(Submarine &s)
+{
+	submarinePtr = &s;
+}
+
 void Submarine::addRoom(Room &newRoom, int newRoomRow, int newRoomCol)
 {
 	map[newRoomRow][newRoomCol] = &newRoom;

@@ -13,16 +13,21 @@
 using namespace std;
 
 class Door;
+class Submarine;
 class Room
 {
 private:
   string roomName;
-  Door* upDoor;
-  Door* downDoor;
-  Door* rightDoor;
-  Door* leftDoor;
+  string darkRoomName;
+  Door* upDoorPtr;
+  Door* downDoorPtr;
+  Door* rightDoorPtr;
+  Door* leftDoorPtr;
+  Submarine* submarinePtr;
+  string darkRoomDescription;
   string roomDescription;
 
+  bool isDark;
 
   int roomID;
   int itemSelection;
@@ -32,12 +37,14 @@ private:
 public:
   Room();
   void createRoom(string name, int rID, Door* up, Door* down, Door* left, Door* right, int row, int col);
-
+  void setDarkRoomDescription(string description);
   void setRoomDescription(string description);
+  void setIsDark(bool state);
 
   int getRoomID();
   int getRoomRow();
   int getRoomCol();
+  bool getIsDark();
 
   string getRoomDescription();
   string getRoomName();
@@ -46,9 +53,6 @@ public:
   Door* getDownDoor();
   Door* getLeftDoor();
   Door* getRightDoor();
-
-
-
 
   //Item interactWithItems();
   //void displayDescription();

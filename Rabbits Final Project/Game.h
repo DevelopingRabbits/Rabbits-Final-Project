@@ -26,7 +26,8 @@ private:
   Door* rightDoor;
   Door* leftDoor;
 
-
+  string cannotMoveMessage;
+  string playerMovedMessage;
   bool gameOver;
   bool userInputValid;
   int userInput;
@@ -48,9 +49,13 @@ public:
   void displayDoors();
   void displayRoomDescription();
 
+  void updateRoom();
+
+  void playerTurn();
+
   // Set Private Member Variables
   void setGameOver(bool state);
-  void setUserInput(); /////CHANGE FUNCTION NAME
+
 
   void moveFunction();
 

@@ -16,6 +16,8 @@ using namespace std;
 Game::Game()
 {
   gameOver = false;
+	cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
+	playerMovedMessage = "\n\nI go through the door\n\n\n";
 };
 
 void Game::createGame(Player &player, Submarine &sub)
@@ -30,7 +32,6 @@ void Game::startGame()
 
 };
 
-
 void Game::getCurrentRoom()
 {
 // Retrieve room address
@@ -42,21 +43,38 @@ void Game::displayRoomDetails()
 {
 	getCurrentRoom();
 	displayRoomDescription();
-	displayDoors();
 }
 
 void Game::displayDoors()
 {
-	upDoor = room->getUpDoor();
-	downDoor = room->getDownDoor();
-	rightDoor = room->getRightDoor();
-	leftDoor = room->getLeftDoor();
+	if (room->getIsDark() == false)
+	{
+		upDoor = room->getUpDoor();
+		downDoor = room->getDownDoor();
+		rightDoor = room->getRightDoor();
+		leftDoor = room->getLeftDoor();
 
-	cout << "You see the following doors:\n";
-	cout << "1. " << upDoor->GetDoorName() << endl;
-	cout << "2. " << leftDoor->GetDoorName() << endl;
-	cout << "3. " << rightDoor->GetDoorName() << endl;
-	cout << "4. " << downDoor->GetDoorName() << endl;
+		cout << "You see the following doors:\n";
+		cout << "1. " << upDoor->GetDoorName() << endl;
+		cout << "2. " << leftDoor->GetDoorName() << endl;
+		cout << "3. " << rightDoor->GetDoorName() << endl;
+		cout << "4. " << downDoor->GetDoorName() << endl;
+	}
+	else
+	{
+		if (room->getRoomID() == 1)
+		{
+			upDoor = room->getUpDoor();
+
+
+			cout << "You see the following doors:\n";
+			cout << "1. " << upDoor->GetDoorName() << endl;
+		}
+		else
+		{
+			cout << "I can't see.\n";
+		}
+	}
 }
 
 void Game::displayRoomDescription()
@@ -91,6 +109,103 @@ void Game::setGameOver(bool state)
 	gameOver = state;
 };
 
+void Game::playerTurn()
+{
+	updateRoom();
+	userInputValid = false;
+	do {
+		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n ";
+		// Items or Move
+		cin >> userInput;
+		switch (userInput)
+		{
+		case 1:
+			break;
+
+		case 2:
+			moveFunction();
+			updateRoom();
+			userInputValid = true;
+			break;
+
+		case 3:
+			cout << "You chose to Interact with Inventory";
+			break;
+
+		default:
+			cout << "Invalid Option.\n";
+			break;
+		}
+	} while (userInputValid == false);
+
+};
+
+void Game::updateRoom()
+{
+	getCurrentRoom();
+	if (room->getRoomID() != 0)
+	{
+		switch (submarine->getPowerOn())
+		{
+		case true:
+			room->setIsDark(false);
+		case false:
+			room->setIsDark(true);
+		}
+	}
+
+}
+
+void Game::moveFunction()
+{
+	cout << "You chose to Move\n";
+	cout << "Which door would you like to go through?\n";
+	displayDoors();
+	cin >> userInput;
+	switch (userInput)
+	{
+	case 1:
+		if (upDoor->getIsOpen() == true)
+		{
+			players->setPlayerLocation(players->getPlayerRow() - 1, players->getPlayerCol());
+			cout << playerMovedMessage;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	case 2:
+		if (leftDoor->getIsOpen() == true)
+		{
+			players->setPlayerLocation(players->getPlayerRow(), players->getPlayerCol() - 1);
+			cout << playerMovedMessage;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	case 3:
+		if (rightDoor->getIsOpen() == true)
+		{
+			players->setPlayerLocation(players->getPlayerRow(), players->getPlayerCol() + 1);
+			cout << playerMovedMessage;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	case 4:
+		if (downDoor->getIsOpen() == true)
+		{
+			players->setPlayerLocation(players->getPlayerRow() + 1, players->getPlayerCol());
+			cout << playerMovedMessage;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	default:
+		cout << "invalid";
+		getCurrentRoom();
+	};
+}
+
 
 //bool Game::checkUserInput()
 //{
@@ -118,80 +233,6 @@ void Game::setGameOver(bool state)
 //		break;
 //	}
 //}
-
-void Game::setUserInput()
-{
-	userInputValid = false;
-	do {
-		cout << "Look for Items(1), Move(2) or Interact with Inventory(3)?: ";
-		// Items or Move
-		cin >> userInput;
-		switch (userInput)
-		{
-		case 1:
-			break;
-
-		case 2:
-			moveFunction();
-			userInputValid = true;
-			break;
-
-		case 3:
-			cout << "You chose to Interact with Inventory";
-			break;
-
-		default:
-			cout << "Invalid Option.\n";
-			break;
-		}
-	} while (userInputValid == false);
-
-};
-
-void Game::moveFunction()
-{
-	cout << "You chose to Move\n";
-	cout << "Which door would you like to go through?";
-	cin >> userInput;
-	switch (userInput)
-	{
-	case 1:
-		if (upDoor->getIsOpen() == true)
-		{
-			players->setPlayerLocation(players->getPlayerRow() - 1, players->getPlayerCol());
-		}
-		else
-			cout << "I can't go this way.";
-		break;
-	case 2:
-		if (leftDoor->getIsOpen() == true)
-		{
-			players->setPlayerLocation(players->getPlayerRow(), players->getPlayerCol() - 1);
-		}
-		else
-			cout << "I can't go this way.";
-		break;
-	case 3:
-		if (rightDoor->getIsOpen() == true)
-		{
-			players->setPlayerLocation(players->getPlayerRow(), players->getPlayerCol() + 1);
-		}
-		else
-			cout << "I can't go this way.";
-		break;
-	case 4:
-		if (downDoor->getIsOpen() == true)
-		{
-			players->setPlayerLocation(players->getPlayerRow() + 1, players->getPlayerCol());
-		}
-		else
-			cout << "I can't go this way.";
-		break;
-	default:
-		cout << "invalid";
-	};
-}
-
 //
 //int Game::getUserInput()
 //{

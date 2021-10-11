@@ -38,7 +38,8 @@ int main()
   Door topSideHatch;
   topSideHatch.createDoor("Topside Hatch", true, topSideHatch);
   topSide.createRoom("Topside", 0, NULLDOOR.getDoorPtr(), topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 0, 3);
-  topSide.setRoomDescription("You are standing on the topside of the submarine.\nThe weather outside is quite nice. The sea is calm and the sky is clear.\nThe reflection of the sun glimmers.");
+  topSide.setRoomDescription("You are standing on the topside of the submarine.\nThe weather outside is quite nice. The sea is calm and the sky is clear.\nThe sun glimmers on the on calm ocean waves.");
+  topSide.setIsDark(false);
   submarine.addRoom(topSide, topSide.getRoomRow(), topSide.getRoomCol());
   // END: Topside Room/Door Objects
 
@@ -49,7 +50,8 @@ int main()
   Door nuclearPowerRoomDoor;
   nuclearPowerRoomDoor.createDoor("Nuclear Power Room", true, nuclearPowerRoomDoor);
   controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 3);
-  controlRoom.setRoomDescription("You enter a dark room. You are unsure where you are.\n The only light you see is from the hatch above.");
+  controlRoom.setDarkRoomDescription("You enter a dark room. You are unsure where you are.\n The only light you see is from the hatch above.");
+  controlRoom.setRoomDescription("The room has plenty of computer terminals. This seems to be the control room of the submarine.");
   submarine.addRoom(controlRoom, controlRoom.getRoomRow(), controlRoom.getRoomCol());
   // END: Control Room Room/Door Objects
   // *****************************************************************
@@ -88,7 +90,7 @@ int main()
   {
     // Initalize the turn.
     game.displayRoomDetails();
-    game.setUserInput();
+    game.playerTurn();
 
   } while (game.getGameOver() == false);
   return 0;

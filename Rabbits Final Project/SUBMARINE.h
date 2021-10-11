@@ -15,12 +15,15 @@ private:
   bool powerOn;
   bool surfaced;
   Room* map[4][7];
+  Submarine* submarinePtr;
  
 public:
   Submarine();
   void addRoom(Room &newRoom, int newRoomRow, int newRoomCol);
 
   Room* getRoom(int row, int col);
+  
+  void createSubmarine(Submarine &s);
 
   bool getPowerOn();
   void setPowerOn(bool state);

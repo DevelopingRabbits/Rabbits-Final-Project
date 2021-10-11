@@ -11,47 +11,69 @@ Room::Room()
 void Room::createRoom(string name, int rID, Door* up, Door* down, Door* left, Door* right, int rowArg, int colArg)
 {
   roomName = name;
+  darkRoomName = "UNKOWN: Dark Room";
   roomID = rID;
-  upDoor = up;
-  downDoor = down;
-  leftDoor = left;
-  rightDoor = right;
+  upDoorPtr = up;
+  downDoorPtr = down;
+  leftDoorPtr = left;
+  rightDoorPtr = right;
   row = rowArg;
   col = colArg;
+}
+
+void Room::setIsDark(bool state)
+{
+  isDark = state;
+}
+
+void Room::setDarkRoomDescription(string description)
+{
+  darkRoomDescription = description;
 }
 
 void Room::setRoomDescription(string description)
 {
   roomDescription = description;
 }
+
 string Room::getRoomName()
 {
-  return roomName;
+  switch (isDark)
+  {
+  case true:
+    return darkRoomName;
+  case false:
+    return roomName;
+  }
 }
 
 string Room::getRoomDescription()
 {
+  if (isDark == true)
+  {
+    return darkRoomDescription;
+  };
   return roomDescription;
 }
 
 Door* Room::getUpDoor()
 {
-  return upDoor;
+  return upDoorPtr;
 }
 
 Door* Room::getDownDoor()
 {
-  return downDoor;
+  return downDoorPtr;
 }
 
 Door* Room::getRightDoor()
 {
-  return rightDoor;
+  return rightDoorPtr;
 }
 
 Door* Room::getLeftDoor()
 {
-  return leftDoor;
+  return leftDoorPtr;
 }
 
 int Room::getRoomRow()
@@ -69,6 +91,10 @@ int Room::getRoomID()
   return roomID;
 }
 
+bool Room::getIsDark()
+{
+  return isDark;
+}
 
 //void Room::addItem(Item item)
 //{
