@@ -11,7 +11,7 @@ void Item::createItem(string name, int id)
   itemID = id;
 }
 
-void Item::displayItem()
+string Item::getItemName()
 {
-  cout << itemName << endl;
+  return itemName;
 }

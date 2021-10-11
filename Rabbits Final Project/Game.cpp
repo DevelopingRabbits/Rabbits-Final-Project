@@ -45,15 +45,31 @@ void Game::displayRoomDetails()
 	displayRoomDescription();
 }
 
+void Game::getRoomInventory()
+{
+	item1 = room->getRoomInventory();
+}
+
+void Game::displayItems()
+{
+	getRoomInventory();
+	cout << "You see the following items.\n";
+	cout << "1. " << item1->getItemName() << endl;
+}
+
+void Game::getRoomDoors()
+{
+	upDoor = room->getUpDoor();
+	downDoor = room->getDownDoor();
+	rightDoor = room->getRightDoor();
+	leftDoor = room->getLeftDoor();
+}
+
 void Game::displayDoors()
 {
+	getRoomDoors();
 	if (room->getIsDark() == false)
 	{
-		upDoor = room->getUpDoor();
-		downDoor = room->getDownDoor();
-		rightDoor = room->getRightDoor();
-		leftDoor = room->getLeftDoor();
-
 		cout << "You see the following doors:\n";
 		cout << "1. " << upDoor->GetDoorName() << endl;
 		cout << "2. " << leftDoor->GetDoorName() << endl;
@@ -64,9 +80,6 @@ void Game::displayDoors()
 	{
 		if (room->getRoomID() == 1)
 		{
-			upDoor = room->getUpDoor();
-
-
 			cout << "You see the following doors:\n";
 			cout << "1. " << upDoor->GetDoorName() << endl;
 		}
@@ -120,6 +133,9 @@ void Game::playerTurn()
 		switch (userInput)
 		{
 		case 1:
+			lookForItems();
+			updateRoom();
+			userInputValid = true;
 			break;
 
 		case 2:
@@ -204,6 +220,18 @@ void Game::moveFunction()
 		cout << "invalid";
 		getCurrentRoom();
 	};
+}
+
+void Game::lookForItems()
+{
+	cout << "You chose to Look For Items\n";
+	displayItems();
+	cin >> userInput;
+	switch (userInput)
+	{
+	case 1:
+		cout << "You picked up the " << item1->getItemName() << endl;
+	}
 }
 
 

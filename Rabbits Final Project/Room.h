@@ -9,6 +9,7 @@
 #include "Door.h"
 #include "SUBMARINE.h"
 #include "PLAYER.h"
+#include "Item.h"
 
 using namespace std;
 
@@ -23,6 +24,7 @@ private:
   Door* downDoorPtr;
   Door* rightDoorPtr;
   Door* leftDoorPtr;
+  vector<Item*> roomInventory;
   Submarine* submarinePtr;
   string darkRoomDescription;
   string roomDescription;
@@ -40,11 +42,13 @@ public:
   void setDarkRoomDescription(string description);
   void setRoomDescription(string description);
   void setIsDark(bool state);
+  void addItem(Item* item);
 
   int getRoomID();
   int getRoomRow();
   int getRoomCol();
   bool getIsDark();
+  Item* getRoomInventory();
 
   string getRoomDescription();
   string getRoomName();

@@ -15,7 +15,7 @@ private:
 public:
   Item();
   void createItem(string name, int id);
-  void displayItem();
+  string getItemName();
 
 };
 

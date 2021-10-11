@@ -25,6 +25,7 @@ private:
   Door* downDoor;
   Door* rightDoor;
   Door* leftDoor;
+  Item* item1;
 
   string cannotMoveMessage;
   string playerMovedMessage;
@@ -44,10 +45,13 @@ public:
 
   void getCurrentRoom();
   void getCurrentRoomName();
+  void getRoomDoors();
+  void getRoomInventory();
 
   void displayRoomDetails();
   void displayDoors();
   void displayRoomDescription();
+  void displayItems();
 
   void updateRoom();
 
@@ -58,6 +62,7 @@ public:
 
 
   void moveFunction();
+  void lookForItems();
 
   // Get Private Member Variables
   bool getGameOver();

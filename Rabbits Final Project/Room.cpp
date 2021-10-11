@@ -96,66 +96,19 @@ bool Room::getIsDark()
   return isDark;
 }
 
-//void Room::addItem(Item item)
-//{
-//  itemList.push_back(item);
-//}
+void Room::addItem(Item* item)
+{
+  roomInventory.push_back(item);
+}
 
-//void Room::displayItems()
-//{
-//
-//  for (int i = 0; i < itemList.size(); i++)
-//  {
-//    cout << endl << i + 1 << ". ";
-//    itemList[i].displayItem();
-//  }
-//}
-//
-//
-//
-//Item Room::interactWithItems()
-//{
-//  displayItems();
-//  cin >> itemSelection;
-//  return itemList[itemSelection -1];
-//}
-////void Room::displayToUser()
-////{
-////  displayDescription();
-////  cout << "\nYou see the following doors: \n";
-////  displayDoors();
-////  if (itemList.empty() != true)
-////  {
-////    cout << "\nYou see the following items: \n";
-////    displayItems();
-////  }
-////};
-//void Room::displayDescription()
-//{
-//  displayLocation();
-//  cout << endl <<  roomDescription[getRoomID()] << endl;
-//  displayLocation();
-//}
-//
-//void Room::displayDoors()
-//{
-//
-//  for (int i = 0; i < doorList.size(); i++)
-//  {
-//    cout << endl << i + 1 << ". ";
-//    //doorList[i].DisplayDoor();
-//  }
-//}
-
-//
-//void Room::displayLocation()
-//{
-//  for (int i = 0; i < 61; i++)
-//  {
-//    cout << "*";
-//    if (i == 30)
-//    {
-//      cout << " Location: " << roomName << " ";
-//    }
-//  }
-//}
+Item* Room::getRoomInventory()
+{
+  if (roomInventory.empty() == false)
+  {
+    return roomInventory[0];
+  }
+  else
+  {
+    return NULL;
+  }
+}
