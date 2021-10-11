@@ -101,6 +101,11 @@ void Room::addItem(Item* item)
   roomInventory.push_back(item);
 }
 
+void Room::removeItem()
+{
+  roomInventory.pop_back();
+}
+
 Item* Room::getRoomInventory()
 {
   if (roomInventory.empty() == false)
@@ -111,4 +116,12 @@ Item* Room::getRoomInventory()
   {
     return NULL;
   }
+}
+
+bool Room::getRoomEmpty()
+{
+  if (roomInventory.empty() == true)
+    return true;
+  else
+    return false;
 }

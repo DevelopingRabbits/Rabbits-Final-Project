@@ -49,7 +49,7 @@ int main()
   Room controlRoom;
   Door nuclearPowerRoomDoor;
   Item BattleLantern;
-  BattleLantern.createItem("Battle Lantern", 0);
+  BattleLantern.createItem("Battle Lantern", 0, BattleLantern);
   controlRoom.addItem(&BattleLantern);
   nuclearPowerRoomDoor.createDoor("Nuclear Power Room", true, nuclearPowerRoomDoor);
   controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 3);

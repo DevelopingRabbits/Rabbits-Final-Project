@@ -30,6 +30,7 @@ private:
   string roomDescription;
 
   bool isDark;
+  bool roomEmpty;
 
   int roomID;
   int itemSelection;
@@ -43,6 +44,8 @@ public:
   void setRoomDescription(string description);
   void setIsDark(bool state);
   void addItem(Item* item);
+  void removeItem();
+  bool getRoomEmpty();
 
   int getRoomID();
   int getRoomRow();

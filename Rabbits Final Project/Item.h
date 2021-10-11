@@ -12,10 +12,14 @@ private:
   string itemName;
   int itemID;
 
+  Item* itemPtr;
+
 public:
   Item();
-  void createItem(string name, int id);
+  void createItem(string name, int id, Item &iPtr);
   string getItemName();
+
+  Item* getItemPtr();
 
 };
 

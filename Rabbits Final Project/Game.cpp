@@ -224,13 +224,21 @@ void Game::moveFunction()
 
 void Game::lookForItems()
 {
-	cout << "You chose to Look For Items\n";
-	displayItems();
-	cin >> userInput;
-	switch (userInput)
+	switch (room->getRoomEmpty())
 	{
-	case 1:
-		cout << "You picked up the " << item1->getItemName() << endl;
+	case false:
+		cout << "You chose to Look For Items\n";
+		displayItems();
+		cin >> userInput;
+		switch (userInput)
+		{
+		case 1:
+			cout << "You picked up the " << item1->getItemName() << endl;
+			players->addToInventory(item1->getItemPtr());
+			room->removeItem();
+		}
+	case true:
+		cout << "You don't see any items.\n\n";
 	}
 }
 

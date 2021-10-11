@@ -9,7 +9,6 @@ Player::Player()
 
 };
 
-
 void Player::setPlayerLocation(int row, int col)
 {
   playerRow = row;
@@ -26,8 +25,7 @@ int Player::getPlayerCol()
   return playerCol;
 }
 
-
-void Player::addToInventory(Item item)
+void Player::addToInventory(Item* item)
 {
   inventory.push_back(item);
 }

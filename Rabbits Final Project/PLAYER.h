@@ -17,7 +17,7 @@ private:
   int playerRow;
   int playerCol;
 
-  vector<Item> inventory;
+  vector<Item*> inventory;
 
 public:
  Player(); // Constructor
@@ -31,6 +31,6 @@ public:
  string nameInputValidation(string name);
 
 
- void addToInventory(Item item);
+ void addToInventory(Item* item);
 };
 #endif
