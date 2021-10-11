@@ -21,9 +21,9 @@ class Game
 {
 private:
   GameSystemsProgramming gameSystemsProgramming;
-  Player* players;
+  Player* player;
   Submarine* submarine;
-  Room* room;
+  Room* currentRoom;
   Door* upDoor;
   Door* downDoor;
   Door* rightDoor;
@@ -45,10 +45,8 @@ public:
   // Game Functions
   void createGame(Player &player, Submarine &sub);
   void startGame();
-  bool checkUserInput();
 
   void getCurrentRoom();
-  void getCurrentRoomName();
   void getRoomDoors();
   void getRoomInventory();
   void getPlayerInventory();

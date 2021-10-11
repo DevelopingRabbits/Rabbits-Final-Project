@@ -60,13 +60,6 @@ public:
   Door* getDownDoor();
   Door* getLeftDoor();
   Door* getRightDoor();
-
-  //Item interactWithItems();
-  //void displayDescription();
-  //void displayDoors();
-  //void displayLocation();
-  //void displayItems();
-
 };
 
 

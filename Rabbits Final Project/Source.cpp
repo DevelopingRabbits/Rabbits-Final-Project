@@ -76,7 +76,6 @@ int main()
   do
   {
     // Initalize the turn.
-    game.displayRoomDetails();
     game.playerTurn();
   } while (game.getGameOver() == false);
   return 0;
@@ -102,5 +101,5 @@ ACTION PHASE
 - Take the choice and determine consequences of choice
 - Resets the loop
 
-CONSEQUENCE PHASE
+CONSEQUENCE/Update PHASE
 */ // Turn Sequence

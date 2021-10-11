@@ -21,9 +21,9 @@ Game::Game()
 	playerMovedMessage = "\n\nI go through the door\n\n\n";
 };
 
-void Game::createGame(Player &player, Submarine &sub)
+void Game::createGame(Player &playerArg, Submarine &sub)
 {
-	players = &player;
+	player = &playerArg;
 	submarine = &sub;
 }
 
@@ -35,14 +35,14 @@ void Game::startGame()
 	cin >> stringUserInput;
 	
 	stringUserInput=gameSystemsProgramming.stringInputValidation(stringUserInput);
-	players->setName(stringUserInput);
-	cout << "\nWelcome Aboard Captain " << players->getName() << endl << endl;
+	player->setName(stringUserInput);
+	cout << "\nWelcome Aboard Captain " << player->getName() << endl << endl;
 };
 
 void Game::getCurrentRoom()
 {
 // Retrieve room address
-	room = submarine->getRoom(players->getPlayerRow(), players->getPlayerCol());
+	currentRoom = submarine->getRoom(player->getPlayerRow(), player->getPlayerCol());
 
 }
 
@@ -54,7 +54,7 @@ void Game::displayRoomDetails()
 
 void Game::getRoomInventory()
 {
-	item1 = room->getRoomInventory();
+	item1 = currentRoom->getRoomInventory();
 }
 
 void Game::displayItems()
@@ -66,16 +66,16 @@ void Game::displayItems()
 
 void Game::getRoomDoors()
 {
-	upDoor = room->getUpDoor();
-	downDoor = room->getDownDoor();
-	rightDoor = room->getRightDoor();
-	leftDoor = room->getLeftDoor();
+	upDoor = currentRoom->getUpDoor();
+	downDoor = currentRoom->getDownDoor();
+	rightDoor = currentRoom->getRightDoor();
+	leftDoor = currentRoom->getLeftDoor();
 }
 
 void Game::displayDoors()
 {
 	getRoomDoors();
-	if (room->getIsDark() == false)
+	if (currentRoom->getIsDark() == false)
 	{
 		cout << "You see the following doors:\n";
 		cout << "1. " << upDoor->GetDoorName() << endl;
@@ -85,7 +85,7 @@ void Game::displayDoors()
 	}
 	else
 	{
-		if (room->getRoomID() == 1)
+		if (currentRoom->getRoomID() == 1)
 		{
 			cout << "You see the following doors:\n";
 			cout << "1. " << upDoor->GetDoorName() << endl;
@@ -103,16 +103,16 @@ void Game::displayRoomDescription()
 	{
 		if (i == 30)
 		{
-			cout << room->getRoomName();
+			cout << currentRoom->getRoomName();
 		}
 		cout << "*";
 	}
-	cout << endl << room->getRoomDescription() << endl;
+	cout << endl << currentRoom->getRoomDescription() << endl;
 	for (int i = 0; i < 61; i++)
 	{
 		if (i == 30)
 		{
-			cout << room->getRoomName();
+			cout << currentRoom->getRoomName();
 		}
 		cout << "*";
 	}
@@ -131,8 +131,10 @@ void Game::setGameOver(bool state)
 
 void Game::playerTurn()
 {
+
 	updatePlayer();
 	updateRoom();
+	displayRoomDetails();
 	userInputValid = false;
 	do {
 		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n ";
@@ -169,7 +171,7 @@ void Game::playerTurn()
 
 void Game::getPlayerInventory()
 {
-	item1 = players->getInventory();
+	item1 = player->getInventory();
 }
 
 void Game::displayPlayerInventory()
@@ -181,7 +183,7 @@ void Game::displayPlayerInventory()
 void Game::interactWithInventory()
 {
 	cout << "\n\n You chose to Interact with Inventory\n\n";
-	switch (players->getInventoryEmpty())
+	switch (player->getInventoryEmpty())
 	{
 		case true:
 		{
@@ -196,7 +198,7 @@ void Game::interactWithInventory()
 			switch (userInput)
 			{
 			case 1:
-				item1->interactWithItem(players);
+				item1->interactWithItem(player);
 				break;
 			default:
 				cout << "\n\n*********Unexpected Input in Game::interactWithInventory()**********\n\n";
@@ -218,7 +220,7 @@ void Game::moveFunction()
 	case 1:
 		if (upDoor->getIsOpen() == true)
 		{
-			players->setPlayerLocation(players->getPlayerRow() - 1, players->getPlayerCol());
+			player->setPlayerLocation(player->getPlayerRow() - 1, player->getPlayerCol());
 			cout << playerMovedMessage;
 		}
 		else
@@ -227,7 +229,7 @@ void Game::moveFunction()
 	case 2:
 		if (leftDoor->getIsOpen() == true)
 		{
-			players->setPlayerLocation(players->getPlayerRow(), players->getPlayerCol() - 1);
+			player->setPlayerLocation(player->getPlayerRow(), player->getPlayerCol() - 1);
 			cout << playerMovedMessage;
 		}
 		else
@@ -236,7 +238,7 @@ void Game::moveFunction()
 	case 3:
 		if (rightDoor->getIsOpen() == true)
 		{
-			players->setPlayerLocation(players->getPlayerRow(), players->getPlayerCol() + 1);
+			player->setPlayerLocation(player->getPlayerRow(), player->getPlayerCol() + 1);
 			cout << playerMovedMessage;
 		}
 		else
@@ -245,7 +247,7 @@ void Game::moveFunction()
 	case 4:
 		if (downDoor->getIsOpen() == true)
 		{
-			players->setPlayerLocation(players->getPlayerRow() + 1, players->getPlayerCol());
+			player->setPlayerLocation(player->getPlayerRow() + 1, player->getPlayerCol());
 			cout << playerMovedMessage;
 		}
 		else
@@ -259,7 +261,7 @@ void Game::moveFunction()
 
 void Game::lookForItems()
 {
-	switch (room->getRoomEmpty())
+	switch (currentRoom->getRoomEmpty())
 	{
 	case false:
 		cout << "You chose to Look For Items\n";
@@ -269,8 +271,8 @@ void Game::lookForItems()
 		{
 		case 1:
 			cout << "You picked up the " << item1->getItemName() << endl;
-			players->addToInventory(item1->getItemPtr());
-			room->removeItem();
+			player->addToInventory(item1->getItemPtr());
+			currentRoom->removeItem();
 			break;
 		default:
 			cout << "Error in Game::lookForItems()";
@@ -288,24 +290,24 @@ void Game::lookForItems()
 void Game::updateRoom()
 {
 	getCurrentRoom();
-	if (room->getRoomID() != 0)
+	if (currentRoom->getRoomID() != 0)
 	{
 		switch (submarine->getPowerOn())
 		{
 		case true:
-			room->setIsDark(false);
+			currentRoom->setIsDark(false);
 			break;
 		case false:
-			room->setIsDark(true);
+			currentRoom->setIsDark(true);
 			break;
 		}
-		switch (players->getCanSeeInDarkRoom())
+		switch (player->getCanSeeInDarkRoom())
 		{
 		case true:
-			room->setIsDark(false);
+			currentRoom->setIsDark(false);
 			break;
 		case false:
-			room->setIsDark(true);
+			currentRoom->setIsDark(true);
 			break;
 		}
 	}
@@ -313,7 +315,7 @@ void Game::updateRoom()
 
 void Game::updatePlayer()
 {
-	players->setInventoryEmpty();
+	player->setInventoryEmpty();
 
 }
 
