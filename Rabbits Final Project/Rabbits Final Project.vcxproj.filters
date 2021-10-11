@@ -42,7 +42,7 @@
     <ClCompile Include="Door.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="UI.cpp">
+    <ClCompile Include="GameSystemProgramming.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -71,7 +71,7 @@
     <ClInclude Include="Door.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="UI.h">
+    <ClInclude Include="GameSystemsProgramming.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameSystemProgramming.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="PLAYER.cpp" />
@@ -148,18 +149,17 @@
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SUBMARINE.cpp" />
     <ClCompile Include="TopSide.cpp" />
-    <ClCompile Include="UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Door.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameSystemsProgramming.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="PLAYER.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SUBMARINE.h" />
     <ClInclude Include="TOPSIDE.h" />
-    <ClInclude Include="UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

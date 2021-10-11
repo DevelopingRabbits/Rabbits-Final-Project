@@ -10,14 +10,17 @@
 #include "SUBMARINE.h"
 #include "Room.h"
 #include "Door.h"
+#include "GameSystemsProgramming.h"
 
 
 using namespace std;
 
 
+
 class Game
 {
 private:
+  GameSystemsProgramming gameSystemsProgramming;
   Player* players;
   Submarine* submarine;
   Room* room;
