@@ -12,6 +12,7 @@ private:
   string itemName;
   int itemID;
 
+
   Item* itemPtr;
 
 public:

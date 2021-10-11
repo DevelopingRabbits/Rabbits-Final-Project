@@ -24,9 +24,6 @@
     <ClCompile Include="SUBMARINE.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TopSide.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -51,9 +48,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="SUBMARINE.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="TOPSIDE.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Game.h">
