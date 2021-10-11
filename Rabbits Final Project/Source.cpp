@@ -13,8 +13,6 @@ using namespace std;
 
 int main()
 {
-  string playerName;
-
   Player player1;
   player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
 
@@ -23,12 +21,8 @@ int main()
 
   // INIT GAME
   Game game;
-  UI ui;
-  //TopSide topside;
-  enum class Location { TopSide = 0, DarkControlRoom = 1, ControlRoom = 2 };
-  Location location = Location::TopSide;
-  int locationIndex;
-  int action;
+  game.createGame(player1, submarine);
+
 
   //INIT NULL DOORS
   Door NULLDOOR;
@@ -79,13 +73,9 @@ int main()
   GAME STARTS BELOW
   *****************************************************************
   */
-  cout << "\nWelcome to a Developing Rabbits Production!\n\n";
   
-  playerName=ui.getPlayerName();
-  playerName=ui.stringInputValidation(playerName);
-  player1.setName(playerName);
-
-  cout << "\nWelcome Aboard Captain " << player1.getName() << endl << endl;
+  //playerName=ui.getPlayerName();
+  //playerName=ui.stringInputValidation(playerName);
 
   game.startGame();
 

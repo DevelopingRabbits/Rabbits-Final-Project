@@ -39,8 +39,7 @@ string Player::getName()
 void Player::setName(string input)
 {
     playerName = input;
-  
-    
+ 
 };
 
 

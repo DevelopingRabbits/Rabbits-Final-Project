@@ -32,6 +32,7 @@ private:
   bool gameOver;
   bool userInputValid;
   int userInput;
+  string stringUserInput;
 
 
 

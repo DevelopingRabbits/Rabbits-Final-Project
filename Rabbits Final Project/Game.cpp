@@ -28,8 +28,12 @@ void Game::createGame(Player &player, Submarine &sub)
 
 void Game::startGame()
 {
+	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
 	cout << "Start Game!\n\n";
-
+	cout << "What is your name? ";
+	cin >> stringUserInput;
+	players->setName(stringUserInput);
+	cout << "\nWelcome Aboard Captain " << players->getName() << endl << endl;
 };
 
 void Game::getCurrentRoom()
