@@ -3,13 +3,12 @@
 #define PLAYER_H
 #include<iostream>
 #include<vector>
-
-
+#include<string>
 #include"Item.h"
 
 using namespace std;
 
-
+class Item;
 class Player
 {
 private:
@@ -18,6 +17,9 @@ private:
 
   int playerRow;
   int playerCol;
+
+  bool canSeeInDarkRoom;
+  bool inventoryEmpty;
 
   vector<Item*> inventory;
 
@@ -31,7 +33,13 @@ public:
  string getName();
  void setName(string input);
 
-
+ bool getInventoryEmpty();
+ void setInventoryEmpty();
  void addToInventory(Item* item);
+ Item* getInventory();
+
+ void setCanSeeInDarkRoom(bool state);
+ bool getCanSeeInDarkRoom();
+
 };
 #endif

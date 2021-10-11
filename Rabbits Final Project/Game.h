@@ -51,13 +51,16 @@ public:
   void getCurrentRoomName();
   void getRoomDoors();
   void getRoomInventory();
+  void getPlayerInventory();
 
   void displayRoomDetails();
   void displayDoors();
   void displayRoomDescription();
   void displayItems();
+  void displayPlayerInventory();
 
   void updateRoom();
+  void updatePlayer();
 
   void playerTurn();
 
@@ -67,6 +70,7 @@ public:
 
   void moveFunction();
   void lookForItems();
+  void interactWithInventory();
 
   // Get Private Member Variables
   bool getGameOver();

@@ -38,7 +38,6 @@ int main()
 4. submarine.addRoom(room object, room row, room col)
 *****************************************************************
 */
-
   // START: Topside Room/Door Objects
   Room topSide;
   Door topSideHatch;
@@ -55,7 +54,7 @@ int main()
   Room controlRoom;
   Door nuclearPowerRoomDoor;
   Item BattleLantern;
-  BattleLantern.createItem("Battle Lantern", 0, BattleLantern);
+  BattleLantern.createItem("Battle Lantern", 0, 0, BattleLantern);
   controlRoom.addItem(&BattleLantern);
   nuclearPowerRoomDoor.createDoor("Nuclear Power Room", true, nuclearPowerRoomDoor);
   controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 3);
@@ -74,13 +73,11 @@ int main()
   //playerName=ui.stringInputValidation(playerName);
 
   game.startGame();
-
   do
   {
     // Initalize the turn.
     game.displayRoomDetails();
     game.playerTurn();
-
   } while (game.getGameOver() == false);
   return 0;
 }
