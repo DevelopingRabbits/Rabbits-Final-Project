@@ -9,7 +9,7 @@ int main()
 {
   // INIT PLAYER
   Player player1;
-  player1.setPlayerLocation(0, 3);
+  player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
 
   // INIT SUBMARINE
   Submarine submarine;
@@ -22,6 +22,7 @@ int main()
   Door NULLDOOR;
   NULLDOOR.createDoor("Null Door", false, NULLDOOR);
 
+  // How to INIT Room Objects
   /*
 *****************************************************************
 1. Create the room object
@@ -33,7 +34,7 @@ int main()
 *****************************************************************
 */
 
-// START: Topside Room/Door Objects
+  // START: Topside Room/Door Objects
   Room topSide;
   Door topSideHatch;
   topSideHatch.createDoor("Topside Hatch", true, topSideHatch);
@@ -71,24 +72,7 @@ int main()
   cout << "\nWelcome Aboard Captain " << player1.getName() << endl << endl;
 
   game.startGame();
-  /*
-  Start Game - Loop that checks if gameOver = True;
 
-  INIT TURN PHASE
-  The Turn phase should consist of the following:
-
-  - Outputting Information related to space
-      - Location of the player
-      - State of the Sub
-      - State of the room
-  - Provide the player a choice
-
-  ACTION PHASE
-  - Take the choice and determine consequences of choice
-  - Resets the loop
-
-  CONSEQUENCE PHASE
-  */
   do
   {
     // Initalize the turn.
@@ -98,3 +82,26 @@ int main()
   } while (game.getGameOver() == false);
   return 0;
 }
+
+
+
+
+//Turn Sequence Explanation
+/*
+Start Game - Loop that checks if gameOver = True;
+
+INIT TURN PHASE
+The Turn phase should consist of the following:
+
+- Outputting Information related to space
+    - Location of the player
+    - State of the Sub
+    - State of the room
+- Provide the player a choice
+
+ACTION PHASE
+- Take the choice and determine consequences of choice
+- Resets the loop
+
+CONSEQUENCE PHASE
+*/ // Turn Sequence
