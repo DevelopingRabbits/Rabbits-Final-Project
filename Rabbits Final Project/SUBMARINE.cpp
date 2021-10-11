@@ -1,6 +1,8 @@
 #include "SUBMARINE.h"
-#include <iostream>
 #include <string>
+#include <iostream>
+#include <vector>
+#include <map>
 #include <iomanip>
 using namespace std;
 
@@ -8,17 +10,19 @@ Submarine::Submarine()
 {
   powerOn = false;
 	surfaced = true;
-	choice = NULL;
 	
-
-	enum class Location {TopSide, ControlRoom};
-	Location location = Location::TopSide;
 }
 
-void Submarine::addRoom(Room newRoom)
+void Submarine::addRoom(Room &newRoom, int newRoomRow, int newRoomCol)
 {
-	listOfRooms.push_back(newRoom);
+	map[newRoomRow][newRoomCol] = &newRoom;
 };
+
+Room* Submarine::getRoom(int row, int col)
+{
+	return map[row][col];
+}
+
 bool Submarine::getSurfaced()
 {
 	return surfaced;
@@ -164,21 +168,21 @@ void Submarine::setPowerOn(bool state)
 //};
 
 
-void Submarine::clearBuffer()
-{
-	cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
-};
-
-
-
-
-#include <Windows.h>
-void Submarine::delay()
-{
-	for (int i = 0; i < 1; i++)
-	{
-		cout << i;
-		Sleep(1000);
-		system("cls");
-	}
-};
+////void Submarine::clearBuffer()
+////{
+////	cin.ignore(std::numeric_limits<streamsize>::max(), '\n');
+////};
+////
+////
+////
+////
+////#include <Windows.h>
+////void Submarine::delay()
+////{
+////	for (int i = 0; i < 1; i++)
+////	{
+////		cout << i;
+////		Sleep(1000);
+////		system("cls");
+////	}
+////};

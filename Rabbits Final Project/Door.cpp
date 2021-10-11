@@ -1,17 +1,38 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <map>
+#include <iomanip>
+#include <cstring>
+
 #include "Door.h"
+
 using namespace std;
-
-
 
 Door::Door() 
 {  
+
 }
 
-void Door::SetDoorName(string name)
+void Door::createDoor(string name, bool state, Door &d)
 {
   doorName = name;
+  isOpen = state;
+  doorPtr = &d;
 }
-void Door::DisplayDoor()
+
+string Door::GetDoorName()
 {
-  cout << doorName << endl;
+
+  return doorName;
+}
+
+Door* Door::getDoorPtr()
+{
+  return doorPtr;
+}
+
+bool Door::getIsOpen()
+{
+  return isOpen;
 }

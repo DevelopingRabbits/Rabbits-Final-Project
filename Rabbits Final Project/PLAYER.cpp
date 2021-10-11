@@ -1,15 +1,31 @@
 #include "PLAYER.h"
-#include <iostream>
+#include<iostream>
+#include<vector>
 using namespace std;
 
 Player::Player()
 {
   playerName = "";
-  playerLocationIndex = 0;
-  hasBattleLantern = false;
-
 
 };
+
+
+void Player::setPlayerLocation(int row, int col)
+{
+  playerRow = row;
+  playerCol = col;
+}
+
+int Player::getPlayerRow()
+{
+  return playerRow;
+}
+
+int Player::getPlayerCol()
+{
+  return playerCol;
+}
+
 
 void Player::addToInventory(Item item)
 {
@@ -55,7 +71,6 @@ string Player::nameInputValidation(string name)
 
         }
     }
-    clearBuffer();
 
     return name;//return the name that now only consists of letters
 
@@ -74,23 +89,10 @@ void Player::setName()
     playerName=nameInputValidation(playerName);
 };
 
-int Player::getLocation()
-{
-    return PLAYER_LOCATION[playerLocationIndex];
-}
 
-void Player::setLocation(int currentLocation)
-{
 
-    playerLocationIndex = currentLocation;
-}
+//void Player::clearBuffer()
+//{
+//  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+//};
 
-void Player::clearBuffer()
-{
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-};
-
-void Player::setBattleLantern(bool state)
-{
-  hasBattleLantern = state;
-}

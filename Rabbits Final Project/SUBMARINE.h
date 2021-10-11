@@ -8,24 +8,19 @@
 #include "Room.h"
 using namespace std;
 
-
+class Room;
 class Submarine
 {
 private:
   bool powerOn;
   bool surfaced;
-
-  int choice;
-  enum class Location { TopSide, ControlRoom };
-  Location location = Location::TopSide;
-  
-  vector<Room> listOfRooms;
-
-protected:
-
+  Room* map[4][7];
+ 
 public:
+  Submarine();
+  void addRoom(Room &newRoom, int newRoomRow, int newRoomCol);
 
-  void addRoom(Room newRoom);
+  Room* getRoom(int row, int col);
 
   bool getPowerOn();
   void setPowerOn(bool state);
@@ -33,9 +28,5 @@ public:
   bool getSurfaced();
   void setSurfaced(bool state);
 
-  Submarine();
-
-  void clearBuffer();
-  void delay();
 };
 #endif

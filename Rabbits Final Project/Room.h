@@ -1,43 +1,60 @@
 #pragma once
-#ifndef Room_H
+#ifndef Room_h
 #define Room_h
 #include <string>
 #include <iostream>
 #include <vector>
-#include <map>
+#include <iomanip>
 
 #include "Door.h"
-#include "Item.h"
+#include "SUBMARINE.h"
+#include "PLAYER.h"
 
 using namespace std;
 
-
+class Door;
 class Room
 {
 private:
   string roomName;
-  vector<Door> doorList;
-  vector<Item> itemList;
-  string roomDescription[3];
+  Door* upDoor;
+  Door* downDoor;
+  Door* rightDoor;
+  Door* leftDoor;
+  string roomDescription;
+
+
   int roomID;
   int itemSelection;
+  int row;
+  int col;
 
 public:
   Room();
-  void createRoom(string name, int roomID);
-  void addDoor(Door door);
-  void addItem(Item item);
+  void createRoom(string name, int rID, Door* up, Door* down, Door* left, Door* right, int row, int col);
+
+  void setRoomDescription(string description);
+
   int getRoomID();
+  int getRoomRow();
+  int getRoomCol();
 
-  Item interactWithItems();
-  void displayToUser();
-  void displayDescription();
-  void displayDoors();
-  void displayLocation();
-  void displayItems();
+  string getRoomDescription();
+  string getRoomName();
+
+  Door* getUpDoor();
+  Door* getDownDoor();
+  Door* getLeftDoor();
+  Door* getRightDoor();
 
 
-  // void addItem(string );
+
+
+  //Item interactWithItems();
+  //void displayDescription();
+  //void displayDoors();
+  //void displayLocation();
+  //void displayItems();
 
 };
 

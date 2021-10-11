@@ -5,9 +5,12 @@
 #include <string>
 #include <iomanip>
 #include <vector>
-#include <map>
 
 #include "PLAYER.h"
+#include "SUBMARINE.h"
+#include "Room.h"
+#include "Door.h"
+
 
 using namespace std;
 
@@ -15,28 +18,45 @@ using namespace std;
 class Game
 {
 private:
-  vector<Player> players;
-  bool gameOver;
-  int userInput;
-  bool userInputValid;
+  Player* players;
+  Submarine* submarine;
+  Room* room;
+  Door* upDoor;
+  Door* downDoor;
+  Door* rightDoor;
+  Door* leftDoor;
 
-  enum class Location { TopSide = 0, ControlRoom = 1 };
-  Location location = Location::TopSide;
-  int locationIndex;
+
+  bool gameOver;
+  bool userInputValid;
+  int userInput;
+
+
 
 public:
   Game();
-  bool getGameOver();
-  void AddPlayer(Player newPlayer);
+
+  // Game Functions
+  void createGame(Player &player, Submarine &sub);
   void startGame();
-  void setGameOver(bool state);
-  void displayOptions(string rooms[], int size);
-  int setUserInput(); /////CHANGE FUNCTION NAME
   bool checkUserInput();
+
+  void getCurrentRoom();
+  void getCurrentRoomName();
+
+  void displayRoomDetails();
+  void displayDoors();
+  void displayRoomDescription();
+
+  // Set Private Member Variables
+  void setGameOver(bool state);
+  void setUserInput(); /////CHANGE FUNCTION NAME
+
+  void moveFunction();
+
+  // Get Private Member Variables
+  bool getGameOver();
   int getUserInput();
 
 };
-
-
-
 #endif
