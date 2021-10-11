@@ -73,13 +73,11 @@ int main()
   //playerName=ui.stringInputValidation(playerName);
 
   game.startGame();
-
   do
   {
     // Initalize the turn.
     game.displayRoomDetails();
     game.playerTurn();
-
   } while (game.getGameOver() == false);
   return 0;
 }
