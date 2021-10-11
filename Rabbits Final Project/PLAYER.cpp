@@ -6,6 +6,8 @@ using namespace std;
 Player::Player()
 {
   playerName = "";
+  canSeeInDarkRoom = false;
+  inventoryEmpty = true;
 
 };
 
@@ -41,10 +43,40 @@ void Player::setName(string input)
  
 };
 
+Item* Player::getInventory()
+{
+  return inventory[0];
+}
 
+bool Player::getInventoryEmpty()
+{
+  return inventoryEmpty;
+}
 
-//void Player::clearBuffer()
-//{
-//  cin.ignore(numeric_limits<streamsize>::max(), '\n');
-//};
+void Player::setInventoryEmpty()
+{
+  switch (inventory.empty())
+  {
+  case true:
+    inventoryEmpty = true;
+    break;
+  case false:
+    inventoryEmpty = false;
+    break;
+  default:
+    cout << "\n\n****Error in Player::setInventoryEmpty*****\n\n";
+    break;
+  }
+}
+
+void Player::setCanSeeInDarkRoom(bool state)
+{
+  canSeeInDarkRoom = state;
+}
+
+bool Player::getCanSeeInDarkRoom()
+{
+  return canSeeInDarkRoom;
+}
+
 

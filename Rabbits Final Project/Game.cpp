@@ -128,6 +128,7 @@ void Game::setGameOver(bool state)
 
 void Game::playerTurn()
 {
+	updatePlayer();
 	updateRoom();
 	userInputValid = false;
 	do {
@@ -149,7 +150,9 @@ void Game::playerTurn()
 			break;
 
 		case 3:
-			cout << "You chose to Interact with Inventory";
+			interactWithInventory();
+			updateRoom();
+			userInputValid = true;
 			break;
 
 		default:
@@ -160,20 +163,44 @@ void Game::playerTurn()
 
 };
 
-void Game::updateRoom()
+void Game::getPlayerInventory()
 {
-	getCurrentRoom();
-	if (room->getRoomID() != 0)
-	{
-		switch (submarine->getPowerOn())
-		{
-		case true:
-			room->setIsDark(false);
-		case false:
-			room->setIsDark(true);
-		}
-	}
+	item1 = players->getInventory();
+}
 
+void Game::displayPlayerInventory()
+{
+	cout << "You have the following items:\n";
+	cout << "1. " << item1->getItemName()<< endl;
+}
+
+void Game::interactWithInventory()
+{
+	cout << "\n\n You chose to Interact with Inventory\n\n";
+	switch (players->getInventoryEmpty())
+	{
+		case true:
+		{
+			cout << "\n\nYour inventory is empty.\n\n";
+			break;
+		}
+		case false:
+		{
+			displayPlayerInventory();
+			cout << "\n\n Which item would you like to use?\n";
+			cin >> userInput;
+			switch (userInput)
+			{
+			case 1:
+				item1->interactWithItem(players);
+				break;
+			default:
+				cout << "\n\n*********Unexpected Input in Game::interactWithInventory()**********\n\n";
+				break;
+			}
+		}
+		break;
+	}
 }
 
 void Game::moveFunction()
@@ -240,10 +267,50 @@ void Game::lookForItems()
 			cout << "You picked up the " << item1->getItemName() << endl;
 			players->addToInventory(item1->getItemPtr());
 			room->removeItem();
+			break;
+		default:
+			cout << "Error in Game::lookForItems()";
 		}
+		break;
 	case true:
 		cout << "You don't see any items.\n\n";
+		break;
+	default:
+		cout << "Error in Game::LookForItems";
+		break;
 	}
+}
+
+void Game::updateRoom()
+{
+	getCurrentRoom();
+	if (room->getRoomID() != 0)
+	{
+		switch (submarine->getPowerOn())
+		{
+		case true:
+			room->setIsDark(false);
+			break;
+		case false:
+			room->setIsDark(true);
+			break;
+		}
+		switch (players->getCanSeeInDarkRoom())
+		{
+		case true:
+			room->setIsDark(false);
+			break;
+		case false:
+			room->setIsDark(true);
+			break;
+		}
+	}
+}
+
+void Game::updatePlayer()
+{
+	players->setInventoryEmpty();
+
 }
 
 

@@ -89,6 +89,7 @@ int UI::integerInputValidation(int input)
 
     return input;//return the name that now only consists of letters
 }
+
 void UI::clearBuffer()
 {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
