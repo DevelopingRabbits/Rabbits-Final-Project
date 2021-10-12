@@ -36,7 +36,8 @@ public:
  bool getInventoryEmpty();
  void setInventoryEmpty();
  void addToInventory(Item* item);
- Item* getInventory();
+ int getInvetorySize();
+ Item* getInventory(int i);
 
  void setCanSeeInDarkRoom(bool state);
  bool getCanSeeInDarkRoom();

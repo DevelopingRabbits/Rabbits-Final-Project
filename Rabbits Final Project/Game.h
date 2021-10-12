@@ -29,6 +29,8 @@ private:
   Door* rightDoor;
   Door* leftDoor;
   Item* item1;
+  int playerInventorySize;
+  vector<Item*> inventory;
 
   string cannotMoveMessage;
   string playerMovedMessage;

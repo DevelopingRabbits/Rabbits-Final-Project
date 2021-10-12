@@ -68,6 +68,9 @@ int main()
   // *****************************************************************
   Room nuclearPowerRoom;
   Door controlRoomDoor;
+  Item controlRods;
+  controlRods.createItem("Control Rods", 1, 1, controlRods);
+  nuclearPowerRoom.addItem(&controlRods);
   controlRoomDoor.createDoor("Control Room", true, controlRoomDoor);
   nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
   nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");

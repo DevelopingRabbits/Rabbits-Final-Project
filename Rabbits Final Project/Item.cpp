@@ -15,6 +15,9 @@ void Item::createItem(string name, int id, int itemTypeArg, Item& iPtr)
   case 0:
     itemType = ItemType::light;
     break;
+  case 1:
+    itemType = ItemType::key;
+    break;
   default:
     cout << "\n\n****Error in Item::createItem****\n\n";
     break;
@@ -53,6 +56,8 @@ void Item::interactWithItem(Player* player)
       }
       break;
     }
+  case(ItemType::key):
+    break;
     default:
       cout << "\n\n****Error in Item::interactWithItems****\n\n";
       break;

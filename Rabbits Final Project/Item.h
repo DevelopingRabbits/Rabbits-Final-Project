@@ -13,9 +13,8 @@ class Item
 private:
   string itemName;
   int itemID;
-  enum class ItemType {light = 0};
+  enum class ItemType { light = 0, key = 1, lockedItem = 2 };
   ItemType itemType;
-
   bool isOn;
 
   Item* itemPtr;

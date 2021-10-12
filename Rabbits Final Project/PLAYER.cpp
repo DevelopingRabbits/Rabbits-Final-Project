@@ -31,6 +31,8 @@ void Player::addToInventory(Item* item)
 {
   inventory.push_back(item);
 }
+// battle lantern inventory[0]
+// control rods inventory[0] battlelantern inventory[1]
 
 string Player::getName()
 {
@@ -43,9 +45,14 @@ void Player::setName(string input)
  
 };
 
-Item* Player::getInventory()
+int Player::getInvetorySize()
 {
-  return inventory[0];
+  return inventory.size();
+}
+
+Item* Player::getInventory(int i)
+{
+    return inventory[i];
 }
 
 bool Player::getInventoryEmpty()

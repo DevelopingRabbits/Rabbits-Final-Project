@@ -169,15 +169,17 @@ void Game::playerTurn()
 
 };
 
-void Game::getPlayerInventory()
-{
-	item1 = player->getInventory();
-}
-
 void Game::displayPlayerInventory()
 {
+	playerInventorySize = player->getInvetorySize();
+	inventory.clear();
 	cout << "You have the following items:\n";
-	cout << "1. " << item1->getItemName()<< endl;
+	for (int i = 0; i < playerInventorySize; i++)
+	{
+		int x = i;
+		inventory.push_back(player->getInventory(i));
+		cout << x+1 << ". " << inventory[i]->getItemName() << endl;
+	}
 }
 
 void Game::interactWithInventory()
@@ -198,7 +200,10 @@ void Game::interactWithInventory()
 			switch (userInput)
 			{
 			case 1:
-				item1->interactWithItem(player);
+				inventory[userInput - 1]->interactWithItem(player);
+				break;
+			case 2:
+				inventory[userInput - 1]->interactWithItem(player);
 				break;
 			default:
 				cout << "\n\n*********Unexpected Input in Game::interactWithInventory()**********\n\n";
