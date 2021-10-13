@@ -101,6 +101,11 @@ void Room::addItem(Item* item)
   roomInventory.push_back(item);
 }
 
+void Room::addActionItem(Item* item)
+{
+  roomActionItems.push_back(item);
+}
+
 void Room::removeItem()
 {
   roomInventory.pop_back();

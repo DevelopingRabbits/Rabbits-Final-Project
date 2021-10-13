@@ -51,16 +51,27 @@ int main()
 
   // START: Control Room Room/Door Objects
   // *****************************************************************
-  Room controlRoom;
+
+  //Door Creation
   Door nuclearPowerRoomDoor;
-  Item BattleLantern;
-  BattleLantern.createItem("Battle Lantern", 0, 0, BattleLantern);
-  controlRoom.addItem(&BattleLantern);
   nuclearPowerRoomDoor.createDoor("Nuclear Power Room", true, nuclearPowerRoomDoor);
+
+  // Room Creation
+  Room controlRoom;
   controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 3);
   controlRoom.setDarkRoomDescription("You enter a dark room. You are unsure where you are.\nThe only light you see is from the hatch above.");
   controlRoom.setRoomDescription("The room has plenty of computer terminals. This seems to be the control room of the submarine.");
   submarine.addRoom(controlRoom, controlRoom.getRoomRow(), controlRoom.getRoomCol());
+
+  // Player Items
+  Item battleLantern;
+  battleLantern.createItem("Battle Lantern", 0, 0, battleLantern);
+  controlRoom.addItem(&battleLantern);
+
+  // Action Items
+  Item controlRoomComputerTerminal;
+
+ 
   // END: Control Room Room/Door Objects
   // *****************************************************************
 

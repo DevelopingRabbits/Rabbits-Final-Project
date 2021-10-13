@@ -25,6 +25,7 @@ private:
   Door* rightDoorPtr;
   Door* leftDoorPtr;
   vector<Item*> roomInventory;
+  vector<Item*> roomActionItems;
   Submarine* submarinePtr;
   string darkRoomDescription;
   string roomDescription;
@@ -44,6 +45,7 @@ public:
   void setRoomDescription(string description);
   void setIsDark(bool state);
   void addItem(Item* item);
+  void addActionItem(Item* item);
   void removeItem();
   bool getRoomEmpty();
 

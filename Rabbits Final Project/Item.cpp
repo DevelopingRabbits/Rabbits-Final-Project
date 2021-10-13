@@ -22,14 +22,20 @@ void Item::createItem(string name, int id, int itemTypeArg, Item& iPtr)
     canBeAddedToInventory = true;
     isOn = NULL;
     break;
-  case 2:
-    itemType = ItemType::lockedItem;
-    canBeAddedToInventory = false;
-    break;
   default:
     cout << "\n\n****Error in Item::createItem****\n\n";
     break;
   }
+  itemPtr = &iPtr;
+}
+
+void Item::createActionItem(string name, int id, Item& iPtr, bool subPower)
+{
+  itemName = name;
+  itemID = id;
+  itemType = ItemType::actionItem;
+  canBeAddedToInventory = false;
+  requiresSubPower = subPower;
   itemPtr = &iPtr;
 }
 
