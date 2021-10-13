@@ -42,39 +42,40 @@ private:
 
 
 public:
+  // INIT Options
   Game();
-
-  // Game Functions
   void createGame(Player &player, Submarine &sub);
   void startGame();
 
+  // Set Options
+  void setGameOver(bool state);
+
+  // Get Options
   void getCurrentRoom();
   void getRoomDoors();
   void getRoomInventory();
   void getPlayerInventory();
+  bool getGameOver();
 
+  // Display Options
   void displayRoomDetails();
   void displayDoors();
   void displayRoomDescription();
   void displayItems();
   void displayPlayerInventory();
 
-  void updateRoom();
-  void updatePlayer();
-
+  // Player Turn
   void playerTurn();
 
-  // Set Private Member Variables
-  void setGameOver(bool state);
-
-
+  // Player Options
   void moveFunction();
   void lookForItems();
   void interactWithInventory();
+  void interactWithRoom();
 
-  // Get Private Member Variables
-  bool getGameOver();
-  int getUserInput();
+  // Update Options
+  void updateRoom();
+  void updatePlayer();
 
 };
 #endif

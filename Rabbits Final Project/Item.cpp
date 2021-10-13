@@ -14,9 +14,17 @@ void Item::createItem(string name, int id, int itemTypeArg, Item& iPtr)
   {
   case 0:
     itemType = ItemType::light;
+    isOn = false;
+    canBeAddedToInventory = true;
     break;
   case 1:
     itemType = ItemType::key;
+    canBeAddedToInventory = true;
+    isOn = NULL;
+    break;
+  case 2:
+    itemType = ItemType::lockedItem;
+    canBeAddedToInventory = false;
     break;
   default:
     cout << "\n\n****Error in Item::createItem****\n\n";
@@ -57,6 +65,9 @@ void Item::interactWithItem(Player* player)
       break;
     }
   case(ItemType::key):
+    break;
+  case(ItemType::lockedItem):
+    
     break;
     default:
       cout << "\n\n****Error in Item::interactWithItems****\n\n";

@@ -13,20 +13,18 @@
 
 
 using namespace std;
-
+// INIT Options
 Game::Game()
 {
   gameOver = false;
 	cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
 	playerMovedMessage = "\n\nI go through the door\n\n\n";
 };
-
 void Game::createGame(Player &playerArg, Submarine &sub)
 {
 	player = &playerArg;
 	submarine = &sub;
 }
-
 void Game::startGame()
 {
 	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
@@ -39,31 +37,23 @@ void Game::startGame()
 	cout << "\nWelcome Aboard Captain " << player->getName() << endl << endl;
 };
 
+// Set Options
+void Game::setGameOver(bool state)
+{
+	gameOver = state;
+};
+
+// Get Options
 void Game::getCurrentRoom()
 {
 // Retrieve room address
 	currentRoom = submarine->getRoom(player->getPlayerRow(), player->getPlayerCol());
 
 }
-
-void Game::displayRoomDetails()
-{
-	getCurrentRoom();
-	displayRoomDescription();
-}
-
 void Game::getRoomInventory()
 {
 	item1 = currentRoom->getRoomInventory();
 }
-
-void Game::displayItems()
-{
-	getRoomInventory();
-	cout << "You see the following items.\n";
-	cout << "1. " << item1->getItemName() << endl;
-}
-
 void Game::getRoomDoors()
 {
 	upDoor = currentRoom->getUpDoor();
@@ -71,7 +61,35 @@ void Game::getRoomDoors()
 	rightDoor = currentRoom->getRightDoor();
 	leftDoor = currentRoom->getLeftDoor();
 }
+bool Game::getGameOver()
+{
+	return gameOver;
+};
 
+// Display Options
+void Game::displayRoomDetails()
+{
+	getCurrentRoom();
+	displayRoomDescription();
+}
+void Game::displayPlayerInventory()
+{
+	playerInventorySize = player->getInvetorySize();
+	inventory.clear();
+	cout << "You have the following items:\n";
+	for (int i = 0; i < playerInventorySize; i++)
+	{
+		int x = i;
+		inventory.push_back(player->getInventory(i));
+		cout << x + 1 << ". " << inventory[i]->getItemName() << endl;
+	}
+}
+void Game::displayItems()
+{
+	getRoomInventory();
+	cout << "You see the following items.\n";
+	cout << "1. " << item1->getItemName() << endl;
+}
 void Game::displayDoors()
 {
 	getRoomDoors();
@@ -96,7 +114,6 @@ void Game::displayDoors()
 		}
 	}
 }
-
 void Game::displayRoomDescription()
 {
 	for (int i = 0; i < 61; i++)
@@ -119,16 +136,7 @@ void Game::displayRoomDescription()
 	cout << endl;
 }
 
-bool Game::getGameOver()
-{
-	return gameOver;
-};
-
-void Game::setGameOver(bool state)
-{
-	gameOver = state;
-};
-
+// Player Turn
 void Game::playerTurn()
 {
 
@@ -137,7 +145,7 @@ void Game::playerTurn()
 	displayRoomDetails();
 	userInputValid = false;
 	do {
-		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n ";
+		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n(4) Interact\n";
 		// Items or Move
 		cin >> userInput;
 		userInput=gameSystemsProgramming.integerInputValidation(userInput);
@@ -160,60 +168,46 @@ void Game::playerTurn()
 			updateRoom();
 			userInputValid = true;
 			break;
+		case 4:
+			cout << "The player will be able to interact with room items with this selection.\n\n";
+			break;
 
 		default:
-			cout << "Invalid Option.\n";
+			cout << "Invalid Option. The program is currently in Game::playerTurn()\n";
 			break;
 		}
 	} while (userInputValid == false);
 
 };
 
-void Game::displayPlayerInventory()
+// Player Options
+void Game::lookForItems()
 {
-	playerInventorySize = player->getInvetorySize();
-	inventory.clear();
-	cout << "You have the following items:\n";
-	for (int i = 0; i < playerInventorySize; i++)
+	switch (currentRoom->getRoomEmpty())
 	{
-		int x = i;
-		inventory.push_back(player->getInventory(i));
-		cout << x+1 << ". " << inventory[i]->getItemName() << endl;
-	}
-}
-
-void Game::interactWithInventory()
-{
-	cout << "\n\n You chose to Interact with Inventory\n\n";
-	switch (player->getInventoryEmpty())
-	{
-		case true:
+	case false:
+		cout << "You chose to Look For Items\n";
+		displayItems();
+		cin >> userInput;
+		switch (userInput)
 		{
-			cout << "\n\nYour inventory is empty.\n\n";
+		case 1:
+			cout << "You picked up the " << item1->getItemName() << endl;
+			player->addToInventory(item1->getItemPtr());
+			currentRoom->removeItem();
 			break;
+		default:
+			cout << "Error in Game::lookForItems()";
 		}
-		case false:
-		{
-			displayPlayerInventory();
-			cout << "\n\n Which item would you like to use?\n";
-			cin >> userInput;
-			switch (userInput)
-			{
-			case 1:
-				inventory[userInput - 1]->interactWithItem(player);
-				break;
-			case 2:
-				inventory[userInput - 1]->interactWithItem(player);
-				break;
-			default:
-				cout << "\n\n*********Unexpected Input in Game::interactWithInventory()**********\n\n";
-				break;
-			}
-		}
+		break;
+	case true:
+		cout << "You don't see any items.\n\n";
+		break;
+	default:
+		cout << "Error in Game::LookForItems";
 		break;
 	}
 }
-
 void Game::moveFunction()
 {
 	cout << "You chose to Move\n";
@@ -263,35 +257,39 @@ void Game::moveFunction()
 		getCurrentRoom();
 	};
 }
-
-void Game::lookForItems()
+void Game::interactWithInventory()
 {
-	switch (currentRoom->getRoomEmpty())
+	cout << "\n\n You chose to Interact with Inventory\n\n";
+	switch (player->getInventoryEmpty())
 	{
+	case true:
+	{
+		cout << "\n\nYour inventory is empty.\n\n";
+		break;
+	}
 	case false:
-		cout << "You chose to Look For Items\n";
-		displayItems();
+	{
+		displayPlayerInventory();
+		cout << "\n\n Which item would you like to use?\n";
 		cin >> userInput;
 		switch (userInput)
 		{
 		case 1:
-			cout << "You picked up the " << item1->getItemName() << endl;
-			player->addToInventory(item1->getItemPtr());
-			currentRoom->removeItem();
+			inventory[userInput - 1]->interactWithItem(player);
+			break;
+		case 2:
+			inventory[userInput - 1]->interactWithItem(player);
 			break;
 		default:
-			cout << "Error in Game::lookForItems()";
+			cout << "\n\n*********Unexpected Input in Game::interactWithInventory()**********\n\n";
+			break;
 		}
-		break;
-	case true:
-		cout << "You don't see any items.\n\n";
-		break;
-	default:
-		cout << "Error in Game::LookForItems";
-		break;
+	}
+	break;
 	}
 }
 
+// Update Options
 void Game::updateRoom()
 {
 	getCurrentRoom();
@@ -317,7 +315,6 @@ void Game::updateRoom()
 		}
 	}
 }
-
 void Game::updatePlayer()
 {
 	player->setInventoryEmpty();
