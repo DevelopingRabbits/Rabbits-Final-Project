@@ -18,7 +18,7 @@ Game::Game()
 {
   gameOver = false;
 	cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
-	playerMovedMessage = "\n\nI go through the door\n\n\n";
+	playerMovedMessage = "\n\nYou go through the ";
 };
 void Game::createGame(Player &playerArg, Submarine &sub)
 {
@@ -76,12 +76,25 @@ void Game::displayPlayerInventory()
 {
 	playerInventorySize = player->getInvetorySize();
 	inventory.clear();
-	cout << "You have the following items:\n";
+	cout << "\n\nYou have the following items:\n\n";
 	for (int i = 0; i < playerInventorySize; i++)
 	{
-		int x = i;
+		int x = i + 1;
 		inventory.push_back(player->getInventory(i));
-		cout << x + 1 << ". " << inventory[i]->getItemName() << endl;
+		cout << "(" << x << ") " << inventory[i]->getItemName() << endl;
+	}
+}
+
+void Game::displayRoomActionItems()
+{
+	roomActionItemsSize = currentRoom->getActionItemsSize();
+	actionItems.clear();
+	cout << "\n\nYou see the following items:\n\n";
+	for (int i = 0; i < roomActionItemsSize; i++)
+	{
+		int x = i + 1;
+		actionItems.push_back(currentRoom->getRoomActionItems(i));
+		cout << "(" << x << ") " << actionItems[i]->getItemName() << endl;
 	}
 }
 void Game::displayItems()
@@ -169,7 +182,9 @@ void Game::playerTurn()
 			userInputValid = true;
 			break;
 		case 4:
-			cout << "The player will be able to interact with room items with this selection.\n\n";
+			interactWithRoom();
+			updateRoom();
+			userInputValid = true;
 			break;
 
 		default:
@@ -210,8 +225,8 @@ void Game::lookForItems()
 }
 void Game::moveFunction()
 {
-	cout << "You chose to Move\n";
-	cout << "Which door would you like to go through?\n";
+	cout << "\n\nYou chose to Move\n\n";
+	cout << "\n\nWhich door would you like to go through?\n\n";
 	displayDoors();
 	cin >> userInput;
 	switch (userInput)
@@ -220,7 +235,7 @@ void Game::moveFunction()
 		if (upDoor->getIsOpen() == true)
 		{
 			player->setPlayerLocation(player->getPlayerRow() - 1, player->getPlayerCol());
-			cout << playerMovedMessage;
+			cout << playerMovedMessage << upDoor->GetDoorName() << endl << endl;;
 		}
 		else
 			cout << cannotMoveMessage;
@@ -229,7 +244,7 @@ void Game::moveFunction()
 		if (leftDoor->getIsOpen() == true)
 		{
 			player->setPlayerLocation(player->getPlayerRow(), player->getPlayerCol() - 1);
-			cout << playerMovedMessage;
+			cout << playerMovedMessage << leftDoor->GetDoorName() << endl << endl;;
 		}
 		else
 			cout << cannotMoveMessage;
@@ -238,7 +253,7 @@ void Game::moveFunction()
 		if (rightDoor->getIsOpen() == true)
 		{
 			player->setPlayerLocation(player->getPlayerRow(), player->getPlayerCol() + 1);
-			cout << playerMovedMessage;
+			cout << playerMovedMessage << rightDoor->GetDoorName() << endl << endl;;
 		}
 		else
 			cout << cannotMoveMessage;
@@ -247,7 +262,7 @@ void Game::moveFunction()
 		if (downDoor->getIsOpen() == true)
 		{
 			player->setPlayerLocation(player->getPlayerRow() + 1, player->getPlayerCol());
-			cout << playerMovedMessage;
+			cout << playerMovedMessage << downDoor->GetDoorName() << endl << endl;
 		}
 		else
 			cout << cannotMoveMessage;
@@ -270,15 +285,17 @@ void Game::interactWithInventory()
 	case false:
 	{
 		displayPlayerInventory();
-		cout << "\n\n Which item would you like to use?\n";
+		cout << "\n\nWhich item would you like to use?\n";
 		cin >> userInput;
 		switch (userInput)
 		{
 		case 1:
-			inventory[userInput - 1]->interactWithItem(player);
+			userInput -= 1;
+			inventory[userInput]->interactWithItem(player);
 			break;
 		case 2:
-			inventory[userInput - 1]->interactWithItem(player);
+			userInput -= 1;
+			inventory[userInput]->interactWithItem(player);
 			break;
 		default:
 			cout << "\n\n*********Unexpected Input in Game::interactWithInventory()**********\n\n";
@@ -286,6 +303,20 @@ void Game::interactWithInventory()
 		}
 	}
 	break;
+	}
+}
+void Game::interactWithRoom()
+{
+	cout << "\n\nYou chose to Interact with Room\n\n";
+	switch (currentRoom->getRoomActionItemsEmpty())
+	{
+	case(true):
+		cout << "\n\nThere is nothing to interact with.\n\n";
+		break;
+	case(false):
+		displayRoomActionItems();
+		cout << "\n\nWhich item would you like to interact with?\n\n";
+		cin >> userInput;
 	}
 }
 

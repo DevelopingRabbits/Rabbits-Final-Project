@@ -44,16 +44,21 @@ public:
   void setDarkRoomDescription(string description);
   void setRoomDescription(string description);
   void setIsDark(bool state);
+
   void addItem(Item* item);
   void addActionItem(Item* item);
+  int getActionItemsSize();
+
   void removeItem();
   bool getRoomEmpty();
+  bool getRoomActionItemsEmpty();
+  Item* getRoomActionItems(int i); //items user can interact with.
 
   int getRoomID();
   int getRoomRow();
   int getRoomCol();
   bool getIsDark();
-  Item* getRoomInventory();
+  Item* getRoomInventory(); // Items the user can pick up.
 
   string getRoomDescription();
   string getRoomName();

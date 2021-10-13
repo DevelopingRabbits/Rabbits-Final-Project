@@ -30,7 +30,9 @@ private:
   Door* leftDoor;
   Item* item1;
   int playerInventorySize;
+  int roomActionItemsSize;
   vector<Item*> inventory;
+  vector<Item*> actionItems;
 
   string cannotMoveMessage;
   string playerMovedMessage;
@@ -54,7 +56,6 @@ public:
   void getCurrentRoom();
   void getRoomDoors();
   void getRoomInventory();
-  void getPlayerInventory();
   bool getGameOver();
 
   // Display Options
@@ -63,6 +64,7 @@ public:
   void displayRoomDescription();
   void displayItems();
   void displayPlayerInventory();
+  void displayRoomActionItems();
 
   // Player Turn
   void playerTurn();

@@ -72,9 +72,6 @@ void Item::interactWithItem(Player* player)
     }
   case(ItemType::key):
     break;
-  case(ItemType::lockedItem):
-    
-    break;
     default:
       cout << "\n\n****Error in Item::interactWithItems****\n\n";
       break;

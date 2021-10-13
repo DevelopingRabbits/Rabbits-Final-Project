@@ -130,3 +130,21 @@ bool Room::getRoomEmpty()
   else
     return false;
 }
+
+bool Room::getRoomActionItemsEmpty()
+{
+  if (roomActionItems.empty() == true)
+    return true;
+  else
+    return false;
+}
+
+int Room::getActionItemsSize()
+{
+  return roomActionItems.size();
+}
+
+Item* Room::getRoomActionItems(int i)
+{
+  return roomActionItems[i];
+}

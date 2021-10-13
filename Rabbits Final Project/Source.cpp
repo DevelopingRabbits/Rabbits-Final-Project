@@ -47,6 +47,7 @@ int main()
   topSide.setIsDark(false);
   submarine.addRoom(topSide, topSide.getRoomRow(), topSide.getRoomCol());
   // END: Topside Room/Door Objects
+    // *****************************************************************
 
 
   // START: Control Room Room/Door Objects
@@ -70,27 +71,38 @@ int main()
 
   // Action Items
   Item controlRoomComputerTerminal;
-
- 
-  // END: Control Room Room/Door Objects
+  controlRoomComputerTerminal.createActionItem("Computer Terminal", 0, controlRoomComputerTerminal, true);
+  controlRoom.addActionItem(&controlRoomComputerTerminal);
   // *****************************************************************
+  // END: Control Room Room/Door Objects
+
 
     // START: Nuclear Power Room/Door Objects
   // *****************************************************************
-  Room nuclearPowerRoom;
+
+  // Door Creation
   Door controlRoomDoor;
-  Item controlRods;
-  controlRods.createItem("Control Rods", 1, 1, controlRods);
-  nuclearPowerRoom.addItem(&controlRods);
   controlRoomDoor.createDoor("Control Room", true, controlRoomDoor);
+  
+  // Room Creation
+  Room nuclearPowerRoom;
   nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
   nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");
   nuclearPowerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
   submarine.addRoom(nuclearPowerRoom, nuclearPowerRoom.getRoomRow(), nuclearPowerRoom.getRoomCol());
+  
+  // Player Items
+  Item controlRods;
+  controlRods.createItem("Control Rods", 1, 1, controlRods);
+  nuclearPowerRoom.addItem(&controlRods);
+  
+  // Action Items
+  Item reactor;
+  reactor.createActionItem("Reactor", 0, reactor, false);
+  nuclearPowerRoom.addActionItem(&reactor);
 
-
+    // *****************************************************************
     // END: Nuclear Power Room/Door Objects
-  // *****************************************************************
 
 
 
