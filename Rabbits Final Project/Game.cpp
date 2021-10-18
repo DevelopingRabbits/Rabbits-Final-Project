@@ -320,7 +320,7 @@ void Game::interactWithRoom()
 		switch (userInput)
 		{
 		case 1:
-			actionItems[userInput]->interactWithActionItem(player, submarine);
+			actionItems[userInput-1]->interactWithActionItem(player, submarine);
 			break;
 		default:
 			cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
