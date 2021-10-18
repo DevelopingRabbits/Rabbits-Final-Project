@@ -16,6 +16,8 @@ private:
   bool surfaced;
   Room* map[4][7];
   Submarine* submarinePtr;
+  int subLocX;
+  int subLocY;
  
 public:
   Submarine();
@@ -30,6 +32,12 @@ public:
 
   bool getSurfaced();
   void setSurfaced(bool state);
+
+  int getXCord();
+  int getYCord();
+
+  void setSubmarineLocation(int,int);
+  
 
 };
 #endif

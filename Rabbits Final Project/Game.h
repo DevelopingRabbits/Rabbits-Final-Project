@@ -10,6 +10,7 @@
 #include "SUBMARINE.h"
 #include "Room.h"
 #include "Door.h"
+#include "OceanMap.h"
 #include "GameSystemsProgramming.h"
 
 
@@ -71,7 +72,6 @@ public:
 
   // Player Options
   void moveFunction();
-  void moveSubFunction();
   void lookForItems();
   void interactWithInventory();
   void interactWithRoom();
@@ -79,6 +79,10 @@ public:
   // Update Options
   void updateRoom();
   void updatePlayer();
+
+  //submarine
+  void moveSubFunction();
+  void displayCurrentSubLocation();
 
 };
 #endif
