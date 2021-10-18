@@ -71,7 +71,7 @@ int main()
 
   // Action Items
   Item controlRoomComputerTerminal;
-  controlRoomComputerTerminal.createActionItem("Computer Terminal", 0, controlRoomComputerTerminal, true);
+  controlRoomComputerTerminal.createActionItem("Computer Terminal", 0, controlRoomComputerTerminal, true, false);
   controlRoom.addActionItem(&controlRoomComputerTerminal);
   // *****************************************************************
   // END: Control Room Room/Door Objects
@@ -94,11 +94,13 @@ int main()
   // Player Items
   Item controlRods;
   controlRods.createItem("Control Rods", 1, 1, controlRods);
+  controlRods.setKeyCode(0001);
   nuclearPowerRoom.addItem(&controlRods);
   
   // Action Items
   Item reactor;
-  reactor.createActionItem("Reactor", 0, reactor, false);
+  reactor.createActionItem("Reactor", 0, reactor, false, true);
+  reactor.setActionItemKeyCode(0001);
   nuclearPowerRoom.addActionItem(&reactor);
 
     // *****************************************************************

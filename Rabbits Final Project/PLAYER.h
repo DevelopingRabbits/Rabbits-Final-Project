@@ -22,6 +22,7 @@ private:
   bool inventoryEmpty;
 
   vector<Item*> inventory;
+  vector<Item*> keys;
 
 public:
  Player(); // Constructor
@@ -37,7 +38,10 @@ public:
  void setInventoryEmpty();
  void addToInventory(Item* item);
  int getInvetorySize();
+ int getKeySize();
+
  Item* getInventory(int i);
+ Item* getKeys(int i);
 
  void setCanSeeInDarkRoom(bool state);
  bool getCanSeeInDarkRoom();

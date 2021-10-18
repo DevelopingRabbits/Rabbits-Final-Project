@@ -307,16 +307,24 @@ void Game::interactWithInventory()
 }
 void Game::interactWithRoom()
 {
-	cout << "\n\nYou chose to Interact with Room\n\n";
+	cout << "\nYou chose to Interact with Room\n\n";
 	switch (currentRoom->getRoomActionItemsEmpty())
 	{
 	case(true):
-		cout << "\n\nThere is nothing to interact with.\n\n";
+		cout << "\nThere is nothing to interact with.\n\n";
 		break;
 	case(false):
 		displayRoomActionItems();
 		cout << "\n\nWhich item would you like to interact with?\n\n";
 		cin >> userInput;
+		switch (userInput)
+		{
+		case 1:
+			actionItems[userInput]->interactWithActionItem(player, submarine);
+			break;
+		default:
+			cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
+		}
 	}
 }
 

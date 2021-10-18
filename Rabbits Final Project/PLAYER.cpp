@@ -30,7 +30,12 @@ int Player::getPlayerCol()
 void Player::addToInventory(Item* item)
 {
   inventory.push_back(item);
+  if (item->checkIsKey() == true)
+  {
+    keys.push_back(item);
+  }
 }
+
 // battle lantern inventory[0]
 // control rods inventory[0] battlelantern inventory[1]
 
@@ -50,9 +55,19 @@ int Player::getInvetorySize()
   return inventory.size();
 }
 
+int Player::getKeySize()
+{
+  return keys.size();
+}
+
 Item* Player::getInventory(int i)
 {
     return inventory[i];
+}
+
+Item* Player::getKeys(int i)
+{
+  return inventory[i];
 }
 
 bool Player::getInventoryEmpty()

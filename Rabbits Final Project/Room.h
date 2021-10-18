@@ -15,6 +15,7 @@ using namespace std;
 
 class Door;
 class Submarine;
+class Item;
 class Room
 {
 private:

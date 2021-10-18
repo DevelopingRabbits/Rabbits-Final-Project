@@ -3,7 +3,8 @@
 Item::Item()
 {
   itemName = "";
-  bool isOn = false;
+  isOn = false;
+  isKey = false;
 }
 
 void Item::createItem(string name, int id, int itemTypeArg, Item& iPtr)
@@ -20,6 +21,7 @@ void Item::createItem(string name, int id, int itemTypeArg, Item& iPtr)
   case 1:
     itemType = ItemType::key;
     canBeAddedToInventory = true;
+    isKey = true;
     isOn = NULL;
     break;
   default:
@@ -29,12 +31,13 @@ void Item::createItem(string name, int id, int itemTypeArg, Item& iPtr)
   itemPtr = &iPtr;
 }
 
-void Item::createActionItem(string name, int id, Item& iPtr, bool subPower)
+void Item::createActionItem(string name, int id, Item& iPtr, bool subPower, bool needKey)
 {
   itemName = name;
   itemID = id;
   itemType = ItemType::actionItem;
   canBeAddedToInventory = false;
+  requiresKey = needKey;
   requiresSubPower = subPower;
   itemPtr = &iPtr;
 }
@@ -76,4 +79,58 @@ void Item::interactWithItem(Player* player)
       cout << "\n\n****Error in Item::interactWithItems****\n\n";
       break;
   }
+}
+
+int Item::getKeyCode()
+{
+  return keyCode;
+}
+
+void Item::interactWithActionItem(Player* player, Submarine* sub)
+{
+  switch (requiresKey)
+  {
+  case true:
+    ////
+    //////player->getInventory
+    //////check if player has key
+    ////for (int i = 0; i < player->getKeySize(); i++)
+    ////{
+    ////  key = player->getKeys(i);
+    ////  cout << key->getKeyCode();
+    ////  system("Pause");
+    ////  if (actionItemKeyCode == key->getKeyCode());
+    ////  {
+    ////    switch (actionItemKeyCode)
+    ////    {
+    ////    case 0001:
+    ////      sub->setPowerOn(true);
+    ////      break;
+    ////    default:
+    ////      cout << "Default statement in Item::interactWithActionItem\n\n";
+    //    }
+    //  }
+    //}
+
+  case false:
+    cout << "Nothing happened.\n\n";
+    break;
+  default:
+    cout << "Default statement in Item::interactWithActionItem OUTSIDE LOOP\n\n";
+  }
+}
+
+bool Item::checkIsKey()
+{
+  return isKey;
+}
+
+void Item::setKeyCode(int code)
+{
+  keyCode = code;
+}
+
+void Item::setActionItemKeyCode(int code)
+{
+  actionItemKeyCode = code;
 }

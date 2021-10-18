@@ -4,9 +4,13 @@
 #include <string>
 #include <iostream>
 #include "PLAYER.h"
+#include "Room.h"
+#include "SUBMARINE.h"
 
 using namespace std;
 
+class Submarine;
+class Room;
 class Player;
 class Item
 {
@@ -18,16 +22,29 @@ private:
   bool isOn;
   bool canBeAddedToInventory;
   bool requiresSubPower;
+  bool requiresKey;
+  bool isKey;
+  int keyCode;
+  int actionItemKeyCode;
   Item* itemPtr;
+  Item* key;
 
 public:
   Item();
   void createItem(string name, int id, int itemType, Item& iPtr);
-  void createActionItem(string name, int id, Item& iPtr, bool subPower);
+  void setKeyCode(int code);
+  void setActionItemKeyCode(int code);
+  void createActionItem(string name, int id, Item& iPtr, bool subPower, bool needKey);
   string getItemName();
+
+  int getKeyCode();
 
   Item* getItemPtr();
   void interactWithItem(Player* player);
+  void interactWithActionItem(Player* player, Submarine* sub);
+
+  bool checkIsKey();
+
 
 };
 
