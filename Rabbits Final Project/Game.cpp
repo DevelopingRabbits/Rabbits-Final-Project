@@ -317,15 +317,60 @@ void Game::interactWithRoom()
 		displayRoomActionItems();
 		cout << "\n\nWhich item would you like to interact with?\n\n";
 		cin >> userInput;
-		switch (userInput)
-		{
-		case 1:
-			actionItems[userInput-1]->interactWithActionItem(player, submarine);
-			break;
-		default:
-			cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
-		}
 	}
+}
+
+
+}
+
+void Game::moveSubFunction()
+{
+	cout << "\n\nYou chose to move the submarine\n\n";
+	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
+	displayDoors();
+	cin >> userInput;
+	switch (userInput)
+	{
+	case 1:
+		if (upDoor->getIsOpen() == true)
+		{
+			player->setPlayerLocation(player->getPlayerRow() - 1, player->getPlayerCol());
+			cout << playerMovedMessage << upDoor->GetDoorName() << endl << endl;;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	case 2:
+		if (leftDoor->getIsOpen() == true)
+		{
+			player->setPlayerLocation(player->getPlayerRow(), player->getPlayerCol() - 1);
+			cout << playerMovedMessage << leftDoor->GetDoorName() << endl << endl;;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	case 3:
+		if (rightDoor->getIsOpen() == true)
+		{
+			player->setPlayerLocation(player->getPlayerRow(), player->getPlayerCol() + 1);
+			cout << playerMovedMessage << rightDoor->GetDoorName() << endl << endl;;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	case 4:
+		if (downDoor->getIsOpen() == true)
+		{
+			player->setPlayerLocation(player->getPlayerRow() + 1, player->getPlayerCol());
+			cout << playerMovedMessage << downDoor->GetDoorName() << endl << endl;
+		}
+		else
+			cout << cannotMoveMessage;
+		break;
+	default:
+		cout << "invalid";
+		getCurrentRoom();
+	};
 }
 
 // Update Options

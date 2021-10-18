@@ -71,6 +71,7 @@ public:
 
   // Player Options
   void moveFunction();
+  void moveSubFunction();
   void lookForItems();
   void interactWithInventory();
   void interactWithRoom();
