@@ -86,31 +86,32 @@ int Item::getKeyCode()
   return keyCode;
 }
 
-void Item::interactWithActionItem(Player* player, Submarine* sub)
+void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item)
 {
-  switch (requiresKey)
+  switch (item->requiresKey)
   {
   case true:
-    ////
-    //////player->getInventory
-    //////check if player has key
-    ////for (int i = 0; i < player->getKeySize(); i++)
-    ////{
-    ////  key = player->getKeys(i);
-    ////  cout << key->getKeyCode();
-    ////  system("Pause");
-    ////  if (actionItemKeyCode == key->getKeyCode());
-    ////  {
-    ////    switch (actionItemKeyCode)
-    ////    {
-    ////    case 0001:
-    ////      sub->setPowerOn(true);
-    ////      break;
-    ////    default:
-    ////      cout << "Default statement in Item::interactWithActionItem\n\n";
-    //    }
-    //  }
-    //}
+    cout << "This item reuqires a key\n\n";
+    //player->getInventory
+    //check if player has key
+    for (int i = 0; i < player->getKeySize(); i++)
+    {
+      key = player->getKeys(i);
+      cout << key->getItemName();
+      if (actionItemKeyCode == key->getKeyCode());
+      {
+        switch (actionItemKeyCode)
+        {
+        case 0001:
+          sub->setPowerOn(true);
+          cout << "\n\nThe power is now on.\n\n";
+          break;
+        default:
+          cout << "Default statement in Item::interactWithActionItem\n\n";
+        }
+      }
+    }
+    break;
 
   case false:
     cout << "Nothing happened.\n\n";

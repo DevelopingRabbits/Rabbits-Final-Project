@@ -41,7 +41,7 @@ public:
 
   Item* getItemPtr();
   void interactWithItem(Player* player);
-  void interactWithActionItem(Player* player, Submarine* sub);
+  void interactWithActionItem(Player* player, Submarine* sub, Item* item);
 
   bool checkIsKey();
 

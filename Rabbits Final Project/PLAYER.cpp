@@ -67,7 +67,7 @@ Item* Player::getInventory(int i)
 
 Item* Player::getKeys(int i)
 {
-  return inventory[i];
+  return keys[i];
 }
 
 bool Player::getInventoryEmpty()
