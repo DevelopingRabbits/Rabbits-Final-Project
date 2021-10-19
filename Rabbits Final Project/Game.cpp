@@ -318,6 +318,20 @@ void Game::interactWithRoom()
 		displayRoomActionItems();
 		cout << "\n\nWhich item would you like to interact with?\n\n";
 		cin >> userInput;
+
+		switch (userInput)
+		{
+		case 1:
+			moveSubFunction();
+			if (checkSubWin() == true)
+			{
+				exit;
+			}
+			break;
+		default:
+			cout << "Invalid input" << endl;
+			break;
+		}
 	}
 }
 
@@ -336,18 +350,38 @@ void Game::moveSubFunction()
 	switch (userInput)
 	{
 	case 1:
+		if (submarine->getYCord() + 1 > ocean->getMaxY())
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
 		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() + 1);
 		displayCurrentSubLocation();
 		break;
 	case 2:
+		if (submarine->getYCord() - 1 < 0)
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
 		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() - 1);
 		displayCurrentSubLocation();
 		break;
 	case 3:
+		if (submarine->getXCord() + 1 > ocean->getMaxX())
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
 		submarine->setSubmarineLocation(submarine->getXCord() + 1, submarine->getYCord());
 		displayCurrentSubLocation();
 		break;
 	case 4:
+		if (submarine->getXCord() - 1 < 0)
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
 		submarine->setSubmarineLocation(submarine->getXCord()-1, submarine->getYCord());
 		displayCurrentSubLocation();
 		break;
@@ -362,6 +396,21 @@ void Game::displayCurrentSubLocation()
 	cout << "The submarine is now located at: (" << submarine->getXCord() << "," << submarine->getYCord() << ")" << endl;
 
 }
+
+bool Game::checkSubWin()
+{
+	
+	if (submarine->getXCord() == ocean->getWinX() && submarine->getXCord() == ocean->getWinY())
+	{
+		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 
 // Update Options
 void Game::updateRoom()

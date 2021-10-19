@@ -30,6 +30,7 @@ private:
   Door* rightDoor;
   Door* leftDoor;
   Item* item1;
+  OceanMap* ocean;
   int playerInventorySize;
   int roomActionItemsSize;
   vector<Item*> inventory;
@@ -83,6 +84,7 @@ public:
   //submarine
   void moveSubFunction();
   void displayCurrentSubLocation();
+  bool checkSubWin();
 
 };
 #endif

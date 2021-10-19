@@ -8,28 +8,37 @@ using namespace std;
 
 OceanMap::OceanMap()
 {
-    winX = 4;
-    winY = 4;
-}
-bool OceanMap::checkWin()
-{
-    if (submarine->getXCord() == winX && submarine->getXCord() == winY)
-    {
-        cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
-        return true;
-    }
-    else
-    {
-        return false;
-    }
+    winXCord = 4;
+    winYCord = 4;
 }
 
 void OceanMap::setWinX()
 {
-
+    
 }
 
 void OceanMap::setWinY()
 {
+    
+}
 
+int OceanMap::getWinX()
+{
+    //cout << winXCord; continues to throw exceptio for nullptr
+    return 4;
+}
+
+int OceanMap::getWinY()
+{
+    return 4;
+}
+
+int OceanMap::getMaxX()
+{
+    return mapSizeX;
+}
+
+int OceanMap::getMaxY()
+{
+    return mapSizeY;
 }

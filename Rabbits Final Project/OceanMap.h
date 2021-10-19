@@ -7,19 +7,25 @@
 #include <iostream>
 using namespace std;
 
-Submarine* submarine;
+const int mapSizeX = 4;
+const int mapSizeY = 4;
 class OceanMap
 {
 private:
-    Room* oceanMap[4][4];
-    int winX;
-    int winY;
+    Room* oceanMap[mapSizeX][mapSizeY];
+    int winXCord;
+    int winYCord;
 
 public:
-   
-    bool checkWin();
+    OceanMap();
     void setWinX();
     void setWinY();
+
+    int getWinX();
+    int getWinY();
+
+    int getMaxX();
+    int getMaxY();
 
 };
 #endif
