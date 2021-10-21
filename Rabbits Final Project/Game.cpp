@@ -372,7 +372,7 @@ void Game::moveSubFunction()
 	case 1:
 		if (submarine->getYCord() + 1 > ocean->getMaxY())
 		{
-			cout << "The submarine cannot travel any further in this direciton" << endl;
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
 		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() + 1);
@@ -381,7 +381,7 @@ void Game::moveSubFunction()
 	case 2:
 		if (submarine->getYCord() - 1 < 0)
 		{
-			cout << "The submarine cannot travel any further in this direciton" << endl;
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
 		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() - 1);
@@ -390,7 +390,7 @@ void Game::moveSubFunction()
 	case 3:
 		if (submarine->getXCord() + 1 > ocean->getMaxX())
 		{
-			cout << "The submarine cannot travel any further in this direciton" << endl;
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
 		submarine->setSubmarineLocation(submarine->getXCord() + 1, submarine->getYCord());
@@ -399,7 +399,7 @@ void Game::moveSubFunction()
 	case 4:
 		if (submarine->getXCord() - 1 < 0)
 		{
-			cout << "The submarine cannot travel any further in this direciton" << endl;
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
 		submarine->setSubmarineLocation(submarine->getXCord()-1, submarine->getYCord());
