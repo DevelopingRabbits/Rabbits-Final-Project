@@ -10,6 +10,7 @@
 #include "Room.h"
 #include "Item.h"
 #include "Game.h"
+#include "OceanMap.h"
 
 
 using namespace std;
@@ -338,8 +339,108 @@ void Game::interactWithRoom()
 	default:
 	cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
 
+	switch (currentRoom->getRoomActionItemsEmpty())
+	{
+	case(true):
+		cout << "\nThere is nothing to interact with.\n\n";
+		break;
+	case(false):
+		displayRoomActionItems();
+		cout << "\n\nWhich item would you like to interact with?\n\n";
+		cin >> userInput;
+
+		switch (userInput)
+		{
+		case 1:
+			moveSubFunction();
+			if (checkSubWin() == true)
+			{
+				exit;
+			}
+			break;
+		default:
+			cout << "Invalid input" << endl;
+			break;
+		}
 	}
 }
+
+
+
+
+void Game::moveSubFunction()
+{
+	cout << "\n\nYou chose to move the submarine\n\n";
+	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
+	cout << "1. North" << endl;
+	cout << "2. South" << endl;
+	cout << "3. East" << endl;
+	cout << "4. West" << endl;
+	cin >> userInput;
+	switch (userInput)
+	{
+	case 1:
+		if (submarine->getYCord() + 1 > ocean->getMaxY())
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() + 1);
+		displayCurrentSubLocation();
+		break;
+	case 2:
+		if (submarine->getYCord() - 1 < 0)
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() - 1);
+		displayCurrentSubLocation();
+		break;
+	case 3:
+		if (submarine->getXCord() + 1 > ocean->getMaxX())
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord() + 1, submarine->getYCord());
+		displayCurrentSubLocation();
+		break;
+	case 4:
+		if (submarine->getXCord() - 1 < 0)
+		{
+			cout << "The submarine cannot travel any further in this direciton" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord()-1, submarine->getYCord());
+		displayCurrentSubLocation();
+		break;
+	default:
+		cout << "invalid";
+		getCurrentRoom();
+	};
+}
+
+void Game::displayCurrentSubLocation()
+{
+	cout << "The submarine is now located at: (" << submarine->getXCord() << "," << submarine->getYCord() << ")" << endl;
+
+}
+
+bool Game::checkSubWin()
+{
+	
+	if (submarine->getXCord() == ocean->getWinX() && submarine->getXCord() == ocean->getWinY())
+	{
+		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
+
 
 // Update Options
 void Game::updateRoom()

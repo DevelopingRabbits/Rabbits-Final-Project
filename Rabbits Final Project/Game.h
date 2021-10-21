@@ -10,6 +10,7 @@
 #include "SUBMARINE.h"
 #include "Room.h"
 #include "Door.h"
+#include "OceanMap.h"
 #include "GameSystemsProgramming.h"
 
 
@@ -34,6 +35,7 @@ private:
   Door* rightDoor;
   Door* leftDoor;
   Item* item1;
+  OceanMap* ocean;
   int playerInventorySize;
   int roomActionItemsSize;
   vector<Item*> inventory;
@@ -83,6 +85,11 @@ public:
   // Update Options
   void updateRoom();
   void updatePlayer();
+
+  //submarine
+  void moveSubFunction();
+  void displayCurrentSubLocation();
+  bool checkSubWin();
 
 };
 #endif
