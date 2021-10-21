@@ -22,6 +22,7 @@ class Room;
 class Door;
 class Item;
 class Submarine;
+class OceanMap;
 class Game
 {
 private:

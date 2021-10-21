@@ -307,10 +307,11 @@ void Game::interactWithInventory()
 	break;
 	}
 }
+
 void Game::interactWithRoom()
 {
 	cout << "\nYou chose to Interact with Room\n\n";
-	switch(player->getCanSeeInDarkRoom())
+	switch (player->getCanSeeInDarkRoom())
 	{
 	case true:
 		switch (currentRoom->getRoomActionItemsEmpty())
@@ -337,31 +338,8 @@ void Game::interactWithRoom()
 		cout << "\n\n It's too dark in this room. You don't see anything.\n\n";
 		break;
 	default:
-	cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
+		cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
 
-	switch (currentRoom->getRoomActionItemsEmpty())
-	{
-	case(true):
-		cout << "\nThere is nothing to interact with.\n\n";
-		break;
-	case(false):
-		displayRoomActionItems();
-		cout << "\n\nWhich item would you like to interact with?\n\n";
-		cin >> userInput;
-
-		switch (userInput)
-		{
-		case 1:
-			moveSubFunction();
-			if (checkSubWin() == true)
-			{
-				exit;
-			}
-			break;
-		default:
-			cout << "Invalid input" << endl;
-			break;
-		}
 	}
 }
 
