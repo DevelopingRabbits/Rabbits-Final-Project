@@ -113,6 +113,10 @@ void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item)
     }
     break;
 
+  //Check if computer terminal
+  // Check if sub power is on
+  //Interact with computer terminal
+
   case false:
     cout << "Nothing happened.\n\n";
     break;

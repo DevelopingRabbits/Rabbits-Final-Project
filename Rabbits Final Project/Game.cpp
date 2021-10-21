@@ -308,23 +308,35 @@ void Game::interactWithInventory()
 void Game::interactWithRoom()
 {
 	cout << "\nYou chose to Interact with Room\n\n";
-	switch (currentRoom->getRoomActionItemsEmpty())
+	switch(player->getCanSeeInDarkRoom())
 	{
-	case(true):
-		cout << "\nThere is nothing to interact with.\n\n";
-		break;
-	case(false):
-		displayRoomActionItems();
-		cout << "\n\nWhich item would you like to interact with?\n\n";
-		cin >> userInput;
-		switch (userInput)
+	case true:
+		switch (currentRoom->getRoomActionItemsEmpty())
 		{
-		case 1:
-			actionItems[userInput-1]->interactWithActionItem(player, submarine, actionItems[userInput-1]);
+		case(true):
+			cout << "\nThere is nothing to interact with.\n\n";
 			break;
-		default:
-			cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
+		case(false):
+			displayRoomActionItems();
+			cout << "\n\nWhich item would you like to interact with?\n\n";
+			cin >> userInput;
+			switch (userInput)
+			{
+			case 1:
+				userInput -= 1;
+				actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput]);
+				break;
+			default:
+				cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
+			}
 		}
+		break;
+	case false:
+		cout << "\n\n It's too dark in this room. You don't see anything.\n\n";
+		break;
+	default:
+	cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
+
 	}
 }
 
