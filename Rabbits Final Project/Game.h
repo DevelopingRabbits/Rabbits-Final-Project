@@ -16,11 +16,16 @@
 using namespace std;
 
 
-
+class Player;
+class Room;
+class Door;
+class Item;
+class Submarine;
 class Game
 {
 private:
   GameSystemsProgramming gameSystemsProgramming;
+  Game* game;
   Player* player;
   Submarine* submarine;
   Room* currentRoom;
@@ -46,7 +51,7 @@ private:
 public:
   // INIT Options
   Game();
-  void createGame(Player &player, Submarine &sub);
+  void createGame(Player &player, Submarine &sub, Game &gameArg);
   void startGame();
 
   // Set Options

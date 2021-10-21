@@ -86,7 +86,7 @@ int Item::getKeyCode()
   return keyCode;
 }
 
-void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item)
+void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Game* game)
 {
   switch (item->requiresKey)
   {
@@ -118,6 +118,14 @@ void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item)
   //Interact with computer terminal
 
   case false:
+    switch (itemID)
+    {
+    case 9999:
+      cout << "You chose the computer terminal.\n\n";
+    }
+    //Check if computer terminal
+    // Check if sub power is on
+    //Interact with computer terminal
     cout << "Nothing happened.\n\n";
     break;
   default:

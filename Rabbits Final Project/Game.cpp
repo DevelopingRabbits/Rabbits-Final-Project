@@ -20,10 +20,11 @@ Game::Game()
 	cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
 	playerMovedMessage = "\n\nYou go through the ";
 };
-void Game::createGame(Player &playerArg, Submarine &sub)
+void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg)
 {
 	player = &playerArg;
 	submarine = &sub;
+	game = &gameArg;
 }
 void Game::startGame()
 {
@@ -324,7 +325,7 @@ void Game::interactWithRoom()
 			{
 			case 1:
 				userInput -= 1;
-				actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput]);
+				actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput], game);
 				break;
 			default:
 				cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";

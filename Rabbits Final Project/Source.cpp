@@ -20,7 +20,7 @@ int main()
 
   // INIT GAME
   Game game;
-  game.createGame(player1, submarine);
+  game.createGame(player1, submarine, game);
 
 
   //INIT NULL DOORS
@@ -71,7 +71,7 @@ int main()
 
   // Action Items
   Item controlRoomComputerTerminal;
-  controlRoomComputerTerminal.createActionItem("Computer Terminal", 0, controlRoomComputerTerminal, true, false);
+  controlRoomComputerTerminal.createActionItem("Computer Terminal", 9999, controlRoomComputerTerminal, true, false);
   controlRoom.addActionItem(&controlRoomComputerTerminal);
   // *****************************************************************
   // END: Control Room Room/Door Objects
