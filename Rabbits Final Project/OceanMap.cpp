@@ -42,3 +42,4 @@ int OceanMap::getMaxY()
 {
     return mapSizeY;
 }
+

@@ -29,5 +29,7 @@ public:
     int getMaxX();
     int getMaxY();
 
+    void moveSubFunction();
+
 };
 #endif

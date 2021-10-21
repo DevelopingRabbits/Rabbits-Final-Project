@@ -42,9 +42,10 @@ public:
 
   int getKeyCode();
 
+
   Item* getItemPtr();
   void interactWithItem(Player* player);
-  void interactWithActionItem(Player* player, Submarine* sub, Item* item, Game* game);
+  int interactWithActionItem(Player* player, Submarine* sub, Item* item, Game* game);
 
   bool checkIsKey();
 

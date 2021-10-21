@@ -13,6 +13,7 @@
 #include "OceanMap.h"
 
 
+
 using namespace std;
 // INIT Options
 Game::Game()
@@ -310,6 +311,7 @@ void Game::interactWithInventory()
 
 void Game::interactWithRoom()
 {
+	int actionReturn;
 	cout << "\nYou chose to Interact with Room\n\n";
 	switch (player->getCanSeeInDarkRoom())
 	{
@@ -327,7 +329,17 @@ void Game::interactWithRoom()
 			{
 			case 1:
 				userInput -= 1;
-				actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput], game);
+				actionReturn=actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput], game);
+				switch (actionReturn)
+				{
+					case 0001:
+						break;
+					case 9999:
+						moveSubFunction();
+						break;
+					default:
+						break;
+				}
 				break;
 			default:
 				cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
