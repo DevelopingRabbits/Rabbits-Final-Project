@@ -93,3 +93,8 @@ void GameSystemsProgramming::clearBuffer()
 {
     cin.ignore(numeric_limits<streamsize>::max(), '\n');
 }
+
+void GameSystemsProgramming::loseMessage()
+{
+    cout << "GAME OVER";
+}

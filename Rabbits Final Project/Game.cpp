@@ -32,6 +32,7 @@ void Game::startGame()
 {
 	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
 	cout << "Start Game!\n\n";
+	
 	cout << "What is your name? ";
 	cin >> stringUserInput;
 	
@@ -310,7 +311,8 @@ void Game::interactWithInventory()
 }
 
 void Game::interactWithRoom()
-{
+{ 
+	
 	int actionReturn;
 	cout << "\nYou chose to Interact with Room\n\n";
 	switch (player->getCanSeeInDarkRoom())
@@ -336,6 +338,7 @@ void Game::interactWithRoom()
 						break;
 					case 9999:
 						moveSubFunction();
+						
 						break;
 					default:
 						break;
@@ -360,6 +363,7 @@ void Game::interactWithRoom()
 
 void Game::moveSubFunction()
 {
+	
 	cout << "\n\nYou chose to move the submarine\n\n";
 	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
 	cout << "1. North" << endl;
@@ -370,7 +374,7 @@ void Game::moveSubFunction()
 	switch (userInput)
 	{
 	case 1:
-		if (submarine->getYCord() + 1 > ocean->getMaxY())
+		if (submarine->getYCord() + 1 > oceanMap->getMaxY())
 		{
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
@@ -388,7 +392,7 @@ void Game::moveSubFunction()
 		displayCurrentSubLocation();
 		break;
 	case 3:
-		if (submarine->getXCord() + 1 > ocean->getMaxX())
+		if (submarine->getXCord() + 1 > oceanMap->getMaxX())
 		{
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
@@ -409,6 +413,12 @@ void Game::moveSubFunction()
 		cout << "invalid";
 		getCurrentRoom();
 	};
+	
+	if (checkSubWin() == true)
+	{
+		
+		setGameOver(true);
+	}
 }
 
 void Game::displayCurrentSubLocation()
@@ -420,15 +430,17 @@ void Game::displayCurrentSubLocation()
 bool Game::checkSubWin()
 {
 	
-	if (submarine->getXCord() == ocean->getWinX() && submarine->getXCord() == ocean->getWinY())
+	if (submarine->getYCord() == oceanMap->getWinY() && submarine->getXCord() == oceanMap->getWinX())
 	{
 		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
+	
 		return true;
 	}
 	else
 	{
 		return false;
 	}
+	
 }
 
 
@@ -463,6 +475,8 @@ void Game::updatePlayer()
 	player->setInventoryEmpty();
 
 }
+
+
 
 
 //bool Game::checkUserInput()

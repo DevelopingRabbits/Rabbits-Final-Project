@@ -36,7 +36,7 @@ private:
   Door* rightDoor;
   Door* leftDoor;
   Item* item1;
-  OceanMap* ocean;
+  OceanMap* oceanMap;
   int playerInventorySize;
   int roomActionItemsSize;
   vector<Item*> inventory;
@@ -92,5 +92,6 @@ public:
   void displayCurrentSubLocation();
   bool checkSubWin();
 
+ 
 };
 #endif

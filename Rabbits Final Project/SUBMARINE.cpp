@@ -67,4 +67,5 @@ void Submarine::setSubmarineLocation(int x, int y)
 {
 	subLocX = x;
 	subLocY = y;
+	
 }

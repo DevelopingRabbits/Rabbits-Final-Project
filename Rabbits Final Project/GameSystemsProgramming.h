@@ -16,6 +16,8 @@ public:
     string getPlayerName();
     int integerInputValidation(int input);
     void clearBuffer();
+
+    void loseMessage();
 };
 
 #endif

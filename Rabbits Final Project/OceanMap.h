@@ -9,14 +9,20 @@ using namespace std;
 
 const int mapSizeX = 4;
 const int mapSizeY = 4;
+
+
 class Room;
 class Submarine;
+
 class OceanMap
 {
+
 private:
     Room* oceanMap[mapSizeX][mapSizeY];
-    int winXCord;
-    int winYCord;
+    int winXOcean;
+    int winYOcean;
+
+    
 
 public:
     OceanMap();
@@ -28,8 +34,6 @@ public:
 
     int getMaxX();
     int getMaxY();
-
-    void moveSubFunction();
 
 };
 #endif
