@@ -156,9 +156,11 @@ void Game::playerTurn()
 	updatePlayer();
 	updateRoom();
 	displayRoomDetails();
+	getHelp();
+
 	userInputValid = false;
 	do {
-		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n(4) Interact\n";
+		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n(4) Interact\n(5) Get Help\n";
 		// Items or Move
 		cin >> userInput;
 		userInput=gameSystemsProgramming.integerInputValidation(userInput);
@@ -183,6 +185,11 @@ void Game::playerTurn()
 			break;
 		case 4:
 			interactWithRoom();
+			updateRoom();
+			userInputValid = true;
+			break;
+		case 5:
+			getHelp();
 			updateRoom();
 			userInputValid = true;
 			break;
@@ -320,39 +327,7 @@ void Game::interactWithRoom()
 	}
 }
 
-// Update Options
-void Game::updateRoom()
-{
-	getCurrentRoom();
-	if (currentRoom->getRoomID() != 0)
-	{
-		switch (submarine->getPowerOn())
-		{
-		case true:
-			currentRoom->setIsDark(false);
-			break;
-		case false:
-			currentRoom->setIsDark(true);
-			break;
-		}
-		switch (player->getCanSeeInDarkRoom())
-		{
-		case true:
-			currentRoom->setIsDark(false);
-			break;
-		case false:
-			currentRoom->setIsDark(true);
-			break;
-		}
-	}
-}
-void Game::updatePlayer()
-{
-	player->setInventoryEmpty();
-
-}
-
-void getHelp()
+void Game::getHelp()
 {
 	int selection;
 	cout << "HELP MENU" << endl;
@@ -393,6 +368,39 @@ void getHelp()
 	}
 }
 
+// Update Options
+void Game::updateRoom()
+{
+	getCurrentRoom();
+	if (currentRoom->getRoomID() != 0)
+	{
+		switch (submarine->getPowerOn())
+		{
+		case true:
+			currentRoom->setIsDark(false);
+			break;
+		case false:
+			currentRoom->setIsDark(true);
+			break;
+		}
+		switch (player->getCanSeeInDarkRoom())
+		{
+		case true:
+			currentRoom->setIsDark(false);
+			break;
+		case false:
+			currentRoom->setIsDark(true);
+			break;
+		}
+	}
+}
+void Game::updatePlayer()
+{
+	player->setInventoryEmpty();
+
+}
+
+
 
 //bool Game::checkUserInput()
 //{
@@ -426,43 +434,4 @@ void getHelp()
 //	return userInput;
 //};
 
-void getHelp()
-{
-	int selection;
-	cout << "HELP MENU" << endl;
-	cout << "Select what you would like to get help with:" << endl;
-	cout << "1. How to move between rooms." << endl;
-	cout << "2. How to see your inventory." << endl;
-	cout << "0. Quit Help." << endl;
-	cin >> selection;
-
-	if (selection == 0)
-	{
-		cout << endl;
-		cout << "Selected Exit." << endl;
-		cout << "If you still need help or any hints just hit the help option again" << endl;
-		system("pause");
-	}
-
-	if (selection == 1)
-	{
-		cout << endl;
-		cout << "Selected How To Move Between Rooms" << endl;
-		cout << "To move inbetween rooms you need to use the numbers that are provided on your screen for example: 1,2,3,4. By doing this you travel from each room that is selected" << endl;
-		system("pause");
-	}
-
-	if (selection == 3)
-	{
-		cout << endl;
-		cout << "Selected How to View Inventory" << endl;
-		cout << "To see your inventory select 3, when you select 3 you can view what is in your inventory and interact with the items" << endl;
-	}
-
-	else
-	{
-		cout << "Invalid selection, please try again select the correct options for help" << endl;
-		system("pause");
-	}
-}
 
