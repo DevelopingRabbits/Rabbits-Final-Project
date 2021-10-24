@@ -36,7 +36,7 @@ private:
   Door* rightDoor;
   Door* leftDoor;
   Item* item1;
-  OceanMap* oceanMap;
+  OceanMap* ocean;
   int playerInventorySize;
   int roomActionItemsSize;
   vector<Item*> inventory;
@@ -54,7 +54,7 @@ private:
 public:
   // INIT Options
   Game();
-  void createGame(Player &player, Submarine &sub, Game &gameArg);
+  void createGame(Player &player, Submarine &sub, Game &gameArg, OceanMap &oceanarg);
   void startGame();
 
   // Set Options
@@ -91,6 +91,7 @@ public:
   void moveSubFunction();
   void displayCurrentSubLocation();
   bool checkSubWin();
+ 
 
  
 };

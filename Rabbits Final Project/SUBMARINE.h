@@ -33,8 +33,8 @@ public:
   bool getSurfaced();
   void setSurfaced(bool state);
 
-  int getXCord();
-  int getYCord();
+  int getXSubLoc();
+  int getYSubLoc();
 
   void setSubmarineLocation(int,int);
   

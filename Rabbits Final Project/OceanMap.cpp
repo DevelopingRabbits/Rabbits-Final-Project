@@ -12,9 +12,61 @@ OceanMap::OceanMap()
 {
     winXOcean = 0;
     winYOcean = 1;
-   
+    
+    
+    for (int i = 0; i <= mapSizeX; i++)
+    {
+        for(int j = 0; j <= mapSizeY; j++)
+        {
+
+        oceanMapArray[i][j] = '+';
+        
+        }  
+        
+    }
     
 }
+
+void OceanMap::displayOceanMap()
+{
+    int count = 0;
+    cout << "=";
+    for (int k = 0; k <= mapSizeX; k++)
+    {
+        cout << "======";
+    }
+    cout <<"="<< endl;
+    for (int j = mapSizeY; j >= 0; j--)
+    {
+        cout << "|  ";
+        for (int i = 0; i <= mapSizeX; i++)
+        {
+            cout << oceanMapArray[i][j] << "  |  ";
+        }
+        cout << endl;
+        count++;
+        if (count <= mapSizeY)
+        {
+            
+            cout << "=";
+            for (int k = 0; k <= mapSizeX; k++)
+            {
+                cout << "======";
+            }
+            cout << "=" << endl;
+        }
+        
+        
+        
+    }
+    cout << "=";
+    for (int k = 0; k <= mapSizeX; k++)
+    {
+        cout << "======";
+    }
+    cout << "=" << endl;
+}
+   
 
 void OceanMap::setWinX()
 {
@@ -26,19 +78,28 @@ void OceanMap::setWinY()
     
 }
 
+void OceanMap::setSeenPosition(int x, int y)
+{
+    oceanMapArray[x][y] = ' ';
+}
+
+void OceanMap::setSubPosition(int x, int y)
+{
+    oceanMapArray[x][y] = '@';
+}
+
 int OceanMap::getWinX()
 {
     
     
-   //return winXOcean; returning winXOcean causes exception stating nullptr. winXOcean and winYOcean cannnot be printed or passed.
-    return 0;
+   return winXOcean;
 }
 
 int OceanMap::getWinY()
 {
     
-  //return winYOcean;
-    return 1;
+  return winYOcean;
+    
 }
 
 int OceanMap::getMaxX()

@@ -7,8 +7,8 @@
 #include <iostream>
 using namespace std;
 
-const int mapSizeX = 4;
-const int mapSizeY = 4;
+const int mapSizeX = 3;
+const int mapSizeY = 3;
 
 
 class Room;
@@ -18,7 +18,7 @@ class OceanMap
 {
 
 private:
-    Room* oceanMap[mapSizeX][mapSizeY];
+    char oceanMapArray[mapSizeX][mapSizeY];
     int winXOcean;
     int winYOcean;
 
@@ -26,8 +26,13 @@ private:
 
 public:
     OceanMap();
+
+    void displayOceanMap();
     void setWinX();
     void setWinY();
+
+    void setSubPosition(int x,int y);
+    void setSeenPosition(int x, int y);
 
     int getWinX();
     int getWinY();

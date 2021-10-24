@@ -12,6 +12,8 @@ using namespace std;
 
 int main()
 {
+  OceanMap ocean;
+
   Player player1;
   player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
 
@@ -20,7 +22,7 @@ int main()
 
   // INIT GAME
   Game game;
-  game.createGame(player1, submarine, game);
+  game.createGame(player1, submarine, game, ocean);
 
 
   //INIT NULL DOORS

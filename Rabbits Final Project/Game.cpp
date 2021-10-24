@@ -21,15 +21,20 @@ Game::Game()
   gameOver = false;
 	cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
 	playerMovedMessage = "\n\nYou go through the ";
+	
 };
-void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg)
+
+
+void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap &oceanarg)
 {
 	player = &playerArg;
 	submarine = &sub;
 	game = &gameArg;
+	ocean = &oceanarg;
 }
 void Game::startGame()
 {
+	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());//maybe not in the right place but does not work in default constructor
 	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
 	cout << "Start Game!\n\n";
 	
@@ -374,45 +379,55 @@ void Game::moveSubFunction()
 	switch (userInput)
 	{
 	case 1:
-		if (submarine->getYCord() + 1 > oceanMap->getMaxY())
+		if (submarine->getYSubLoc() + 1 > ocean->getMaxY())
 		{
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
-		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() + 1);
+		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
 		displayCurrentSubLocation();
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
 		break;
 	case 2:
-		if (submarine->getYCord() - 1 < 0)
+		if (submarine->getYSubLoc() - 1 < 0)
 		{
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
-		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() - 1);
+		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
 		displayCurrentSubLocation();
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
 		break;
 	case 3:
-		if (submarine->getXCord() + 1 > oceanMap->getMaxX())
+		if (submarine->getXSubLoc() + 1 > ocean->getMaxX())
 		{
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
-		submarine->setSubmarineLocation(submarine->getXCord() + 1, submarine->getYCord());
+		submarine->setSubmarineLocation(submarine->getXSubLoc() + 1, submarine->getYSubLoc());
 		displayCurrentSubLocation();
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		ocean->setSeenPosition(submarine->getXSubLoc()-1, submarine->getYSubLoc());
 		break;
 	case 4:
-		if (submarine->getXCord() - 1 < 0)
+		if (submarine->getXSubLoc() - 1 < 0)
 		{
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
-		submarine->setSubmarineLocation(submarine->getXCord()-1, submarine->getYCord());
+		submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
 		displayCurrentSubLocation();
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		ocean->setSeenPosition(submarine->getXSubLoc()+1, submarine->getYSubLoc() );
 		break;
 	default:
 		cout << "invalid";
 		getCurrentRoom();
 	};
+
+	ocean->displayOceanMap();
 	
 	if (checkSubWin() == true)
 	{
@@ -423,14 +438,14 @@ void Game::moveSubFunction()
 
 void Game::displayCurrentSubLocation()
 {
-	cout << "The submarine is now located at: (" << submarine->getXCord() << "," << submarine->getYCord() << ")" << endl;
+	cout << "The submarine is now located at: (" << submarine->getXSubLoc() << "," << submarine->getYSubLoc() << ")" << endl;
 
 }
 
 bool Game::checkSubWin()
 {
 	
-	if (submarine->getYCord() == oceanMap->getWinY() && submarine->getXCord() == oceanMap->getWinX())
+	if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 	{
 		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
 	
