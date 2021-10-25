@@ -7,8 +7,8 @@
 #include <iostream>
 using namespace std;
 
-const int mapSizeX = 3;
-const int mapSizeY = 3;
+const int mapSizeX = 4;
+const int mapSizeY = 4;
 
 
 class Room;

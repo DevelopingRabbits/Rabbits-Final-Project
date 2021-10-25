@@ -34,7 +34,9 @@ void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap
 }
 void Game::startGame()
 {
-	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());//maybe not in the right place but does not work in default constructor
+	
+	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());//not in the right place but does not work in default constructor
+	
 	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
 	cout << "Start Game!\n\n";
 	
@@ -384,10 +386,11 @@ void Game::moveSubFunction()
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
+		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
 		displayCurrentSubLocation();
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
+		
 		break;
 	case 2:
 		if (submarine->getYSubLoc() - 1 < 0)
@@ -395,10 +398,11 @@ void Game::moveSubFunction()
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
+		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
 		displayCurrentSubLocation();
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
+		
 		break;
 	case 3:
 		if (submarine->getXSubLoc() + 1 > ocean->getMaxX())
@@ -406,10 +410,11 @@ void Game::moveSubFunction()
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
+		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc() + 1, submarine->getYSubLoc());
 		displayCurrentSubLocation();
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		ocean->setSeenPosition(submarine->getXSubLoc()-1, submarine->getYSubLoc());
+		
 		break;
 	case 4:
 		if (submarine->getXSubLoc() - 1 < 0)
@@ -417,10 +422,11 @@ void Game::moveSubFunction()
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
+		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
 		displayCurrentSubLocation();
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		ocean->setSeenPosition(submarine->getXSubLoc()+1, submarine->getYSubLoc() );
+		
 		break;
 	default:
 		cout << "invalid";

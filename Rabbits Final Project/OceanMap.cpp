@@ -13,13 +13,14 @@ OceanMap::OceanMap()
     winXOcean = 0;
     winYOcean = 1;
     
-    
-    for (int i = 0; i <= mapSizeX; i++)
+
+    for (int i = 0; i < mapSizeY; i++)
     {
-        for(int j = 0; j <= mapSizeY; j++)
+        for(int j = 0; j < mapSizeX; j++)
         {
 
-        oceanMapArray[i][j] = '+';
+        oceanMapArray[j][i] = '+';
+        
         
         }  
         
@@ -30,18 +31,20 @@ OceanMap::OceanMap()
 void OceanMap::displayOceanMap()
 {
     int count = 0;
+   
     cout << "=";
-    for (int k = 0; k <= mapSizeX; k++)
+    for (int k = 0; k < mapSizeX; k++)
     {
         cout << "======";
     }
     cout <<"="<< endl;
-    for (int j = mapSizeY; j >= 0; j--)
+    for (int i = mapSizeY-1; i >=0; i--)
     {
         cout << "|  ";
-        for (int i = 0; i <= mapSizeX; i++)
+        for (int j = 0; j < mapSizeX; j++)
         {
-            cout << oceanMapArray[i][j] << "  |  ";
+            cout << oceanMapArray[j][i] << "  |  ";
+            
         }
         cout << endl;
         count++;
@@ -49,7 +52,7 @@ void OceanMap::displayOceanMap()
         {
             
             cout << "=";
-            for (int k = 0; k <= mapSizeX; k++)
+            for (int k = 0; k < mapSizeX; k++)
             {
                 cout << "======";
             }
