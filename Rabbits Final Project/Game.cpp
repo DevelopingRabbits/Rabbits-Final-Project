@@ -34,9 +34,6 @@ void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap
 }
 void Game::startGame()
 {
-	
-	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());//not in the right place but does not work in default constructor
-	
 	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
 	cout << "Start Game!\n\n";
 	
@@ -370,6 +367,16 @@ void Game::interactWithRoom()
 
 void Game::moveSubFunction()
 {
+	/*
+	* Moves the submarine through the ocean map.
+	* The users choice is tested to see if it is an allowable move. 
+	* If the move is out of bounds the move is not made.
+	* After making a valid move, the new location is set, and the map is updated accordingly.
+	* After each turn the map is displayed to the user.
+	* 
+	* After each move the game checks to see if the player has moved to the winning location
+	* If the submarine is at the winning location, the game ends and the map is output one final time.
+	*/
 	
 	cout << "\n\nYou chose to move the submarine\n\n";
 	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
