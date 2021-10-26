@@ -120,19 +120,25 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
   //Interact with computer terminal
 
   case false:
-    switch (itemID)
+    switch (item->requiresSubPower)
     {
-    case 9999:
-      cout << "You chose the computer terminal.\n\n";
-      return 9999;
+    case true:
+      switch (sub->getPowerOn()) // Does the sub have power?
+      {
+      case true:
+        switch (itemID)
+        {
+        case 9999:
+          cout << "You chose the computer terminal.\n\n";
+          return 9999;
+        }
+      case false:
+        cout << "The submarine has no power. You need power to use " << item->getItemName() << ".\n\n";
+        break;
+      default:
+        cout << "Error in Item::interactWithActionItem\n";
+      }
     }
-    //Check if computer terminal
-    // Check if sub power is on
-    //Interact with computer terminal
-    cout << "Nothing happened.\n\n";
-    break;
-  default:
-    cout << "Default statement in Item::interactWithActionItem OUTSIDE LOOP\n\n";
   }
 }
 
