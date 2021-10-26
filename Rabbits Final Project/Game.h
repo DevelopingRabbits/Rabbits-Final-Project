@@ -10,17 +10,24 @@
 #include "SUBMARINE.h"
 #include "Room.h"
 #include "Door.h"
+#include "OceanMap.h"
 #include "GameSystemsProgramming.h"
 
 
 using namespace std;
 
 
-
+class Player;
+class Room;
+class Door;
+class Item;
+class Submarine;
+class OceanMap;
 class Game
 {
 private:
   GameSystemsProgramming gameSystemsProgramming;
+  Game* game;
   Player* player;
   Submarine* submarine;
   Room* currentRoom;
@@ -29,6 +36,7 @@ private:
   Door* rightDoor;
   Door* leftDoor;
   Item* item1;
+  OceanMap* oceanMap;
   int playerInventorySize;
   int roomActionItemsSize;
   vector<Item*> inventory;
@@ -46,7 +54,7 @@ private:
 public:
   // INIT Options
   Game();
-  void createGame(Player &player, Submarine &sub);
+  void createGame(Player &player, Submarine &sub, Game &gameArg);
   void startGame();
 
   // Set Options
@@ -80,5 +88,11 @@ public:
   void updateRoom();
   void updatePlayer();
 
+  //submarine
+  void moveSubFunction();
+  void displayCurrentSubLocation();
+  bool checkSubWin();
+
+ 
 };
 #endif

@@ -144,6 +144,7 @@
     <ClCompile Include="GameSystemProgramming.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
+    <ClCompile Include="OceanMap.cpp" />
     <ClCompile Include="PLAYER.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Source.cpp" />
@@ -155,6 +156,7 @@
     <ClInclude Include="GameSystemsProgramming.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
+    <ClInclude Include="OceanMap.h" />
     <ClInclude Include="PLAYER.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SUBMARINE.h" />

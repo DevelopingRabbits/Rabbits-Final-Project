@@ -6,12 +6,14 @@
 #include "PLAYER.h"
 #include "Room.h"
 #include "SUBMARINE.h"
+#include "Game.h"
 
 using namespace std;
 
 class Submarine;
 class Room;
 class Player;
+class Game;
 class Item
 {
 private:
@@ -28,6 +30,7 @@ private:
   int actionItemKeyCode;
   Item* itemPtr;
   Item* key;
+  Game* game;
 
 public:
   Item();
@@ -39,9 +42,10 @@ public:
 
   int getKeyCode();
 
+
   Item* getItemPtr();
   void interactWithItem(Player* player);
-  void interactWithActionItem(Player* player, Submarine* sub, Item* item);
+  int interactWithActionItem(Player* player, Submarine* sub, Item* item, Game* game);
 
   bool checkIsKey();
 

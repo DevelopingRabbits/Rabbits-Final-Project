@@ -10,6 +10,8 @@
 #include "Room.h"
 #include "Item.h"
 #include "Game.h"
+#include "OceanMap.h"
+
 
 
 using namespace std;
@@ -20,15 +22,17 @@ Game::Game()
 	cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
 	playerMovedMessage = "\n\nYou go through the ";
 };
-void Game::createGame(Player &playerArg, Submarine &sub)
+void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg)
 {
 	player = &playerArg;
 	submarine = &sub;
+	game = &gameArg;
 }
 void Game::startGame()
 {
 	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
 	cout << "Start Game!\n\n";
+	
 	cout << "What is your name? ";
 	cin >> stringUserInput;
 	
@@ -312,10 +316,13 @@ void Game::interactWithInventory()
 	break;
 	}
 }
+
 void Game::interactWithRoom()
-{
+{ 
+	
+	int actionReturn;
 	cout << "\nYou chose to Interact with Room\n\n";
-	switch(player->getCanSeeInDarkRoom())
+	switch (player->getCanSeeInDarkRoom())
 	{
 	case true:
 		switch (currentRoom->getRoomActionItemsEmpty())
@@ -331,7 +338,18 @@ void Game::interactWithRoom()
 			{
 			case 1:
 				userInput -= 1;
-				actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput]);
+				actionReturn=actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput], game);
+				switch (actionReturn)
+				{
+					case 0001:
+						break;
+					case 9999:
+						moveSubFunction();
+						
+						break;
+					default:
+						break;
+				}
 				break;
 			default:
 				cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
@@ -342,9 +360,94 @@ void Game::interactWithRoom()
 		cout << "\n\n It's too dark in this room. You don't see anything.\n\n";
 		break;
 	default:
-	cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
+		cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
 
 	}
+}
+
+
+
+
+void Game::moveSubFunction()
+{
+	
+	cout << "\n\nYou chose to move the submarine\n\n";
+	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
+	cout << "1. North" << endl;
+	cout << "2. South" << endl;
+	cout << "3. East" << endl;
+	cout << "4. West" << endl;
+	cin >> userInput;
+	switch (userInput)
+	{
+	case 1:
+		if (submarine->getYCord() + 1 > oceanMap->getMaxY())
+		{
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() + 1);
+		displayCurrentSubLocation();
+		break;
+	case 2:
+		if (submarine->getYCord() - 1 < 0)
+		{
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord(), submarine->getYCord() - 1);
+		displayCurrentSubLocation();
+		break;
+	case 3:
+		if (submarine->getXCord() + 1 > oceanMap->getMaxX())
+		{
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord() + 1, submarine->getYCord());
+		displayCurrentSubLocation();
+		break;
+	case 4:
+		if (submarine->getXCord() - 1 < 0)
+		{
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
+			break;
+		}
+		submarine->setSubmarineLocation(submarine->getXCord()-1, submarine->getYCord());
+		displayCurrentSubLocation();
+		break;
+	default:
+		cout << "invalid";
+		getCurrentRoom();
+	};
+	
+	if (checkSubWin() == true)
+	{
+		
+		setGameOver(true);
+	}
+}
+
+void Game::displayCurrentSubLocation()
+{
+	cout << "The submarine is now located at: (" << submarine->getXCord() << "," << submarine->getYCord() << ")" << endl;
+
+}
+
+bool Game::checkSubWin()
+{
+	
+	if (submarine->getYCord() == oceanMap->getWinY() && submarine->getXCord() == oceanMap->getWinX())
+	{
+		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
+	
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
 }
 
 void Game::getHelp()

@@ -1,5 +1,6 @@
 #include "Item.h"
 
+
 Item::Item()
 {
   itemName = "";
@@ -86,7 +87,7 @@ int Item::getKeyCode()
   return keyCode;
 }
 
-void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item)
+int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Game* game)
 {
   switch (item->requiresKey)
   {
@@ -96,20 +97,21 @@ void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item)
     //check if player has key
     for (int i = 0; i < player->getKeySize(); i++)
     {
-      key = player->getKeys(i);
-      cout << key->getItemName();
-      if (actionItemKeyCode == key->getKeyCode());
-      {
-        switch (actionItemKeyCode)
+        key = player->getKeys(i);
+        cout << key->getItemName();
+        if (actionItemKeyCode == key->getKeyCode());
         {
-        case 0001:
-          sub->setPowerOn(true);
-          cout << "\n\nThe power is now on.\n\n";
-          break;
-        default:
-          cout << "Default statement in Item::interactWithActionItem\n\n";
+            switch (actionItemKeyCode)
+            {
+            case 0001:
+                sub->setPowerOn(true);
+                cout << "\n\nThe power is now on.\n\n";
+                return 0001;
+
+            default:
+                cout << "Default statement in Item::interactWithActionItem\n\n";
+            }
         }
-      }
     }
     break;
 
@@ -118,6 +120,15 @@ void Item::interactWithActionItem(Player* player, Submarine* sub, Item* item)
   //Interact with computer terminal
 
   case false:
+    switch (itemID)
+    {
+    case 9999:
+      cout << "You chose the computer terminal.\n\n";
+      return 9999;
+    }
+    //Check if computer terminal
+    // Check if sub power is on
+    //Interact with computer terminal
     cout << "Nothing happened.\n\n";
     break;
   default:

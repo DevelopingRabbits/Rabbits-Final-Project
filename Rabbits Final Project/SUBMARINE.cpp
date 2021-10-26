@@ -10,6 +10,10 @@ Submarine::Submarine()
 {
   powerOn = false;
 	surfaced = true;
+
+	subLocX = 0;
+	subLocY = 0;
+
 	
 }
 
@@ -47,3 +51,21 @@ void Submarine::setPowerOn(bool state)
 {
 	powerOn = state;
 };
+
+int Submarine::getXCord()
+{
+	return subLocX;
+}
+
+int Submarine::getYCord()
+{
+	return subLocY;
+}
+
+
+void Submarine::setSubmarineLocation(int x, int y)
+{
+	subLocX = x;
+	subLocY = y;
+	
+}
