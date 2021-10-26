@@ -156,7 +156,7 @@ void Game::playerTurn()
 	updatePlayer();
 	updateRoom();
 	displayRoomDetails();
-	getHelp();
+
 
 	userInputValid = false;
 	do {
@@ -329,42 +329,34 @@ void Game::interactWithRoom()
 
 void Game::getHelp()
 {
-	int selection;
 	cout << "HELP MENU" << endl;
 	cout << "Select what you would like to get help with:" << endl;
 	cout << "1. How to move between rooms." << endl;
 	cout << "2. How to see your inventory." << endl;
 	cout << "0. Quit Help." << endl;
-	cin >> selection;
-
-	if (selection == 0)
+	cin >> userInput;
+	switch (userInput)
 	{
-		cout << endl;
-		cout << "Selected Exit." << endl;
-		cout << "If you still need help just hit the help option again!" << endl;
-		system("pause");
-	}
+	case 0:
+			cout << endl;
+			cout << "Selected Exit." << endl;
+			cout << "If you still need help just hit the help option again!" << endl;
+		break;
 
-	if (selection == 1)
-	{
-		cout << endl;
-		cout << "Selected How To Move Between Rooms" << endl;
-		cout << "To move inbetween rooms you need to use the numbers that are provided on your screen for example: 1,2,3,4. By doing this you travel from each room that is selected" << endl;
-		system("pause");
-	}
+	case 1:
+			cout << endl;
+			cout << "Selected How To Move Between Rooms" << endl;
+			cout << "To move inbetween rooms you need to use the numbers that are provided on your screen for example: 1,2,3,4. By doing this you travel from each room that is selected" << endl;
+		break;
 
-	if (selection == 3)
-	{
-		cout << endl;
-		cout << "Selected How to View Inventory" << endl;
-		cout << "To see your inventory select 3, when you select 3 you can view what is in your inventory and interact with the items" << endl;
-		system("pause");
-	}
+	case 2:
+			cout << endl;
+			cout << "Selected How to View Inventory" << endl;
+			cout << "To see your inventory select 3, when you select 3 you can view what is in your inventory and interact with the items" << endl;
+		break;
 
-	else
-	{
-		cout << "Invalid selection, please try again select the correct options for help" << endl;
-		system("pause");
+	default:
+		cout << "Invalid Option /n";
 	}
 }
 
