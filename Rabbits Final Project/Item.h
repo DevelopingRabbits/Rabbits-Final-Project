@@ -7,6 +7,7 @@
 #include "Room.h"
 #include "SUBMARINE.h"
 #include "Game.h"
+#include "OceanMap.h"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class Submarine;
 class Room;
 class Player;
 class Game;
+class OceanMap;
 class Item
 {
 private:

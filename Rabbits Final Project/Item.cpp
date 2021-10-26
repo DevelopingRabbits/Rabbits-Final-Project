@@ -138,6 +138,12 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
       default:
         cout << "Error in Item::interactWithActionItem\n";
       }
+    case false:
+      switch (itemID)
+      {
+      case 9998:
+        cout << "The captain's log reads 'Alas, there is secrets at 0, 1'\n\n"; // Hardcoded Winning Location TEMP
+      }
     }
   }
 }

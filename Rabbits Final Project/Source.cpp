@@ -62,10 +62,12 @@ int main()
   //Door Creation
   Door nuclearPowerRoomDoor;
   nuclearPowerRoomDoor.createDoor("Nuclear Power Room", true, nuclearPowerRoomDoor);
+  Door captainsRoomDoor;
+  captainsRoomDoor.createDoor("Captain's State Room", true, captainsRoomDoor);
 
   // Room Creation
   Room controlRoom;
-  controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 3);
+  controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), captainsRoomDoor.getDoorPtr(), 1, 3);
   controlRoom.setDarkRoomDescription("You enter a dark room. You are unsure where you are.\nThe only light you see is from the hatch above.");
   controlRoom.setRoomDescription("The room has plenty of computer terminals. This seems to be the control room of the submarine.");
   submarine.addRoom(controlRoom, controlRoom.getRoomRow(), controlRoom.getRoomCol());
@@ -113,8 +115,17 @@ int main()
     // END: Nuclear Power Room/Door Objects
 
 
-
-
+  // START: Captain's Room Objects
+  // Room Creation
+  Room captainsRoom;
+  captainsRoom.createRoom("Captain's Room", 3, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 4);
+  captainsRoom.setRoomDescription("You are in the Captain's State Room.");
+  captainsRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(captainsRoom, captainsRoom.getRoomRow(), captainsRoom.getRoomCol());
+  // Action Items
+  Item captainsLog;
+  captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
+  captainsRoom.addActionItem(&captainsLog);
 
 
   /******************************************************************
@@ -128,7 +139,7 @@ int main()
   do
   {
     // Initalize the turn.
-    game.playerTurn();
+    game.playerTurn(&game);
   } while (game.getGameOver() == false);
   return 0;
 }

@@ -158,7 +158,7 @@ void Game::displayRoomDescription()
 }
 
 // Player Turn
-void Game::playerTurn()
+void Game::playerTurn(Game* gameArg)
 {
 
 	updatePlayer();
@@ -168,7 +168,7 @@ void Game::playerTurn()
 
 	userInputValid = false;
 	do {
-		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n(4) Interact\n(5) Get Help\n";
+		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n(4) Interact\n(5) Get Help\n(6) Quit\n";
 		// Items or Move
 		cin >> userInput;
 		userInput=gameSystemsProgramming.integerInputValidation(userInput);
@@ -199,6 +199,10 @@ void Game::playerTurn()
 		case 5:
 			getHelp();
 			updateRoom();
+			userInputValid = true;
+			break;
+		case 6:
+			gameArg->setGameOver(true);
 			userInputValid = true;
 			break;
 
@@ -543,38 +547,5 @@ void Game::updatePlayer()
 
 }
 
-
-
-//bool Game::checkUserInput()
-//{
-//	switch (userInput)
-//	{
-//	case 1:
-//		cout << "You chose to look at Items\n";
-//		return true;
-//		break;
-//
-//	case 2:
-//		cout << "You chose to Move\n";
-//		cout << "Which door would you like to go through?";
-//		return true;
-//		break;
-//
-//	case 3:
-//		cout << "You chose to Interact with Inventory";
-//		return true;
-//		break;
-//
-//	default:
-//		cout << "Invalid Option.\n";
-//		return false;
-//		break;
-//	}
-//}
-//
-//int Game::getUserInput()
-//{
-//	return userInput;
-//};
 
 

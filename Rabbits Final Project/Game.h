@@ -75,7 +75,7 @@ public:
   void displayRoomActionItems();
 
   // Player Turn
-  void playerTurn();
+  void playerTurn(Game* gameArg);
 
   // Player Options
   void moveFunction();
