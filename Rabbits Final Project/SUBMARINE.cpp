@@ -52,12 +52,12 @@ void Submarine::setPowerOn(bool state)
 	powerOn = state;
 };
 
-int Submarine::getXCord()
+int Submarine::getXSubLoc()
 {
 	return subLocX;
 }
 
-int Submarine::getYCord()
+int Submarine::getYSubLoc()
 {
 	return subLocY;
 }

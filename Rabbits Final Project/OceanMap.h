@@ -18,7 +18,7 @@ class OceanMap
 {
 
 private:
-    Room* oceanMap[mapSizeX][mapSizeY];
+    char oceanMapArray[mapSizeX][mapSizeY];
     int winXOcean;
     int winYOcean;
 
@@ -26,12 +26,23 @@ private:
 
 public:
     OceanMap();
-    void setWinX();
-    void setWinY();
 
+    //displays the ocean map in its current state to the user.
+    void displayOceanMap();
+ 
+
+    //updates submarines position and seen spaces on the map.
+    void setSubPosition(int x,int y);
+    void setSeenPosition(int x, int y);
+
+    //Gets winning cordinates for the ocean map
     int getWinX();
     int getWinY();
 
+    void setWinX();
+    void setWinY();
+    
+    //Gets bounds for the ocean map
     int getMaxX();
     int getMaxY();
 

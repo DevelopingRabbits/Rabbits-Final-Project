@@ -12,15 +12,21 @@ using namespace std;
 
 int main()
 {
+ 
+  //INIT PLAYER
   Player player1;
   player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
 
   // INIT SUBMARINE
   Submarine submarine;
 
+  //INIT OCEANMAP
+  OceanMap ocean;
+  ocean.setSubPosition(submarine.getXSubLoc(), submarine.getYSubLoc());
+
   // INIT GAME
   Game game;
-  game.createGame(player1, submarine, game);
+  game.createGame(player1, submarine, game, ocean);
 
 
   //INIT NULL DOORS
