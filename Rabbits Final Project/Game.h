@@ -74,6 +74,7 @@ public:
   void lookForItems();
   void interactWithInventory();
   void interactWithRoom();
+  void getHelp();
 
   // Update Options
   void updateRoom();
