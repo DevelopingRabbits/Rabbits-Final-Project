@@ -122,22 +122,24 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
   case false:
     switch (item->requiresSubPower)
     {
-    case true:
-      switch (sub->getPowerOn()) // Does the sub have power?
-      {
       case true:
-        switch (itemID)
+       switch (sub->getPowerOn()) // Does the sub have power?
         {
-        case 9999:
-          cout << "You chose the computer terminal.\n\n";
-          return 9999;
+       case true:
+          switch (itemID)
+          {
+          case 9999:
+            cout << "You chose the computer terminal.\n\n";
+            return 9999;
+            break;
+          }
+        case false:
+          cout << "The submarine has no power. You need power to use " << item->getItemName() << ".\n\n";
+          return -1;
+          break;
+        default:
+          cout << "Error in Item::interactWithActionItem\n";
         }
-      case false:
-        cout << "The submarine has no power. You need power to use " << item->getItemName() << ".\n\n";
-        break;
-      default:
-        cout << "Error in Item::interactWithActionItem\n";
-      }
     case false:
       switch (itemID)
       {

@@ -353,7 +353,7 @@ void Game::interactWithRoom()
 						break;
 					case 9999:
 						moveSubFunction();
-						
+					
 						break;
 					default:
 						break;
