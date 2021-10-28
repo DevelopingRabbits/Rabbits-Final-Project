@@ -17,6 +17,9 @@ public:
     int integerInputValidation(int input);
     void clearBuffer();
 
+    void delay();
+    void yourChoiceMessage();
+
     void loseMessage();
 };
 

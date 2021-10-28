@@ -108,7 +108,7 @@ void Game::displayRoomActionItems()
 void Game::displayItems()
 {
 	getRoomInventory();
-	cout << "You see the following items.\n";
+	cout << "\n\nYou see the following items.\n";
 	cout << "1. " << item1->getItemName() << endl;
 }
 void Game::displayDoors()
@@ -116,7 +116,7 @@ void Game::displayDoors()
 	getRoomDoors();
 	if (currentRoom->getIsDark() == false)
 	{
-		cout << "You see the following doors:\n";
+		cout << "\n\nYou see the following doors:\n";
 		cout << "1. " << upDoor->GetDoorName() << endl;
 		cout << "2. " << leftDoor->GetDoorName() << endl;
 		cout << "3. " << rightDoor->GetDoorName() << endl;
@@ -170,6 +170,7 @@ void Game::playerTurn(Game* gameArg)
 	do {
 		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n(4) Interact\n(5) Get Help\n(6) Quit\n";
 		// Items or Move
+		gameSystemsProgramming.yourChoiceMessage();
 		cin >> userInput;
 		userInput=gameSystemsProgramming.integerInputValidation(userInput);
 		switch (userInput)
@@ -220,13 +221,14 @@ void Game::lookForItems()
 	switch (currentRoom->getRoomEmpty())
 	{
 	case false:
-		cout << "You chose to Look For Items\n";
+		cout << "You chose to Look For Items\n\n";
 		displayItems();
+		gameSystemsProgramming.yourChoiceMessage();
 		cin >> userInput;
 		switch (userInput)
 		{
 		case 1:
-			cout << "You picked up the " << item1->getItemName() << endl;
+			cout << "You picked up the " << item1->getItemName() << endl << endl;
 			player->addToInventory(item1->getItemPtr());
 			currentRoom->removeItem();
 			break;
@@ -244,9 +246,10 @@ void Game::lookForItems()
 }
 void Game::moveFunction()
 {
-	cout << "\n\nYou chose to Move\n\n";
-	cout << "\n\nWhich door would you like to go through?\n\n";
+	cout << "You chose to Move out of " << currentRoom->getRoomName() << endl << endl;
+	cout << "Which door would you like to go through?\n";
 	displayDoors();
+	gameSystemsProgramming.yourChoiceMessage();
 	cin >> userInput;
 	switch (userInput)
 	{
@@ -293,7 +296,7 @@ void Game::moveFunction()
 }
 void Game::interactWithInventory()
 {
-	cout << "\n\n You chose to Interact with Inventory\n\n";
+	cout << "You chose to Interact with Inventory\n\n";
 	switch (player->getInventoryEmpty())
 	{
 	case true:
@@ -305,6 +308,7 @@ void Game::interactWithInventory()
 	{
 		displayPlayerInventory();
 		cout << "\n\nWhich item would you like to use?\n";
+		gameSystemsProgramming.yourChoiceMessage();
 		cin >> userInput;
 		switch (userInput)
 		{
@@ -329,18 +333,19 @@ void Game::interactWithRoom()
 { 
 	
 	int actionReturn;
-	cout << "\nYou chose to Interact with Room\n\n";
+	cout << "You chose to Interact with Room\n\n";
 	switch (player->getCanSeeInDarkRoom())
 	{
 	case true:
 		switch (currentRoom->getRoomActionItemsEmpty())
 		{
 		case(true):
-			cout << "\nThere is nothing to interact with.\n\n";
+			cout << "There is nothing to interact with.\n\n";
 			break;
 		case(false):
 			displayRoomActionItems();
-			cout << "\n\nWhich item would you like to interact with?\n\n";
+			cout << "Which item would you like to interact with?\n\n";
+			gameSystemsProgramming.yourChoiceMessage();
 			cin >> userInput;
 			switch (userInput)
 			{
@@ -395,6 +400,7 @@ void Game::moveSubFunction()
 	cout << "2. South" << endl;
 	cout << "3. East" << endl;
 	cout << "4. West" << endl;
+	gameSystemsProgramming.yourChoiceMessage();
 	cin >> userInput;
 	switch (userInput)
 	{
@@ -489,6 +495,7 @@ void Game::getHelp()
 	cout << "1. How to move between rooms." << endl;
 	cout << "2. How to see your inventory." << endl;
 	cout << "0. Quit Help." << endl;
+	gameSystemsProgramming.yourChoiceMessage();
 	cin >> userInput;
 	switch (userInput)
 	{

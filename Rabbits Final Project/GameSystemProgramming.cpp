@@ -98,3 +98,19 @@ void GameSystemsProgramming::loseMessage()
 {
     cout << "GAME OVER";
 }
+
+void GameSystemsProgramming::yourChoiceMessage()
+{
+  cout << "Your Choice: ";
+}
+
+#include <Windows.h>
+void GameSystemsProgramming::delay()
+{
+  for (int i = 0; i < 1; i++)
+  {
+    cout << i;
+    Sleep(500);
+    system("cls");
+  }
+}
