@@ -92,6 +92,9 @@ public:
   void moveSubFunction();
   void displayCurrentSubLocation();
   bool checkSubWin();
+
+  //enemy
+  void enemyEncounter();
  
 
  
