@@ -4,6 +4,14 @@
 
 using namespace std;
 
+Enemy::Enemy()
+{
+    enemyHealth = 100;
+    enemyType = "Kraken";
+    enemyLocationX=4;
+    enemyLocationY=4;
+}
+
 int Enemy::getEnemyHealth()
 {
     return enemyHealth;
