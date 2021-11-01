@@ -205,6 +205,7 @@ void Game::playerTurn(Game* gameArg)
 		case 6:
 			gameArg->setGameOver(true);
 			userInputValid = true;
+			cout << "The game has successfully shut down";
 			break;
 
 		default:
