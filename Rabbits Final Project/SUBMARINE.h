@@ -14,10 +14,12 @@ class Submarine
 private:
   bool powerOn;
   bool surfaced;
+  bool weaponSystem;
   Room* map[4][7];
   Submarine* submarinePtr;
   int subLocX;
   int subLocY;
+  int submarineHealth;
  
 public:
   Submarine();
@@ -37,6 +39,9 @@ public:
   int getYSubLoc();
 
   void setSubmarineLocation(int,int);
+
+  bool getWeaponStatus();
+  void setWeaponStatus(bool status);
   
 
 };

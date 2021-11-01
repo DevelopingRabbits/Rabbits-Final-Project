@@ -8,8 +8,8 @@ Enemy::Enemy()
 {
     enemyHealth = 100;
     enemyType = "Kraken";
-    enemyLocationX=4;
-    enemyLocationY=4;
+    enemyLocationX=3;
+    enemyLocationY=0;
 }
 
 int Enemy::getEnemyHealth()
