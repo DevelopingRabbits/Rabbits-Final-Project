@@ -1,6 +1,22 @@
 #include "Item.h"
 
-
+/*
+ * Item Class
+ *    Generic class for all items in game
+ * 
+ * Methods
+ *    <constructor> - creates item with name = NULL, and initializes instance variables to off (e.g. lantern) & not a key
+ *    createItem(string, int, int, Item*) - initializes item
+ *       Notes: itemID not validated, stores value passed, itemTypeArg hard codes allowable types to a light (0) or a key (1)
+ *         isOn takes values true, false and NULL?  (non-intuitive, ToDo: refactor out NULL value)
+ *    getItemName() - returns string stored when item created
+ *    getItemPtr() - returns some pointer stored when item created
+ *    getKeyCode() - returns key code
+ *    checkIsKey() - returns true if item is a key (defined when item created based on itemTypeArg)
+ *    setKeyCode(int) - stores key code, not validated
+ * 
+ *    additional methods available for interacting with items
+ */
 Item::Item()
 {
   itemName = "";
