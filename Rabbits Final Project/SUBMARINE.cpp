@@ -10,7 +10,7 @@ Submarine::Submarine()
 {
 	powerOn = false;
 	surfaced = true;
-	weaponSystem = true;//Should be set to false but is set to true till a weapon system room is implemented.
+	weaponSystem = false;//Should be set to false but is set to true till a weapon system room is implemented.
 	subLocX = 0;
 	subLocY = 0;
 

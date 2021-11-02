@@ -423,17 +423,21 @@ void Game::moveSubFunction()
 			if (checkWeaponSystem() == false)
 			{
 				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 				break;
 			}
 		}
-		
-		displayCurrentSubLocation();
-		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		
+
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
 		}
+
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
+		
+		
+		
 
 		break;
 	case 2:
@@ -450,17 +454,21 @@ void Game::moveSubFunction()
 			if (checkWeaponSystem() == false)
 			{
 				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 				break;
 			}
 		}
-
-		displayCurrentSubLocation();
-		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
 		}
+
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
+		
+
+		
 
 		break;
 	case 3:
@@ -477,18 +485,21 @@ void Game::moveSubFunction()
 			if (checkWeaponSystem() == false)
 			{
 				submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 				break;
 			}
 		}
 
-		displayCurrentSubLocation();
-		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
 		}
 
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
+		
+		
+	
 		break;
 	case 4:
 		if (submarine->getXSubLoc() - 1 < 0)
@@ -504,17 +515,21 @@ void Game::moveSubFunction()
 			if (checkWeaponSystem() == false)
 			{
 				submarine->setSubmarineLocation(submarine->getXSubLoc()+1, submarine->getYSubLoc());
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 				break;
 			}
 		}
 
-		displayCurrentSubLocation();
-		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
 		}
+
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
+		
+		
+	
 
 		break;
 	default:
