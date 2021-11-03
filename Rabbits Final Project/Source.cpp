@@ -133,6 +133,35 @@ int main()
   captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
   captainsRoom.addActionItem(&captainsLog);
 
+  Room repairRoom;
+  repairRoom.createRoom("Repair Room", 4, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 5);
+  repairRoom.setRoomDescription("You are in the repair room.");
+  repairRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(repairRoom, repairRoom.getRoomRow(), repairRoom.getRoomCol());
+
+  Room propellerRoom;
+  propellerRoom.createRoom("Propeller Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 6);
+  propellerRoom.setRoomDescription("You are in the propeller room.");
+  propellerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(propellerRoom, propellerRoom.getRoomRow(), propellerRoom.getRoomCol());
+
+  Room messDeck;
+  messDeck.createRoom("Mess Deck", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 8);
+  messDeck.setRoomDescription("You are in the mess deck.");
+  messDeck.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(messDeck, messDeck.getRoomRow(), messDeck.getRoomCol());
+
+  Room berthing;
+  berthing.createRoom("Berthing", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 9);
+  berthing.setRoomDescription("You are in the berthing section.");
+  berthing.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(berthing, berthing.getRoomRow(), berthing.getRoomCol());
+
+  Room combatSystem;
+  combatSystem.createRoom("Berthing", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 10);
+  combatSystem.setRoomDescription("You are in the Combat.");
+  combatSystem.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(combatSystem, combatSystem.getRoomRow(), combatSystem.getRoomCol());
 
   /******************************************************************
   GAME STARTS BELOW
