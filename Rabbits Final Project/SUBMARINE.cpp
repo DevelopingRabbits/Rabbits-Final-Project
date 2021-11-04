@@ -8,13 +8,13 @@ using namespace std;
 
 Submarine::Submarine()
 {
-  powerOn = false;
+	powerOn = false;
 	surfaced = true;
-
+	weaponSystem = false;//Should be set to false but is set to true till a weapon system room is implemented.
 	subLocX = 0;
 	subLocY = 0;
 
-	
+	submarineHealth = 100;
 }
 
 void Submarine::createSubmarine(Submarine &s)
@@ -68,4 +68,14 @@ void Submarine::setSubmarineLocation(int x, int y)
 	subLocX = x;
 	subLocY = y;
 	
+}
+
+bool Submarine::getWeaponStatus()
+{
+	return weaponSystem;
+}
+
+void Submarine::setWeaponStatus(bool status)
+{
+	weaponSystem = status;
 }

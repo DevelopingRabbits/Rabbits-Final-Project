@@ -24,9 +24,15 @@ int main()
   OceanMap ocean;
   ocean.setSubPosition(submarine.getXSubLoc(), submarine.getYSubLoc());
 
+  //INIT ENEMY
+  Enemy kraken;
+  kraken.setEnemyType("Kraken");
+  kraken.setEnemyHealth(100);
+  kraken.setEnemyLocation(3, 0);
+
   // INIT GAME
   Game game;
-  game.createGame(player1, submarine, game, ocean);
+  game.createGame(player1, submarine, game, ocean, kraken);
 
 
   //INIT NULL DOORS

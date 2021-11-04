@@ -11,6 +11,7 @@
 #include "Item.h"
 #include "Game.h"
 #include "OceanMap.h"
+#include "Enemy.h"
 
 
 
@@ -25,12 +26,13 @@ Game::Game()
 };
 
 
-void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap &oceanarg)
+void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap &oceanarg, Enemy &enemyArg)
 {
 	player = &playerArg;
 	submarine = &sub;
 	game = &gameArg;
 	ocean = &oceanarg;
+	kraken = &enemyArg;
 }
 void Game::startGame()
 {
@@ -393,6 +395,8 @@ void Game::moveSubFunction()
 	* After each move the game checks to see if the player has moved to the winning location
 	* If the submarine is at the winning location, the game ends and the map is output one final time.
 	*/
+
+	
 	
 	cout << "\n\nYou chose to move the submarine\n\n";
 	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
@@ -410,11 +414,31 @@ void Game::moveSubFunction()
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
 			break;
 		}
+	
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
-		displayCurrentSubLocation();
+
+		if (checkEnemyLocation() == true)
+		{
+			if (checkWeaponSystem() == false)
+			{
+				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				break;
+			}
+		}
+
+		if (checkEnemyLocation() == true)
+		{
+			enemyEncounter();
+		}
+
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
 		
+		
+		
+
 		break;
 	case 2:
 		if (submarine->getYSubLoc() - 1 < 0)
@@ -424,9 +448,28 @@ void Game::moveSubFunction()
 		}
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
-		displayCurrentSubLocation();
+
+		if (checkEnemyLocation() == true)
+		{
+			if (checkWeaponSystem() == false)
+			{
+				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				break;
+			}
+		}
+
+		if (checkEnemyLocation() == true)
+		{
+			enemyEncounter();
+		}
+
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
 		
+
+		
+
 		break;
 	case 3:
 		if (submarine->getXSubLoc() + 1 > ocean->getMaxX())
@@ -436,9 +479,27 @@ void Game::moveSubFunction()
 		}
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc() + 1, submarine->getYSubLoc());
-		displayCurrentSubLocation();
+
+		if (checkEnemyLocation() == true)
+		{
+			if (checkWeaponSystem() == false)
+			{
+				submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				break;
+			}
+		}
+
+		if (checkEnemyLocation() == true)
+		{
+			enemyEncounter();
+		}
+
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
 		
+		
+	
 		break;
 	case 4:
 		if (submarine->getXSubLoc() - 1 < 0)
@@ -448,14 +509,34 @@ void Game::moveSubFunction()
 		}
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
-		displayCurrentSubLocation();
+
+		if (checkEnemyLocation() == true)
+		{
+			if (checkWeaponSystem() == false)
+			{
+				submarine->setSubmarineLocation(submarine->getXSubLoc()+1, submarine->getYSubLoc());
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				break;
+			}
+		}
+
+		if (checkEnemyLocation() == true)
+		{
+			enemyEncounter();
+		}
+
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
 		
+		
+	
+
 		break;
 	default:
 		cout << "invalid";
 		getCurrentRoom();
 	};
+	
 
 	ocean->displayOceanMap();
 	
@@ -464,6 +545,8 @@ void Game::moveSubFunction()
 		
 		setGameOver(true);
 	}
+
+	
 }
 
 void Game::displayCurrentSubLocation()
@@ -551,6 +634,44 @@ void Game::updateRoom()
 void Game::updatePlayer()
 {
 	player->setInventoryEmpty();
+
+}
+
+void Game::enemyEncounter()
+{
+	cout << kraken->getEnemyHealth() << endl;
+	cout << kraken->getEnemyType()<<endl;
+}
+
+bool Game::checkWeaponSystem()
+{	
+	if (submarine->getWeaponStatus() == false)
+	{
+		cout << "The weapons systems are currently offline and there seems to be something dangerous ahead." << endl;
+		cout << "Turn on the weapons system to progress to this area." << endl;
+		return false;
+		
+	}
+	else
+	{
+		return true;
+	}
+
+	
+
+}
+
+bool Game::checkEnemyLocation()
+{
+
+	if (kraken->getEnemyLocationX() == submarine->getXSubLoc() && kraken->getEnemyLocationY() == submarine->getYSubLoc())
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 
 }
 
