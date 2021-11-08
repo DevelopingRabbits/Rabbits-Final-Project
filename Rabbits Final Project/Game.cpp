@@ -363,6 +363,7 @@ void Game::interactWithRoom()
 						break;
 					case 9997:
 						playLightsOut();
+						submarine->setWeaponStatus(true);
 						break;
 					default:
 						break;
