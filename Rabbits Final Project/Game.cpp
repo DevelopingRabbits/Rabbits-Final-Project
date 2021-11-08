@@ -397,7 +397,8 @@ void Game::moveSubFunction()
 	*/
 
 	
-	
+	do
+	{
 	cout << "\n\nYou chose to move the submarine\n\n";
 	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
 	cout << "1. North" << endl;
@@ -528,25 +529,26 @@ void Game::moveSubFunction()
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		displayCurrentSubLocation();
 		
-		
 	
 
 		break;
 	default:
 		cout << "invalid";
 		getCurrentRoom();
-	};
-	
+	}	
 
-	ocean->displayOceanMap();
-	
 	if (checkSubWin() == true)
 	{
-		
-		setGameOver(true);
-	}
 
-	
+		setGameOver(true);
+		userInput = 2;
+		break;
+	}
+	ocean->displayOceanMap();
+	cout << "Would you like to move the submarine again?\n\n";
+	cout << "(1) Yes! Full Speed Ahead!\n(2) No! Take me back to the control room.\n";
+	cin >> userInput;
+} while (userInput == 1);
 }
 
 void Game::displayCurrentSubLocation()
