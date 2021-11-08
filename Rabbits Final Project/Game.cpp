@@ -360,7 +360,10 @@ void Game::interactWithRoom()
 						break;
 					case 9999:
 						moveSubFunction();
-					
+						break;
+					case 9997:
+						playLightsOut();
+						submarine->setWeaponStatus(true);
 						break;
 					default:
 						break;
@@ -380,7 +383,11 @@ void Game::interactWithRoom()
 	}
 }
 
-
+bool Game::playLightsOut()
+{
+	lightsOut.StartGame();
+	return true;
+}
 
 
 void Game::moveSubFunction()

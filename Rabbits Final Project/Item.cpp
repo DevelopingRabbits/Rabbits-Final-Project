@@ -89,6 +89,12 @@ int Item::getKeyCode()
 
 int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Game* game)
 {
+  /*
+  First Switch requiresKey
+  Second Switch requiresSubPower
+
+  */
+
   switch (item->requiresKey)
   {
   case true:
@@ -132,6 +138,9 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
             cout << "You chose the computer terminal.\n\n";
             return 9999;
             break;
+          case 9997:
+            cout << "You chose the weapon system mainframe.\n\n";
+            return 9997;
           }
         case false:
           cout << "The submarine has no power. You need power to use " << item->getItemName() << ".\n\n";
