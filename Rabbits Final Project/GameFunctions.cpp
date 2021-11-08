@@ -25,7 +25,6 @@ void GameFunctions::StartGame(bool startGame) {
 			if (win == 1)
 			{
 				cout << "*** The panel flickers a bit and you hear a speaker say, 'Weapons unlocked'. ***";
-				documentation.Quit(); // Winner detected, quit game.
 				break;
 			}
 		} while (startGame == true);

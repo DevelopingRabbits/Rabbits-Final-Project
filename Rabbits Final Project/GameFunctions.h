@@ -15,7 +15,6 @@ public:
 	char player1Symbol = 'X';
 	int player1Choice;
 	int player1ChoiceTemp;
-	Documentation documentation;
 	GameBoard gameBoard;
 	PlayerFunctions playerFunctions;
 
