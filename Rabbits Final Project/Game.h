@@ -99,7 +99,14 @@ public:
   void moveSubFunction();
   void displayCurrentSubLocation();
   bool checkSubWin();
- 
+
+  // Lights Out
+  bool playLightsOut();
+
+  //enemy
+  void enemyEncounter();
+  bool checkEnemyLocation();
+  bool checkWeaponSystem();
 
  
 };
