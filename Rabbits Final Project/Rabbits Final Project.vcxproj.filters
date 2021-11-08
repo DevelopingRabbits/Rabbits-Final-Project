@@ -13,6 +13,12 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
+    <Filter Include="Resource Files\Source Files\LightsOut">
+      <UniqueIdentifier>{0fc5c5d7-3306-4d14-bb20-b5932f1ecbf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\LightsOut">
+      <UniqueIdentifier>{4412c008-082c-4ada-a1fe-4ecc31fc3c92}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Source.cpp">
@@ -45,6 +51,15 @@
     <ClCompile Include="OceanMap.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GameBoard.cpp">
+      <Filter>Resource Files\Source Files\LightsOut</Filter>
+    </ClCompile>
+    <ClCompile Include="GameFunctions.cpp">
+      <Filter>Resource Files\Source Files\LightsOut</Filter>
+    </ClCompile>
+    <ClCompile Include="PlayerFunctions.cpp">
+      <Filter>Resource Files\Source Files\LightsOut</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PLAYER.h">
@@ -73,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="OceanMap.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GameBoard.h">
+      <Filter>Header Files\LightsOut</Filter>
+    </ClInclude>
+    <ClInclude Include="GameFunctions.h">
+      <Filter>Header Files\LightsOut</Filter>
+    </ClInclude>
+    <ClInclude Include="PlayerFunctions.h">
+      <Filter>Header Files\LightsOut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

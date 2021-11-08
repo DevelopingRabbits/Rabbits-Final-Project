@@ -141,11 +141,14 @@
   <ItemGroup>
     <ClCompile Include="Door.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="GameBoard.cpp" />
+    <ClCompile Include="GameFunctions.cpp" />
     <ClCompile Include="GameSystemProgramming.cpp" />
     <ClCompile Include="Inventory.cpp" />
     <ClCompile Include="Item.cpp" />
     <ClCompile Include="OceanMap.cpp" />
     <ClCompile Include="PLAYER.cpp" />
+    <ClCompile Include="PlayerFunctions.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="SUBMARINE.cpp" />
@@ -153,11 +156,14 @@
   <ItemGroup>
     <ClInclude Include="Door.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GameBoard.h" />
+    <ClInclude Include="GameFunctions.h" />
     <ClInclude Include="GameSystemsProgramming.h" />
     <ClInclude Include="Inventory.h" />
     <ClInclude Include="Item.h" />
     <ClInclude Include="OceanMap.h" />
     <ClInclude Include="PLAYER.h" />
+    <ClInclude Include="PlayerFunctions.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="SUBMARINE.h" />
   </ItemGroup>
