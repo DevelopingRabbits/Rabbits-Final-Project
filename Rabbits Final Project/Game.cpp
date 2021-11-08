@@ -358,7 +358,9 @@ void Game::interactWithRoom()
 						break;
 					case 9999:
 						moveSubFunction();
-					
+						break;
+					case 9997:
+						playLightsOut();
 						break;
 					default:
 						break;
@@ -378,7 +380,11 @@ void Game::interactWithRoom()
 	}
 }
 
-
+bool Game::playLightsOut()
+{
+	lightsOut.StartGame();
+	return true;
+}
 
 
 void Game::moveSubFunction()

@@ -139,7 +139,9 @@ int main()
   weaponsRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
   submarine.addRoom(weaponsRoom, weaponsRoom.getRoomRow(), weaponsRoom.getRoomCol());
   // Action Items
-
+  Item weaponSystem;
+  weaponSystem.createActionItem("Weapon System Mainframe", 9997, weaponSystem, true, false);
+  weaponsRoom.addActionItem(&weaponSystem);
   // *****************************************************************
   // END: Captain's Room Objects
 

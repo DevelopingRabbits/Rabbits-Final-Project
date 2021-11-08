@@ -4,12 +4,11 @@
 #include <random>
 #include <ctime>
 
-void GameFunctions::StartGame(bool startGame) {
+void GameFunctions::StartGame() {
 
 	// When the startGame function is called, the playerFunctions library will be initialize, zeroing out all arrays.
 	// The program will then select a starting player at random using the SelectStartingPlayer() function.
 	// The GameBoardInit() function is called to reset and clear out the gameboard.
-	if (startGame == true) {
 		playerFunctions.playerFunctionsInit();
 		gameBoard.GameBoardInit();
 
@@ -24,9 +23,8 @@ void GameFunctions::StartGame(bool startGame) {
 			win = playerFunctions.CheckWin(); //Check if Player 1 won.
 			if (win == 1)
 			{
-				cout << "*** The panel flickers a bit and you hear a speaker say, 'Weapons unlocked'. ***";
+				cout << "\n\n*** The panel flickers a bit and you hear a speaker say, 'Weapon Systems Online'. ***\n\n";
 				break;
 			}
-		} while (startGame == true);
-	}
+		} while (win != 1);
 };

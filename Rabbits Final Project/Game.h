@@ -12,6 +12,7 @@
 #include "Door.h"
 #include "OceanMap.h"
 #include "GameSystemsProgramming.h"
+#include "GameFunctions.h"
 
 
 using namespace std;
@@ -23,10 +24,12 @@ class Door;
 class Item;
 class Submarine;
 class OceanMap;
+class GameFunctions;
 class Game
 {
 private:
   GameSystemsProgramming gameSystemsProgramming;
+  GameFunctions lightsOut;
   Game* game;
   Player* player;
   Submarine* submarine;
@@ -41,6 +44,7 @@ private:
   int roomActionItemsSize;
   vector<Item*> inventory;
   vector<Item*> actionItems;
+
 
   string cannotMoveMessage;
   string playerMovedMessage;
@@ -93,6 +97,8 @@ public:
   void displayCurrentSubLocation();
   bool checkSubWin();
  
+  // Lights Out
+  bool playLightsOut();
 
  
 };
