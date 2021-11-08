@@ -110,8 +110,7 @@ int main()
   
   // Room Creation
   Room nuclearPowerRoom;
-  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), weaponsRoomDoor.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
-  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, messdeckDoor.getDoorPtr(), machinistDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
+  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, messdeckDoor.getDoorPtr(), machinistDoor.getDoorPtr(), weaponsRoomDoor.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
   nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");
   nuclearPowerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
   submarine.addRoom(nuclearPowerRoom, nuclearPowerRoom.getRoomRow(), nuclearPowerRoom.getRoomCol());
@@ -165,7 +164,9 @@ int main()
   weaponSystem.createActionItem("Weapon System Mainframe", 9997, weaponSystem, true, false);
   weaponsRoom.addActionItem(&weaponSystem);
   // *****************************************************************
-  // END: Captain's Room Objects
+  // END: Weapon's Room Room Objects
+
+  // Brandon's Rooms
   Room repairRoom;
   repairRoom.createRoom("Repair Room", 4, NULLDOOR.getDoorPtr(), propellerRoomDoor.getDoorPtr(), captainsRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 5);
   repairRoom.setRoomDescription("You are in the repair room.");
