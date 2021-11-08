@@ -91,10 +91,12 @@ int main()
   // Door Creation
   Door controlRoomDoor;
   controlRoomDoor.createDoor("Control Room", true, controlRoomDoor);
+  Door weaponsRoomDoor;
+  weaponsRoomDoor.createDoor("Weapons Room", true, weaponsRoomDoor);
   
   // Room Creation
   Room nuclearPowerRoom;
-  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
+  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), weaponsRoomDoor.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
   nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");
   nuclearPowerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
   submarine.addRoom(nuclearPowerRoom, nuclearPowerRoom.getRoomRow(), nuclearPowerRoom.getRoomCol());
@@ -126,7 +128,20 @@ int main()
   Item captainsLog;
   captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
   captainsRoom.addActionItem(&captainsLog);
+  // *****************************************************************
+  // END: Captain's Room Objects
 
+  // START: WEAPONS ROOM Objects
+  // Room Creation
+  Room weaponsRoom;
+  weaponsRoom.createRoom("Weapons Room", 3, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), 1, 1);
+  weaponsRoom.setRoomDescription("You are in the Weapons Room Room.");
+  weaponsRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
+  submarine.addRoom(weaponsRoom, weaponsRoom.getRoomRow(), weaponsRoom.getRoomCol());
+  // Action Items
+
+  // *****************************************************************
+  // END: Captain's Room Objects
 
   /******************************************************************
   GAME STARTS BELOW
