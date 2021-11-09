@@ -103,14 +103,12 @@ int main()
   weaponsRoomDoor.createDoor("Weapons Room", true, weaponsRoomDoor);
   Door messdeckDoor;
   messdeckDoor.createDoor("Mess Deck", true, messdeckDoor);
-  Door machinistDoor;
-  machinistDoor.createDoor("Machinist Room", true, machinistDoor);
   Door combatsystemDoor;
   combatsystemDoor.createDoor("Machinist Room", true, combatsystemDoor);
   
   // Room Creation
   Room nuclearPowerRoom;
-  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, messdeckDoor.getDoorPtr(), machinistDoor.getDoorPtr(), weaponsRoomDoor.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
+  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, messdeckDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), weaponsRoomDoor.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
   nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");
   nuclearPowerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
   submarine.addRoom(nuclearPowerRoom, nuclearPowerRoom.getRoomRow(), nuclearPowerRoom.getRoomCol());
@@ -186,7 +184,7 @@ int main()
   submarine.addRoom(messDeck, messDeck.getRoomRow(), messDeck.getRoomCol());
 
   Room berthing;
-  berthing.createRoom("Berthing", 7, controlRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), machinistDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 2, 3);
+  berthing.createRoom("Berthing", 7, controlRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 2, 3);
   berthing.setRoomDescription("You are in the berthing section.");
   berthing.setDarkRoomDescription("You can't see anything. It's pitch black.");
   submarine.addRoom(berthing, berthing.getRoomRow(), berthing.getRoomCol());
