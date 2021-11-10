@@ -145,11 +145,12 @@ int main()
             // Initalize the turn.
             game.playerTurn(&game);
         } while (game.getGameOver() == false);
-        return 0;
+        
 
         int restartInput;
         cout << "Would you like to play the game again?\n1. Yes\n2. No" << endl;
         cin >> restartInput;
+
 
         if (restartInput == 2) {
             restart = false;
