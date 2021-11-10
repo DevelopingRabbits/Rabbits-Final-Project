@@ -479,19 +479,6 @@ bool Game::checkSubWin()
 	if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 	{
 		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
-		cout << "Would you like to:\n 1. Play Again\n 2. Quit\n";
-		cout << "Your choice: ";
-		cin >> gameEndChoice;
-
-		switch (gameEndChoice) {
-
-		case 1: ; // Enter code to play game again
-			break;
-		case 2: cout << "The game has ended, thank you for playing!";
-			break;
-		default: cout << "Invalid Input. Try again.";
-
-		}
 		return true;
 	}
 	else
