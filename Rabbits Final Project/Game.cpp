@@ -583,24 +583,24 @@ bool Game::checkSubWin()
 	promptReplay();
 }
 
-//void Game::promptReplay()
-//{
-//	cout << "Would you like to play again?" << endl;
-//
-//	string input = Valid::inputValidatior();
-//
-//	while (input != "1" && input != "yes" && input != "2" && input != "no")
-//	{
-//		cout << "1. Yes\n2. No" << endl;
-//		input = Valid::inputValidator();
-//	}
-//
-//	if (input == "1" || input == "yes" || input == "Yes")
-//	{
-//		// Add reset game code
-//		cout << endl;
-//	}
-//}
+void Game::promptReplay()
+{
+	cout << "Would you like to play again?" << endl;
+
+	string input = userInput();
+
+	while (input != "1" && input != "yes" && input != "2" && input != "no")
+	{
+		cout << "1. Yes\n2. No" << endl;
+		input = userInput();
+	}
+
+	if (input == "1" || input == "yes" || input == "Yes")
+	{
+		// Add reset game code
+		cout << endl;
+	}
+}
 
 
 void Game::getHelp()
