@@ -67,6 +67,9 @@ public:
   void getRoomInventory();
   bool getGameOver();
 
+  //Replay or quit game
+  void promptReplay();
+
   // Display Options
   void displayRoomDetails();
   void displayDoors();
