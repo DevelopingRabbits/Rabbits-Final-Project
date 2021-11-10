@@ -12,138 +12,153 @@ using namespace std;
 
 int main()
 {
- 
-  //INIT PLAYER
-  Player player1;
-  player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
+    bool restart = true;
 
-  // INIT SUBMARINE
-  Submarine submarine;
+    do {
+        
+        //INIT PLAYER
+        Player player1;
+        player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
 
-  //INIT OCEANMAP
-  OceanMap ocean;
-  ocean.setSubPosition(submarine.getXSubLoc(), submarine.getYSubLoc());
+        // INIT SUBMARINE
+        Submarine submarine;
 
-  // INIT GAME
-  Game game;
-  game.createGame(player1, submarine, game, ocean);
+        //INIT OCEANMAP
+        OceanMap ocean;
+        ocean.setSubPosition(submarine.getXSubLoc(), submarine.getYSubLoc());
 
-
-  //INIT NULL DOORS
-  Door NULLDOOR;
-  NULLDOOR.createDoor("Null Door", false, NULLDOOR);
-
-  // How to INIT Room Objects
-  /*
-*****************************************************************
-1. Create the room object
-2. Create the doors for the object.
-3. room.createRoom(string name, int rID, UP door, DOWN door,
-                    LEFT door, RIGHT door, int row, int col);
-                    UP DOWN LEFT RIGHT
-4. submarine.addRoom(room object, room row, room col)
-*****************************************************************
-*/
-  // START: Topside Room/Door Objects
-  Room topSide;
-  Door topSideHatch;
-  topSideHatch.createDoor("Topside Hatch", true, topSideHatch);
-  topSide.createRoom("Topside", 0, NULLDOOR.getDoorPtr(), topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 0, 3);
-  topSide.setRoomDescription("You are standing on the topside of the submarine.\nThe weather outside is quite nice. The sea is calm and the sky is clear.\nThe sun glimmers on the calm ocean waves.");
-  topSide.setIsDark(false);
-  submarine.addRoom(topSide, topSide.getRoomRow(), topSide.getRoomCol());
-  // END: Topside Room/Door Objects
-    // *****************************************************************
+        // INIT GAME
+        Game game;
+        game.createGame(player1, submarine, game, ocean);
 
 
-  // START: Control Room Room/Door Objects
-  // *****************************************************************
+        //INIT NULL DOORS
+        Door NULLDOOR;
+        NULLDOOR.createDoor("Null Door", false, NULLDOOR);
 
-  //Door Creation
-  Door nuclearPowerRoomDoor;
-  nuclearPowerRoomDoor.createDoor("Nuclear Power Room", true, nuclearPowerRoomDoor);
-  Door captainsRoomDoor;
-  captainsRoomDoor.createDoor("Captain's State Room", true, captainsRoomDoor);
-
-  // Room Creation
-  Room controlRoom;
-  controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), captainsRoomDoor.getDoorPtr(), 1, 3);
-  controlRoom.setDarkRoomDescription("You enter a dark room. You are unsure where you are.\nThe only light you see is from the hatch above.");
-  controlRoom.setRoomDescription("The room has plenty of computer terminals. This seems to be the control room of the submarine.");
-  submarine.addRoom(controlRoom, controlRoom.getRoomRow(), controlRoom.getRoomCol());
-
-  // Player Items
-  Item battleLantern;
-  battleLantern.createItem("Battle Lantern", 0, 0, battleLantern);
-  controlRoom.addItem(&battleLantern);
-
-  // Action Items
-  Item controlRoomComputerTerminal;
-  controlRoomComputerTerminal.createActionItem("Computer Terminal", 9999, controlRoomComputerTerminal, true, false);
-  controlRoom.addActionItem(&controlRoomComputerTerminal);
-  // *****************************************************************
-  // END: Control Room Room/Door Objects
+        // How to INIT Room Objects
+        /*
+      *****************************************************************
+      1. Create the room object
+      2. Create the doors for the object.
+      3. room.createRoom(string name, int rID, UP door, DOWN door,
+                          LEFT door, RIGHT door, int row, int col);
+                          UP DOWN LEFT RIGHT
+      4. submarine.addRoom(room object, room row, room col)
+      *****************************************************************
+      */
+      // START: Topside Room/Door Objects
+        Room topSide;
+        Door topSideHatch;
+        topSideHatch.createDoor("Topside Hatch", true, topSideHatch);
+        topSide.createRoom("Topside", 0, NULLDOOR.getDoorPtr(), topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 0, 3);
+        topSide.setRoomDescription("You are standing on the topside of the submarine.\nThe weather outside is quite nice. The sea is calm and the sky is clear.\nThe sun glimmers on the calm ocean waves.");
+        topSide.setIsDark(false);
+        submarine.addRoom(topSide, topSide.getRoomRow(), topSide.getRoomCol());
+        // END: Topside Room/Door Objects
+          // *****************************************************************
 
 
-    // START: Nuclear Power Room/Door Objects
-  // *****************************************************************
+        // START: Control Room Room/Door Objects
+        // *****************************************************************
 
-  // Door Creation
-  Door controlRoomDoor;
-  controlRoomDoor.createDoor("Control Room", true, controlRoomDoor);
-  
-  // Room Creation
-  Room nuclearPowerRoom;
-  nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
-  nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");
-  nuclearPowerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
-  submarine.addRoom(nuclearPowerRoom, nuclearPowerRoom.getRoomRow(), nuclearPowerRoom.getRoomCol());
-  
-  // Player Items
-  Item controlRods;
-  controlRods.createItem("Control Rods", 1, 1, controlRods);
-  controlRods.setKeyCode(0001);
-  nuclearPowerRoom.addItem(&controlRods);
-  
-  // Action Items
-  Item reactor;
-  reactor.createActionItem("Reactor", 0, reactor, false, true);
-  reactor.setActionItemKeyCode(0001);
-  nuclearPowerRoom.addActionItem(&reactor);
+        //Door Creation
+        Door nuclearPowerRoomDoor;
+        nuclearPowerRoomDoor.createDoor("Nuclear Power Room", true, nuclearPowerRoomDoor);
+        Door captainsRoomDoor;
+        captainsRoomDoor.createDoor("Captain's State Room", true, captainsRoomDoor);
 
-    // *****************************************************************
-    // END: Nuclear Power Room/Door Objects
+        // Room Creation
+        Room controlRoom;
+        controlRoom.createRoom("Control Room", 1, topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), captainsRoomDoor.getDoorPtr(), 1, 3);
+        controlRoom.setDarkRoomDescription("You enter a dark room. You are unsure where you are.\nThe only light you see is from the hatch above.");
+        controlRoom.setRoomDescription("The room has plenty of computer terminals. This seems to be the control room of the submarine.");
+        submarine.addRoom(controlRoom, controlRoom.getRoomRow(), controlRoom.getRoomCol());
 
+        // Player Items
+        Item battleLantern;
+        battleLantern.createItem("Battle Lantern", 0, 0, battleLantern);
+        controlRoom.addItem(&battleLantern);
 
-  // START: Captain's Room Objects
-  // Room Creation
-  Room captainsRoom;
-  captainsRoom.createRoom("Captain's Room", 3, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 4);
-  captainsRoom.setRoomDescription("You are in the Captain's State Room.");
-  captainsRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
-  submarine.addRoom(captainsRoom, captainsRoom.getRoomRow(), captainsRoom.getRoomCol());
-  // Action Items
-  Item captainsLog;
-  captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
-  captainsRoom.addActionItem(&captainsLog);
+        // Action Items
+        Item controlRoomComputerTerminal;
+        controlRoomComputerTerminal.createActionItem("Computer Terminal", 9999, controlRoomComputerTerminal, true, false);
+        controlRoom.addActionItem(&controlRoomComputerTerminal);
+        // *****************************************************************
+        // END: Control Room Room/Door Objects
 
 
-  /******************************************************************
-  GAME STARTS BELOW
-  ******************************************************************/
-  
-  //playerName=ui.getPlayerName();
-  //playerName=ui.stringInputValidation(playerName);
+          // START: Nuclear Power Room/Door Objects
+        // *****************************************************************
 
-  game.startGame();
-  do
-  {
-    // Initalize the turn.
-    game.playerTurn(&game);
-  } while (game.getGameOver() == false);
-  return 0;
+        // Door Creation
+        Door controlRoomDoor;
+        controlRoomDoor.createDoor("Control Room", true, controlRoomDoor);
+
+        // Room Creation
+        Room nuclearPowerRoom;
+        nuclearPowerRoom.createRoom("Nuclear Power Room", 2, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), 1, 2);
+        nuclearPowerRoom.setRoomDescription("You are in the nuclear power room.");
+        nuclearPowerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
+        submarine.addRoom(nuclearPowerRoom, nuclearPowerRoom.getRoomRow(), nuclearPowerRoom.getRoomCol());
+
+        // Player Items
+        Item controlRods;
+        controlRods.createItem("Control Rods", 1, 1, controlRods);
+        controlRods.setKeyCode(0001);
+        nuclearPowerRoom.addItem(&controlRods);
+
+        // Action Items
+        Item reactor;
+        reactor.createActionItem("Reactor", 0, reactor, false, true);
+        reactor.setActionItemKeyCode(0001);
+        nuclearPowerRoom.addActionItem(&reactor);
+
+        // *****************************************************************
+        // END: Nuclear Power Room/Door Objects
+
+
+      // START: Captain's Room Objects
+      // Room Creation
+        Room captainsRoom;
+        captainsRoom.createRoom("Captain's Room", 3, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), 1, 4);
+        captainsRoom.setRoomDescription("You are in the Captain's State Room.");
+        captainsRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
+        submarine.addRoom(captainsRoom, captainsRoom.getRoomRow(), captainsRoom.getRoomCol());
+        // Action Items
+        Item captainsLog;
+        captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
+        captainsRoom.addActionItem(&captainsLog);
+
+
+        /******************************************************************
+        GAME STARTS BELOW
+        ******************************************************************/
+
+        //playerName=ui.getPlayerName();
+        //playerName=ui.stringInputValidation(playerName);
+
+
+        game.startGame();
+        do
+        {
+            // Initalize the turn.
+            game.playerTurn(&game);
+        } while (game.getGameOver() == false);
+        return 0;
+
+        int restartInput;
+        cout << "Would you like to play the game again?\n1. Yes\n2. No" << endl;
+        cin >> restartInput;
+
+        if (restartInput == 2) {
+            restart = false;
+            cout << "The game has ended, thank you for playing!" << endl;
+        }
+
+    }while (restart == true);
+
 }
-
 
 
 
