@@ -67,6 +67,9 @@ public:
   // Set Options
   void setGameOver(bool state);
 
+  //Replay or quit game
+  void promptReplay();
+
   // Get Options
   void getCurrentRoom();
   void getRoomDoors();
