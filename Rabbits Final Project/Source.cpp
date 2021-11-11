@@ -155,6 +155,7 @@ int main()
         if (restartInput == 2) {
             restart = false;
             cout << "The game has ended, thank you for playing!" << endl;
+            system("pause");
         }
 
     }while (restart == true);
