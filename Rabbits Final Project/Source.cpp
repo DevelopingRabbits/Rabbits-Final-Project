@@ -177,11 +177,11 @@ int main()
         propellerRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
         submarine.addRoom(propellerRoom, propellerRoom.getRoomRow(), propellerRoom.getRoomCol());
 
-  Room messDeck;
-  messDeck.createRoom("Mess Deck", 6, NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 0, 2);
-  messDeck.setRoomDescription("You are in the mess deck.");
-  messDeck.setDarkRoomDescription("You can't see anything. It's pitch black.");
-  submarine.addRoom(messDeck, messDeck.getRoomRow(), messDeck.getRoomCol());
+        Room messDeck;
+        messDeck.createRoom("Mess Deck", 6, NULLDOOR.getDoorPtr(), nuclearPowerRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 0, 2);
+        messDeck.setRoomDescription("You are in the mess deck.");
+        messDeck.setDarkRoomDescription("You can't see anything. It's pitch black.");
+        submarine.addRoom(messDeck, messDeck.getRoomRow(), messDeck.getRoomCol());
 
         Room berthing;
         berthing.createRoom("Berthing", 7, controlRoomDoor.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 2, 3);
