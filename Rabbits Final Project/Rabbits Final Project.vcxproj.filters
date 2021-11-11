@@ -51,6 +51,9 @@
     <ClCompile Include="OceanMap.cpp">
       <Filter>Resource Files\Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Resource Files\Source Files</Filter>
+    </ClCompile>
     <ClCompile Include="GameBoard.cpp">
       <Filter>Resource Files\Source Files\LightsOut</Filter>
     </ClCompile>
@@ -89,14 +92,17 @@
     <ClInclude Include="OceanMap.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Enemy.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
     <ClInclude Include="GameBoard.h">
-      <Filter>Header Files\LightsOut</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GameFunctions.h">
-      <Filter>Header Files\LightsOut</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PlayerFunctions.h">
-      <Filter>Header Files\LightsOut</Filter>
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

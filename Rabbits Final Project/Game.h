@@ -11,6 +11,7 @@
 #include "Room.h"
 #include "Door.h"
 #include "OceanMap.h"
+#include "Enemy.h"
 #include "GameSystemsProgramming.h"
 #include "GameFunctions.h"
 
@@ -24,6 +25,7 @@ class Door;
 class Item;
 class Submarine;
 class OceanMap;
+class Enemy;
 class GameFunctions;
 class Game
 {
@@ -40,6 +42,7 @@ private:
   Door* leftDoor;
   Item* item1;
   OceanMap* ocean;
+  Enemy* kraken;
   int playerInventorySize;
   int roomActionItemsSize;
   vector<Item*> inventory;
@@ -58,7 +61,7 @@ private:
 public:
   // INIT Options
   Game();
-  void createGame(Player &player, Submarine &sub, Game &gameArg, OceanMap &oceanarg);
+  void createGame(Player &player, Submarine &sub, Game &gameArg, OceanMap &oceanarg, Enemy &enemyarg);
   void startGame();
 
   // Set Options
@@ -96,9 +99,14 @@ public:
   void moveSubFunction();
   void displayCurrentSubLocation();
   bool checkSubWin();
- 
+
   // Lights Out
   bool playLightsOut();
+
+  //enemy
+  void enemyEncounter();
+  bool checkEnemyLocation();
+  bool checkWeaponSystem();
 
  
 };
