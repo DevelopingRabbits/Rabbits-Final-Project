@@ -12,17 +12,20 @@ using namespace std;
 
 int main()
 {
+    bool restart = true;
 
-    //INIT PLAYER
-    Player player1;
-    player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
+    do {
+        
+        //INIT PLAYER
+        Player player1;
+        player1.setPlayerLocation(0, 3); // Hardcoding Topside Room Coordinates **TEMP**
 
-    // INIT SUBMARINE
-    Submarine submarine;
+        // INIT SUBMARINE
+        Submarine submarine;
 
-    //INIT OCEANMAP
-    OceanMap ocean;
-    ocean.setSubPosition(submarine.getXSubLoc(), submarine.getYSubLoc());
+        //INIT OCEANMAP
+        OceanMap ocean;
+        ocean.setSubPosition(submarine.getXSubLoc(), submarine.getYSubLoc());
 
     //INIT ENEMY
     Enemy kraken;
@@ -197,16 +200,30 @@ int main()
         //playerName=ui.getPlayerName();
         //playerName=ui.stringInputValidation(playerName);
 
+
         game.startGame();
         do
         {
             // Initalize the turn.
             game.playerTurn(&game);
         } while (game.getGameOver() == false);
-        return 0;
-    }
+        
 
-   
+        int restartInput;
+        cout << "Would you like to play the game again?\n1. Yes\n2. No" << endl;
+        cin >> restartInput;
+
+
+        if (restartInput == 2) {
+            restart = false;
+            cout << "The game has ended, thank you for playing!" << endl;
+            system("pause");
+        }
+
+    }while (restart == true);
+
+}
+
 
 
 //Turn Sequence Explanation

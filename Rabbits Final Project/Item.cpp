@@ -26,7 +26,7 @@ void Item::createItem(string name, int id, int itemTypeArg, Item& iPtr)
     isOn = NULL;
     break;
   default:
-    cout << "\n\n****Error in Item::createItem****\n\n";
+      cout << "\n\n****Error in Item::createItem****\n\n";
     break;
   }
   itemPtr = &iPtr;
