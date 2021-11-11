@@ -4,6 +4,8 @@
 #include <map>
 #include <iomanip>
 
+
+
 #include "Door.h"
 #include "SUBMARINE.h"
 #include "PLAYER.h"
@@ -579,6 +581,7 @@ bool Game::checkSubWin()
 	}
 	
 }
+
 
 void Game::getHelp()
 {
