@@ -652,8 +652,27 @@ void Game::updatePlayer()
 
 void Game::enemyEncounter()
 {
-	cout << kraken->getEnemyHealth() << endl;
-	cout << kraken->getEnemyType()<<endl;
+	cout << "Captain! There is a " << kraken->getEnemyType() << "! Set General Quarters! Man your BATTLE STATION!" << endl;
+	do
+	{
+		cout << "1. Deploy Heat-Seeking Torpedos" << endl
+			<< "2. Deploy Dummy Torpedos" << endl
+			<< "3. Deploy Laser Railgun" << endl
+			<< "4. Evasive Maneuvers" << endl;
+		cin >> userInput;
+		switch (userInput)
+		{
+		case 1:
+
+			// Deploy Heat-Seeking Torpedos
+		case 2:
+			// Deploy Dummy Torpedos
+		case 3:
+			// Deploy Laser Railgun
+		case 4:
+			// Evasive Maneuvers
+		}
+	} while (kraken->getEnemyHealth() <= 0 || submarine->getSubmarineHealth() <= 0);
 }
 
 bool Game::checkWeaponSystem()

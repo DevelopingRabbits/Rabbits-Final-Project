@@ -42,6 +42,9 @@ public:
 
   bool getWeaponStatus();
   void setWeaponStatus(bool status);
+
+  int getSubmarineHealth();
+  void setSubmarineHealth(int x);
   
 
 };

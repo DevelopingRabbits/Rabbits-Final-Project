@@ -7,7 +7,7 @@ using namespace std;
 Enemy::Enemy()
 {
     enemyHealth = 100;
-    enemyType = "Kraken";
+    enemyType = "";
     enemyLocationX=3;
     enemyLocationY=0;
 }

@@ -79,3 +79,13 @@ void Submarine::setWeaponStatus(bool status)
 {
 	weaponSystem = status;
 }
+
+int Submarine::getSubmarineHealth()
+{
+	return submarineHealth;
+}
+
+void Submarine::setSubmarineHealth(int x)
+{
+	submarineHealth = x;
+}
