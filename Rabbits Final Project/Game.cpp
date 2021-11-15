@@ -420,12 +420,7 @@ void Game::moveSubFunction()
 	switch (userInput)
 	{
 	case 1:
-		if (submarine->getYSubLoc() + 1 > ocean->getMaxY())
-		{
-			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
-			break;
-		}
-	
+		
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
 
@@ -433,10 +428,15 @@ void Game::moveSubFunction()
 		{
 			if (checkWeaponSystem() == false)
 			{
-				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
-				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				resetNorth();
 				break;
 			}
+		}
+
+		if (checkBound() == true)
+		{
+			resetNorth();
+			break;
 		}
 
 		if (checkEnemyLocation() == true)
@@ -452,11 +452,7 @@ void Game::moveSubFunction()
 
 		break;
 	case 2:
-		if (submarine->getYSubLoc() - 1 < 0)
-		{
-			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
-			break;
-		}
+
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
 
@@ -464,10 +460,15 @@ void Game::moveSubFunction()
 		{
 			if (checkWeaponSystem() == false)
 			{
-				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
-				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				resetSouth();
 				break;
 			}
+		}
+
+		if (checkBound() == true)
+		{
+			resetSouth();
+			break;
 		}
 
 		if (checkEnemyLocation() == true)
@@ -483,11 +484,7 @@ void Game::moveSubFunction()
 
 		break;
 	case 3:
-		if (submarine->getXSubLoc() + 1 > ocean->getMaxX())
-		{
-			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
-			break;
-		}
+	
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc() + 1, submarine->getYSubLoc());
 
@@ -495,10 +492,15 @@ void Game::moveSubFunction()
 		{
 			if (checkWeaponSystem() == false)
 			{
-				submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
-				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				resetEast();
 				break;
 			}
+		}
+
+		if (checkBound() == true)
+		{
+			resetEast();
+			break;
 		}
 
 		if (checkEnemyLocation() == true)
@@ -513,11 +515,7 @@ void Game::moveSubFunction()
 	
 		break;
 	case 4:
-		if (submarine->getXSubLoc() - 1 < 0)
-		{
-			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
-			break;
-		}
+	
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
 
@@ -525,10 +523,15 @@ void Game::moveSubFunction()
 		{
 			if (checkWeaponSystem() == false)
 			{
-				submarine->setSubmarineLocation(submarine->getXSubLoc()+1, submarine->getYSubLoc());
-				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				resetWest();
 				break;
 			}
+		}
+
+		if (checkBound() == true)
+		{
+			resetWest();
+			break;
 		}
 
 		if (checkEnemyLocation() == true)
@@ -688,5 +691,56 @@ bool Game::checkEnemyLocation()
 
 }
 
+void Game::resetNorth()
+{
+	submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
+	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+}
 
+void Game::resetSouth()
+{
+	submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
+	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+}
 
+void Game::resetEast()
+{
+	submarine->setSubmarineLocation(submarine->getXSubLoc() - 1, submarine->getYSubLoc());
+	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+}
+
+void Game::resetWest()
+{
+	submarine->setSubmarineLocation(submarine->getXSubLoc() + 1, submarine->getYSubLoc());
+	ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+}
+
+bool Game::checkBound()
+{
+	if (submarine->getXSubLoc() > ocean->getMaxX())
+	{
+		gameSystemsProgramming.outOfBoundsMessage();
+		return true;//out of bounds
+	}
+	else if (submarine->getYSubLoc() > ocean->getMaxY())
+	{
+		gameSystemsProgramming.outOfBoundsMessage();
+		return true;//out of bounds
+	}
+	else if (submarine->getXSubLoc() < 0)
+	{
+		gameSystemsProgramming.outOfBoundsMessage();
+		return true;//out of bounds
+	}
+	else if (submarine->getYSubLoc() < 0)
+	{
+		gameSystemsProgramming.outOfBoundsMessage();
+		return true;//out of bounds
+	}
+	else
+	{
+		return false;//in bounds
+	}
+}
+
+	

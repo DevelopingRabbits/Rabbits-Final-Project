@@ -100,6 +100,11 @@ public:
   void moveSubFunction();
   void displayCurrentSubLocation();
   bool checkSubWin();
+  void resetNorth();
+  void resetSouth();
+  void resetEast();
+  void resetWest();
+  bool checkBound();
 
   // Lights Out
   bool playLightsOut();

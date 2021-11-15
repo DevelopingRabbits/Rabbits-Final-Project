@@ -119,12 +119,12 @@ int OceanMap::getWinY()
 int OceanMap::getMaxX()
 {
    
-    return mapSizeX;
+    return mapSizeX-1;
 }
 
 int OceanMap::getMaxY()
 {
     
-    return mapSizeY;
+    return mapSizeY-1;
 }
 

@@ -114,3 +114,10 @@ void GameSystemsProgramming::delay()
     system("cls");
   }
 }
+
+void GameSystemsProgramming::outOfBoundsMessage()
+{
+    cout << endl;
+    cout << "The submarine cannot travel into uncharted waters. It is advised to attemp travel in a new direction." << endl;
+
+}

@@ -21,6 +21,8 @@ public:
     void yourChoiceMessage();
 
     void loseMessage();
+
+    void outOfBoundsMessage();
 };
 // This is a test!!!!!!!
 #endif
