@@ -50,6 +50,19 @@ int main()
 4. submarine.addRoom(room object, room row, room col)
 *****************************************************************
 */
+
+// How to INIT Action Item Objects
+/*
+*****************************************************************
+1. Create the item object
+2. createActionItem(string name, int id, Item& iPtr, bool subPower, bool needKey)
+3. room.addItem(room object, room row, room col)
+Example:
+  Item captainsLog;
+  captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
+  captainsRoom.addActionItem(&captainsLog);
+*****************************************************************
+*/
   // START: Topside Room/Door Objects
   Room topSide;
   Door topSideHatch;
