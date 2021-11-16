@@ -200,7 +200,6 @@ int main()
         //playerName=ui.getPlayerName();
         //playerName=ui.stringInputValidation(playerName);
 
-
         game.startGame();
         do
         {

@@ -653,6 +653,7 @@ void Game::updatePlayer()
 void Game::enemyEncounter()
 {
 	cout << "Captain! There is a " << kraken->getEnemyType() << "! Set General Quarters! Man your BATTLE STATION!" << endl;
+	enemyHealth = kraken->getEnemyHealth();
 	do
 	{
 		cout << "1. Deploy Heat-Seeking Torpedos" << endl
@@ -663,16 +664,48 @@ void Game::enemyEncounter()
 		switch (userInput)
 		{
 		case 1:
-
+			attackDamage = rand() % 10 + 6; // Low Damage, but high percentage to hit.
+			hitChance = rand() % 100; // Any number 80 or below will do damage.
+			if (hitChance <= 80)
+			{
+				enemyHealth -= attackDamage;
+				cout << enemyHealth;
+				kraken->setEnemyHealth(enemyHealth);
+				//DO DAMAGE
+				cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << "!\n";
+			}
+			break;
 			// Deploy Heat-Seeking Torpedos
 		case 2:
+			attackDamage = rand() % 25 + 20; // Big Damage, but low percentage to hit.
+			hitChance = rand() % 100; // Any number 40 or below will do damage.
+			if (hitChance <= 40)
+			{
+				enemyHealth -= attackDamage;
+				kraken->setEnemyHealth(enemyHealth);
+				//DO DAMAGE
+				cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << "!\n";
+			}
+			break;
 			// Deploy Dummy Torpedos
 		case 3:
+			attackDamage = rand() % 8; // Constantly does 8 damage, very accurate.
+			hitChance = rand() % 100; // Any number 90 or below will do damage.
+			if (hitChance <= 90)
+			{
+				enemyHealth -= attackDamage;
+				kraken->setEnemyHealth(enemyHealth);
+				//DO DAMAGE
+				cout << "SUCCESS! Your Laser Railgun did " << attackDamage << "!\n";
+			}
+			break;
 			// Deploy Laser Railgun
 		case 4:
+			evasiveChance = rand() % 4 + 1; // 25% chance that enemy will miss.
+			break;
 			// Evasive Maneuvers
 		}
-	} while (kraken->getEnemyHealth() <= 0 || submarine->getSubmarineHealth() <= 0);
+	} while (kraken->getEnemyHealth() > 0);
 }
 
 bool Game::checkWeaponSystem()

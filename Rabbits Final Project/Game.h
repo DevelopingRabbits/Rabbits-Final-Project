@@ -57,6 +57,12 @@ private:
   string stringUserInput;
   int gameEndChoice;
 
+  int enemyHealth;
+  int attackDamage;
+  int hitChance;
+  int criticalHit;
+  int evasiveChance;
+
 
 
 public:
