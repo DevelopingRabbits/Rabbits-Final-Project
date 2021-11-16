@@ -722,9 +722,96 @@ void Game::enemyEncounter()
 			break;
 			// Deploy Laser Railgun
 		case 4:
-			evasiveChance = rand() % 4 + 1; // 25% chance that enemy will miss.
+			evasiveChance = rand() % 3; // 25% chance that enemy will miss.
+			if (evasiveChance == 1)
+			{
+				cout << "SUCCESS! You evaded the " << kraken->getEnemyType() << " and have tactical advantage!\n";
+				do {
+					system("Pause");
+					system("CLS");
+					cout << "Extra Attack for Successful Evasion!\n";
+					cout << "----------------------------------\n"
+						<< "\tEnemy: " << kraken->getEnemyType() << endl << "\tHP: " << kraken->getEnemyHealth() << endl
+						<< "----------------------------------\n\n"
+						<< "***************WEAPON SYSTEM TERMINAL***************" << endl
+						<< "1. Deploy Heat-Seeking Torpedos" << endl
+						<< "2. Deploy Dummy Torpedos" << endl
+						<< "3. Deploy Laser Railgun" << endl
+						<< "Your Choice: ";
+					cin >> userInput;
+					switch (userInput)
+					{
+					case 1:
+						attackDamage = rand() % 10 + 6; // Low Damage, but high percentage to hit.
+						hitChance = rand() % 100; // Any number 80 or below will do damage.
+						if (hitChance <= 80)
+						{
+							enemyHealth -= attackDamage;
+							kraken->setEnemyHealth(enemyHealth);
+							//DO DAMAGE
+							cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << " damage!\n";
+						}
+						else
+						{
+							cout << "FAIL! Your attack missed! No damage inflicted!\n";
+						}
+						system("Pause");
+						userInputValid = true;
+						break;
+						// Deploy Heat-Seeking Torpedos
+					case 2:
+						attackDamage = rand() % 25 + 20; // Big Damage, but low percentage to hit.
+						hitChance = rand() % 100; // Any number 40 or below will do damage.
+						if (hitChance <= 40)
+						{
+							enemyHealth -= attackDamage;
+							kraken->setEnemyHealth(enemyHealth);
+							//DO DAMAGE
+							cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << " damage!\n";
+						}
+						else
+						{
+							cout << "FAIL! Your attack missed! No damage inflicted!\n";
+						}
+						system("Pause");
+						userInputValid = true;
+						break;
+						// Deploy Dummy Torpedos
+					case 3:
+						attackDamage = rand() % 8; // Constantly does 8 damage, very accurate.
+						hitChance = rand() % 100; // Any number 90 or below will do damage.
+						if (hitChance <= 90)
+						{
+							enemyHealth -= attackDamage;
+							kraken->setEnemyHealth(enemyHealth);
+							//DO DAMAGE
+							cout << "SUCCESS! Your Laser Railgun did " << attackDamage << " damage!\n";
+						}
+						else
+						{
+							cout << "FAIL! Your attack missed! No damage inflicted!\n";
+						}
+						system("Pause");
+						userInputValid = true;
+						break;
+						// Deploy Laser Railgun
+					default:
+						cout << "Invalid Input!\n";
+						userInputValid = false;
+					}
+				} while (userInputValid == false);
+			}
+			else
+			{
+				cout << "Evasion unsuccessful!\n";
+				system("Pause");
+				break;
+			}
 			break;
 			// Evasive Maneuvers
+		default:
+			cout << "Invalid Input!\n";
+			system("Pause");
 		}
 	} while (kraken->getEnemyHealth() > 0);
 }
