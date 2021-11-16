@@ -205,6 +205,24 @@ Example:
         berthing.setDarkRoomDescription("You can't see anything. It's pitch black.");
         submarine.addRoom(berthing, berthing.getRoomRow(), berthing.getRoomCol());
 
+        // Brandon's Items
+        //Player Items
+        Item repairTool;
+        repairTool.createItem("Repair Tool", 1, 5, repairTool);
+        repairRoom.addItem(&repairTool);
+
+        // Action Items
+        Item captainChair;
+        captainChair.createActionItem("Captain's Chair", 9997, captainChair, false, true);
+        captainsRoom.addActionItem(&captainChair);
+
+        Item snack;
+        snack.createActionItem("Snack", 9995, snack, false, true);
+        messDeck.addActionItem(&snack);
+
+        Item berthingBed;
+        berthingBed.createActionItem("Berthing Bed", 9994, berthingBed, false, true);
+        berthing.addActionItem(&berthingBed);
 
         /******************************************************************
         GAME STARTS BELOW
@@ -227,7 +245,8 @@ Example:
         cin >> restartInput;
 
 
-        if (restartInput == 2) {
+        if (restartInput == 2) 
+        {
             restart = false;
             cout << "The game has ended, thank you for playing!" << endl;
             system("pause");
