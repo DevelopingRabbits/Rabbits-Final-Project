@@ -438,10 +438,17 @@ void Game::moveSubFunction()
 			resetNorth();
 			break;
 		}
-		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
+
+		whenWinLocLocked();
+
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 		{
-			resetNorth();
-			break;
+			if (ocean->getWinLocLocked() == true)
+			{
+				resetNorth();
+				break;
+			}
+			
 		}
 		
 
@@ -476,10 +483,17 @@ void Game::moveSubFunction()
 			resetSouth();
 			break;
 		}
-		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
+
+		whenWinLocLocked();
+
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() )
 		{
-			resetSouth();
-			break;
+			if (ocean->getWinLocLocked() == true)
+			{
+				resetSouth();
+				break;
+			}
+			
 		}
 
 		if (checkEnemyLocation() == true)
@@ -514,10 +528,16 @@ void Game::moveSubFunction()
 			break;
 		}
 
-		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
+		whenWinLocLocked();
+
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 		{
-			resetEast();
-			break;
+			if (ocean->getWinLocLocked() == true)
+			{
+				resetEast();
+				break;
+			}
+			
 		}
 
 		if (checkEnemyLocation() == true)
@@ -551,13 +571,19 @@ void Game::moveSubFunction()
 			break;
 		}
 
-		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
+		whenWinLocLocked();
+
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 		{
-			resetWest();
-			break;
+			if (ocean->getWinLocLocked() == true)
+			{
+				resetWest();
+				break;
+			}
+			
 		}
 
-		if (checkEnemyLocation() == true)
+if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
 		}
@@ -595,13 +621,6 @@ void Game::displayCurrentSubLocation()
 
 bool Game::checkSubWin()
 {
-	if (checkWinLocked() == true)
-	{
-		cout << "This area appears to contain something special but is covered by a thick haze." << endl << "Something big must be lurking around kicking up all this debris." << endl<<"You should probably turn back for now till you find a way to settle this haze."<<endl;
-		return false;
-
-
-	}
 	
 	if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 	{
@@ -779,5 +798,18 @@ bool Game::checkWinLocked()
 }
 
 
+void Game::whenWinLocLocked()
+{
+	if (checkWinLocked() == true)
+	{
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
+		{
+			cout << "This area appears to contain something special but is covered by a thick haze." << endl <<
+				"Something big must be lurking around kicking up all this debris." << endl
+				<< "You should probably turn back for now till you find a way to settle this haze." << endl;
+		}
 
-	
+
+	}
+
+}
