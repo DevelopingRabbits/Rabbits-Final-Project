@@ -53,6 +53,7 @@ private:
   string playerMovedMessage;
   bool gameOver;
   bool userInputValid;
+  bool encounterOver;
   int userInput;
   string stringUserInput;
   int gameEndChoice;

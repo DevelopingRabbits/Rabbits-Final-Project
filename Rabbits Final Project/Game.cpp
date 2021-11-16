@@ -22,8 +22,9 @@ using namespace std;
 Game::Game()
 {
   gameOver = false;
-	cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
-	playerMovedMessage = "\n\nYou go through the ";
+  cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
+  playerMovedMessage = "\n\nYou go through the ";
+  encounterOver = false;
 	
 };
 
@@ -653,7 +654,7 @@ void Game::updatePlayer()
 
 void Game::enemyAttack() {
 	subHealth = submarine->getSubmarineHealth();
-	attackDamage = rand() % 6; // Low Damage, but high percentage to hit.
+	attackDamage = rand() % 10; // Low Damage, but high percentage to hit.
 	hitChance = rand() % 100; // Any number 80 or below will do damage.
 	if (hitChance <= 80)
 	{
@@ -665,16 +666,23 @@ void Game::enemyAttack() {
 	{
 		cout << "The " << kraken->getEnemyType() << " missed their attack!!\n";
 	}
-	system("Pause");
 }
 void Game::enemyEncounter()
 {
+	encounterOver = false;
 	cout << "Captain! There is a " << kraken->getEnemyType() << "! Set General Quarters! Man your BATTLE STATION!" << endl;
 	enemyHealth = kraken->getEnemyHealth();
 	system("Pause");
 	do
 	{
 		enemyAttack();
+		system("Pause");
+		if (subHealth <= 0)
+		{
+			gameOver = true;
+			encounterOver = true;
+			break;
+		}
 		system("CLS");
 		cout << "----------------------------------\n"
 			<< "\tEnemy: " << kraken->getEnemyType() << endl << "\tHP: " << kraken->getEnemyHealth() << endl
@@ -698,6 +706,11 @@ void Game::enemyEncounter()
 				kraken->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
 				cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << " damage!\n";
+				if (enemyHealth <= 0)
+				{
+					encounterOver = true;
+					break;
+				}
 			}
 			else
 			{
@@ -715,6 +728,11 @@ void Game::enemyEncounter()
 				kraken->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
 				cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << " damage!\n";
+				if (enemyHealth <= 0)
+				{
+					encounterOver = true;
+					break;
+				}
 			}
 			else
 			{
@@ -732,6 +750,11 @@ void Game::enemyEncounter()
 				kraken->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
 				cout << "SUCCESS! Your Laser Railgun did " << attackDamage << " damage!\n";
+				if (enemyHealth <= 0)
+				{
+					encounterOver = true;
+					break;
+				}
 			}
 			else
 			{
@@ -769,6 +792,11 @@ void Game::enemyEncounter()
 							kraken->setEnemyHealth(enemyHealth);
 							//DO DAMAGE
 							cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << " damage!\n";
+							if (enemyHealth <= 0)
+							{
+								encounterOver = true;
+								break;
+							}
 						}
 						else
 						{
@@ -787,6 +815,11 @@ void Game::enemyEncounter()
 							kraken->setEnemyHealth(enemyHealth);
 							//DO DAMAGE
 							cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << " damage!\n";
+							if (enemyHealth <= 0)
+							{
+								encounterOver = true;
+								break;
+							}
 						}
 						else
 						{
@@ -805,6 +838,11 @@ void Game::enemyEncounter()
 							kraken->setEnemyHealth(enemyHealth);
 							//DO DAMAGE
 							cout << "SUCCESS! Your Laser Railgun did " << attackDamage << " damage!\n";
+							if (enemyHealth <= 0)
+							{
+								encounterOver = true;
+								break;
+							}
 						}
 						else
 						{
@@ -832,7 +870,7 @@ void Game::enemyEncounter()
 			cout << "Invalid Input!\n";
 			system("Pause");
 		}
-	} while (kraken->getEnemyHealth() > 0);
+	} while (encounterOver == false);
 }
 
 bool Game::checkWeaponSystem()
