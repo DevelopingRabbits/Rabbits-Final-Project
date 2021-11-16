@@ -455,6 +455,7 @@ void Game::moveSubFunction()
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
+			ocean->setWinLocLocked(false);
 		}
 
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
@@ -499,6 +500,7 @@ void Game::moveSubFunction()
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
+			ocean->setWinLocLocked(false);
 		}
 
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
@@ -543,6 +545,7 @@ void Game::moveSubFunction()
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
+			ocean->setWinLocLocked(false);
 		}
 
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
@@ -583,9 +586,10 @@ void Game::moveSubFunction()
 			
 		}
 
-if (checkEnemyLocation() == true)
+		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
+			ocean->setWinLocLocked(false);
 		}
 
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
@@ -706,6 +710,7 @@ void Game::enemyEncounter()
 {
 	cout << kraken->getEnemyHealth() << endl;
 	cout << kraken->getEnemyType()<<endl;
+	cout << "The winning location is now unlocked" << endl;
 }
 
 bool Game::checkWeaponSystem()
