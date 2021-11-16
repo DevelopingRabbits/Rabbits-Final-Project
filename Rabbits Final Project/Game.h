@@ -105,6 +105,7 @@ public:
   void resetEast();
   void resetWest();
   bool checkBound();
+  bool checkWinLocked();
 
   // Lights Out
   bool playLightsOut();

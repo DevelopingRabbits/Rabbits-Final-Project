@@ -27,6 +27,8 @@ OceanMap::OceanMap()
         
     }
     
+    //By default the winning location is not accesible to the player
+    winLocationLocked = true;
 }
 
 void OceanMap::displayOceanMap()
@@ -128,3 +130,12 @@ int OceanMap::getMaxY()
     return mapSizeY-1;
 }
 
+bool OceanMap::getWinLocLocked()
+{
+    return winLocationLocked;
+}
+
+void OceanMap::setWinLocLocked(bool flag)
+{
+    winLocationLocked = flag;
+}

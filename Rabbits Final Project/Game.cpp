@@ -438,6 +438,12 @@ void Game::moveSubFunction()
 			resetNorth();
 			break;
 		}
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
+		{
+			resetNorth();
+			break;
+		}
+		
 
 		if (checkEnemyLocation() == true)
 		{
@@ -466,6 +472,11 @@ void Game::moveSubFunction()
 		}
 
 		if (checkBound() == true)
+		{
+			resetSouth();
+			break;
+		}
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
 		{
 			resetSouth();
 			break;
@@ -503,6 +514,12 @@ void Game::moveSubFunction()
 			break;
 		}
 
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
+		{
+			resetEast();
+			break;
+		}
+
 		if (checkEnemyLocation() == true)
 		{
 			enemyEncounter();
@@ -529,6 +546,12 @@ void Game::moveSubFunction()
 		}
 
 		if (checkBound() == true)
+		{
+			resetWest();
+			break;
+		}
+
+		if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX() && ocean->getWinLocLocked() == true)
 		{
 			resetWest();
 			break;
@@ -572,10 +595,17 @@ void Game::displayCurrentSubLocation()
 
 bool Game::checkSubWin()
 {
+	if (checkWinLocked() == true)
+	{
+		cout << "This area appears to contain something special but is covered by a thick haze." << endl << "Something big must be lurking around kicking up all this debris." << endl<<"You should probably turn back for now till you find a way to settle this haze."<<endl;
+		return false;
+
+
+	}
 	
 	if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 	{
-		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
+		cout << "You have naviagated the sub to the winning location. Congrats!!!" << endl;
 		return true;
 	}
 	else
@@ -742,5 +772,12 @@ bool Game::checkBound()
 		return false;//in bounds
 	}
 }
+
+bool Game::checkWinLocked()
+{
+	return ocean->getWinLocLocked();
+}
+
+
 
 	

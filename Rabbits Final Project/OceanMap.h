@@ -21,6 +21,7 @@ private:
     char oceanMapArray[mapSizeX][mapSizeY];
     int winXOcean;
     int winYOcean;
+    bool winLocationLocked;
 
     
 
@@ -45,6 +46,9 @@ public:
     //Gets bounds for the ocean map
     int getMaxX();
     int getMaxY();
+
+    void setWinLocLocked(bool flag);
+    bool getWinLocLocked();
 
 };
 #endif
