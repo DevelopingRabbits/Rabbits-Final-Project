@@ -55,6 +55,7 @@ private:
   bool userInputValid;
   int userInput;
   string stringUserInput;
+  int gameEndChoice;
 
 
 

@@ -4,6 +4,8 @@
 #include <map>
 #include <iomanip>
 
+
+
 #include "Door.h"
 #include "SUBMARINE.h"
 #include "PLAYER.h"
@@ -207,6 +209,7 @@ void Game::playerTurn(Game* gameArg)
 		case 6:
 			gameArg->setGameOver(true);
 			userInputValid = true;
+			cout << "The game has successfully shut down"<<endl;
 			break;
 
 		default:
@@ -570,7 +573,6 @@ bool Game::checkSubWin()
 	if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 	{
 		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
-	
 		return true;
 	}
 	else
@@ -578,7 +580,9 @@ bool Game::checkSubWin()
 		return false;
 	}
 	
+	
 }
+
 
 void Game::getHelp()
 {

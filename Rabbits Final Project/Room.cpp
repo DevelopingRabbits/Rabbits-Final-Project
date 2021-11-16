@@ -11,7 +11,7 @@ Room::Room()
 void Room::createRoom(string name, int rID, Door* up, Door* down, Door* left, Door* right, int rowArg, int colArg)
 {
   roomName = name;
-  darkRoomName = "Unkown Room: It's Dark...";
+  darkRoomName = "Unknown Room: It's Dark...";
   roomID = rID;
   upDoorPtr = up;
   downDoorPtr = down;
