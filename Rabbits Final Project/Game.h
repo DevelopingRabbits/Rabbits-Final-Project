@@ -58,6 +58,7 @@ private:
   int gameEndChoice;
 
   int enemyHealth;
+  int subHealth;
   int attackDamage;
   int hitChance;
   int criticalHit;
@@ -112,6 +113,7 @@ public:
 
   //enemy
   void enemyEncounter();
+  void enemyAttack();
   bool checkEnemyLocation();
   bool checkWeaponSystem();
 

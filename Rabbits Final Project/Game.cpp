@@ -650,6 +650,23 @@ void Game::updatePlayer()
 
 }
 
+
+void Game::enemyAttack() {
+	subHealth = submarine->getSubmarineHealth();
+	attackDamage = rand() % 6; // Low Damage, but high percentage to hit.
+	hitChance = rand() % 100; // Any number 80 or below will do damage.
+	if (hitChance <= 80)
+	{
+		cout << "The " << kraken->getEnemyType() << " inflicted " << attackDamage << " damage to your Submarine!\n";
+		subHealth -= attackDamage;
+		submarine->setSubmarineHealth(subHealth);
+	}
+	else
+	{
+		cout << "The " << kraken->getEnemyType() << " missed their attack!!\n";
+	}
+	system("Pause");
+}
 void Game::enemyEncounter()
 {
 	cout << "Captain! There is a " << kraken->getEnemyType() << "! Set General Quarters! Man your BATTLE STATION!" << endl;
@@ -657,11 +674,13 @@ void Game::enemyEncounter()
 	system("Pause");
 	do
 	{
+		enemyAttack();
 		system("CLS");
 		cout << "----------------------------------\n"
 			<< "\tEnemy: " << kraken->getEnemyType() << endl << "\tHP: " << kraken->getEnemyHealth() << endl
-			<< "----------------------------------\n\n"
-			<< "***************WEAPON SYSTEM TERMINAL***************" << endl
+			<< "----------------------------------\n"
+			<< "\tSubmarine HP: " << submarine->getSubmarineHealth() << endl << endl
+			<< "********WEAPON SYSTEM TERMINAL********" << endl
 			<< "1. Deploy Heat-Seeking Torpedos" << endl
 			<< "2. Deploy Dummy Torpedos" << endl
 			<< "3. Deploy Laser Railgun" << endl
@@ -688,7 +707,7 @@ void Game::enemyEncounter()
 			break;
 			// Deploy Heat-Seeking Torpedos
 		case 2:
-			attackDamage = rand() % 25 + 20; // Big Damage, but low percentage to hit.
+			attackDamage = rand() % 25 + 40; // Big Damage, but low percentage to hit.
 			hitChance = rand() % 100; // Any number 40 or below will do damage.
 			if (hitChance <= 40)
 			{
