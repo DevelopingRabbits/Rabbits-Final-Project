@@ -654,12 +654,19 @@ void Game::enemyEncounter()
 {
 	cout << "Captain! There is a " << kraken->getEnemyType() << "! Set General Quarters! Man your BATTLE STATION!" << endl;
 	enemyHealth = kraken->getEnemyHealth();
+	system("Pause");
 	do
 	{
-		cout << "1. Deploy Heat-Seeking Torpedos" << endl
+		system("CLS");
+		cout << "----------------------------------\n"
+			<< "\tEnemy: " << kraken->getEnemyType() << endl << "\tHP: " << kraken->getEnemyHealth() << endl
+			<< "----------------------------------\n\n"
+			<< "***************WEAPON SYSTEM TERMINAL***************" << endl
+			<< "1. Deploy Heat-Seeking Torpedos" << endl
 			<< "2. Deploy Dummy Torpedos" << endl
 			<< "3. Deploy Laser Railgun" << endl
-			<< "4. Evasive Maneuvers" << endl;
+			<< "4. Evasive Maneuvers" << endl
+			<< "Your Choice: ";
 		cin >> userInput;
 		switch (userInput)
 		{
@@ -669,11 +676,15 @@ void Game::enemyEncounter()
 			if (hitChance <= 80)
 			{
 				enemyHealth -= attackDamage;
-				cout << enemyHealth;
 				kraken->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
-				cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << "!\n";
+				cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << " damage!\n";
 			}
+			else
+			{
+				cout << "FAIL! Your attack missed! No damage inflicted!\n";
+			}
+			system("Pause");
 			break;
 			// Deploy Heat-Seeking Torpedos
 		case 2:
@@ -684,8 +695,13 @@ void Game::enemyEncounter()
 				enemyHealth -= attackDamage;
 				kraken->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
-				cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << "!\n";
+				cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << " damage!\n";
 			}
+			else
+			{
+				cout << "FAIL! Your attack missed! No damage inflicted!\n";
+			}
+			system("Pause");
 			break;
 			// Deploy Dummy Torpedos
 		case 3:
@@ -696,8 +712,13 @@ void Game::enemyEncounter()
 				enemyHealth -= attackDamage;
 				kraken->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
-				cout << "SUCCESS! Your Laser Railgun did " << attackDamage << "!\n";
+				cout << "SUCCESS! Your Laser Railgun did " << attackDamage << " damage!\n";
 			}
+			else
+			{
+				cout << "FAIL! Your attack missed! No damage inflicted!\n";
+			}
+			system("Pause");
 			break;
 			// Deploy Laser Railgun
 		case 4:
