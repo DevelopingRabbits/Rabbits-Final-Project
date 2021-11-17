@@ -244,17 +244,21 @@ int main()
             }
             case 2:
             {
-                cout << "\n***Include help options***\n";
+                cout << "You chose to ask for help:\n\n";
+                cout << "This is a text based adventure game that is based in a submarine. ";
+                cout << "Your objective is to beat the game\nand get to the winning location, but watch out, there may be something dangerous in the water. ";
+                cout << "\nPress 1 to start the game, 2 to see this message again, or 3 to quit the game.\n";
                 break;
             }
             case 3:
             {
                 cout << "The game has ended." << endl;
+                system("pause");
                 return 0;
                 break;
             }
             default:
-                cout << "That is not a valid choice, please choose 1-3";
+                cout << "That is not a valid choice, please choose 1-3\n";
                 break;
             }
 
