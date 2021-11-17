@@ -38,8 +38,7 @@ void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap
 }
 void Game::startGame()
 {
-	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
-	cout << "Start Game!\n\n";
+	cout << "\nStart Game!\n\n";
 	
 	cout << "What is your name? ";
 	cin >> stringUserInput;
