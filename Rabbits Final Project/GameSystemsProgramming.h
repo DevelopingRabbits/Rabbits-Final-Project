@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 
+
 using namespace std;
 
 class GameSystemsProgramming
@@ -15,6 +16,7 @@ public:
     string stringInputValidation(string input);
     string getPlayerName();
     int integerInputValidation(int input);
+    int stringToIntegerInputValidation(string input);
     void clearBuffer();
 
     void delay();

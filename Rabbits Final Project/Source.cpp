@@ -13,13 +13,17 @@ using namespace std;
 int main()
 {
     bool restart = true;
-    int choice;
+    string choice;
+    int choiceInt;
     do {
             cout << "\nWelcome to a Developing Rabbits Production!\n\n";
             cout << "\n1. Start Game\n2. Help\n3. Quit\nYour choice:" << endl;
             cin >> choice;
 
-            switch (choice)
+            GameSystemsProgramming gameSystemsProgramming;
+            choiceInt=gameSystemsProgramming.stringToIntegerInputValidation(choice);
+
+            switch (choiceInt)
             {
 
             case 1:
