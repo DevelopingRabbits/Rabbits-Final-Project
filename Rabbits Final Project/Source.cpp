@@ -205,15 +205,9 @@ Example:
         berthing.setDarkRoomDescription("You can't see anything. It's pitch black.");
         submarine.addRoom(berthing, berthing.getRoomRow(), berthing.getRoomCol());
 
-        // Brandon's Items
-        //Player Items
-        Item repairTool;
-        repairTool.createItem("Repair Tool", 1, 5, repairTool);
-        repairRoom.addItem(&repairTool);
-
         // Action Items
         Item captainChair;
-        captainChair.createActionItem("Captain's Chair", 9997, captainChair, false, true);
+        captainChair.createActionItem("Captain's Chair", 9996, captainChair, false, true);
         captainsRoom.addActionItem(&captainChair);
 
         Item snack;
