@@ -368,8 +368,28 @@ void Game::interactWithRoom()
 						playLightsOut();
 						submarine->setWeaponStatus(true);
 						break;
+			
 					default:
 						break;
+				}
+				break;
+			case 2://code duplication
+				userInput -= 1;
+				actionReturn = actionItems[userInput]->interactWithActionItem(player, submarine, actionItems[userInput], game);
+				switch (actionReturn)
+				{
+				case 0001:
+					break;
+				case 9999:
+					moveSubFunction();
+					break;
+				case 9997:
+					playLightsOut();
+					submarine->setWeaponStatus(true);
+					break;
+
+				default:
+					break;
 				}
 				break;
 			default:

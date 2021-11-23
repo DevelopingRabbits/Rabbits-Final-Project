@@ -155,6 +155,10 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
       {
       case 9998:
         cout << "The captain's log reads 'Alas, there is secrets at 0, 1'\n\n"; // Hardcoded Winning Location TEMP
+    
+      }
+      switch (itemID)
+      {
       case 9996:
           cout << "I am the Captain Now!\n";
       }

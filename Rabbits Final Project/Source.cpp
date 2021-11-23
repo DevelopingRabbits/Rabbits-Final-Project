@@ -155,7 +155,7 @@ Example:
 
         // Room Creation
         Room captainsRoom;
-        captainsRoom.createRoom("Captain's Room", 3, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), repairRoomDoor.getDoorPtr(), 1, 4);
+        captainsRoom.createRoom("Captain's Room", 8, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), repairRoomDoor.getDoorPtr(), 1, 4);
         captainsRoom.setRoomDescription("You are in the Captain's State Room.");
         captainsRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
         submarine.addRoom(captainsRoom, captainsRoom.getRoomRow(), captainsRoom.getRoomCol());
@@ -207,15 +207,16 @@ Example:
 
         // Action Items
         Item captainChair;
-        captainChair.createActionItem("Captain's Chair", 9996, captainChair, false, true);
+        captainChair.createActionItem("Captain's Chair", 9996, captainChair, false, false);
         captainsRoom.addActionItem(&captainChair);
+       
 
         Item snack;
-        snack.createActionItem("Snack", 9995, snack, false, true);
-        messDeck.addActionItem(&snack);
+        snack.createItem("Snack", 1,1, snack);
+        messDeck.addItem(&snack);
 
         Item berthingBed;
-        berthingBed.createActionItem("Berthing Bed", 9994, berthingBed, false, true);
+        berthingBed.createActionItem("Berthing Bed", 9994, berthingBed, false, false);
         berthing.addActionItem(&berthingBed);
 
         /******************************************************************
