@@ -12,7 +12,7 @@ class Enemy
 {
 private:
     int enemyHealth;
-    string enemyType;
+    string enemyName;
     int enemyLocationX;
     int enemyLocationY;
     
@@ -30,6 +30,6 @@ public:
 
     int getEnemyLocationX();
     int getEnemyLocationY();
-    void setEnemyLocation(int x, int y);
+    void setEnemyLocation(int min, int max);
 };
 #endif // !Enemy_h

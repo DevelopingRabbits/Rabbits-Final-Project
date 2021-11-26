@@ -1,15 +1,16 @@
 #include "Enemy.h"
 #include <iostream>
-#include<iomanip>
+#include <iomanip>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 using namespace std;
 
 Enemy::Enemy()
 {
     enemyHealth = 100;
-    enemyType = "";
-    enemyLocationX=3;
-    enemyLocationY=0;
+    enemyName = "";
 }
 
 int Enemy::getEnemyHealth()
@@ -24,12 +25,12 @@ void Enemy::setEnemyHealth(int currentHealthPts)
 
 string Enemy::getEnemyType()
 {
-    return enemyType;
+    return enemyName;
 }
 
 void Enemy::setEnemyType(string type)
 {
-    enemyType = type;
+    enemyName = type;
 }
 
 int Enemy::getEnemyLocationX()
@@ -42,8 +43,13 @@ int Enemy::getEnemyLocationY()
     return enemyLocationY;
 }
 
-void Enemy::setEnemyLocation(int x, int y)
+void Enemy::setEnemyLocation(int min, int max)
 {
-    enemyLocationX = x;
-    enemyLocationY = y;
+  srand(time(NULL));
+
+  //Current method for setting the win cordinates. May be changed later to be randomly generated.
+  enemyLocationX = rand() % 3 + 0;
+  enemyLocationY = max;
+
+  cout << enemyName << enemyLocationX << enemyLocationY << endl;
 }

@@ -25,18 +25,31 @@ Game::Game()
   cannotMoveMessage = "\n\nI can't go this way.\nI should try something else.\n\n\n";
   playerMovedMessage = "\n\nYou go through the ";
   encounterOver = false;
-	
 };
 
 
-void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap &oceanarg, Enemy &enemyArg)
+void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap &oceanarg)
 {
 	player = &playerArg;
 	submarine = &sub;
 	game = &gameArg;
 	ocean = &oceanarg;
-	kraken = &enemyArg;
+
 }
+
+void Game::addEnemy(Enemy* enemy)
+{
+	enemies.push_back(enemy);
+
+	//Debug to see if enemies are added
+
+	//cout << "\n**********DEBUG**********\n";
+	//for (int i = 0; i < enemies.size(); i++)
+	//{
+	//	cout << enemies[i]->getEnemyType() << endl;
+	//}
+}
+
 void Game::startGame()
 {
 	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
@@ -414,8 +427,8 @@ void Game::moveSubFunction()
 	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
 	cout << "1. North" << endl;
 	cout << "2. South" << endl;
-	cout << "3. East" << endl;
-	cout << "4. West" << endl;
+	cout << "3. West" << endl;
+	cout << "4. East" << endl;
 	gameSystemsProgramming.yourChoiceMessage();
 	cin >> userInput;
 	switch (userInput)
@@ -430,7 +443,7 @@ void Game::moveSubFunction()
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
 
-		if (checkEnemyLocation() == true)
+		if (checkEnemyLocation() != -1)
 		{
 			if (checkWeaponSystem() == false)
 			{
@@ -440,18 +453,15 @@ void Game::moveSubFunction()
 			}
 		}
 
-		if (checkEnemyLocation() == true)
+		if (checkEnemyLocation() != -1)
 		{
-			enemyEncounter();
+			enemyEncounter(checkEnemyLocation());
 		}
 
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		displayCurrentSubLocation();
-		
-		
-		
-
 		break;
+
 	case 2:
 		if (submarine->getYSubLoc() - 1 < 0)
 		{
@@ -461,29 +471,55 @@ void Game::moveSubFunction()
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
 
-		if (checkEnemyLocation() == true)
+		if (checkEnemyLocation() != -1)
 		{
 			if (checkWeaponSystem() == false)
 			{
-				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() + 1);
+				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
 				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 				break;
 			}
 		}
 
-		if (checkEnemyLocation() == true)
+		if (checkEnemyLocation() != -1)
 		{
-			enemyEncounter();
+			enemyEncounter(checkEnemyLocation());
 		}
 
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		displayCurrentSubLocation();
+		break;
 		
-
-		
-
 		break;
 	case 3:
+		if (submarine->getXSubLoc() - 1 < 0)
+		{
+			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
+			break;
+		}
+		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		submarine->setSubmarineLocation(submarine->getXSubLoc() - 1, submarine->getYSubLoc());
+
+		if (checkEnemyLocation() != -1)
+		{
+			if (checkWeaponSystem() == false)
+			{
+				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
+				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+				break;
+			}
+		}
+
+		if (checkEnemyLocation() != -1)
+		{
+			enemyEncounter(checkEnemyLocation());
+		}
+
+		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
+		displayCurrentSubLocation();
+		break;
+
+	case 4:
 		if (submarine->getXSubLoc() + 1 > ocean->getMaxX())
 		{
 			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
@@ -492,57 +528,25 @@ void Game::moveSubFunction()
 		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		submarine->setSubmarineLocation(submarine->getXSubLoc() + 1, submarine->getYSubLoc());
 
-		if (checkEnemyLocation() == true)
+		if (checkEnemyLocation() != -1)
 		{
 			if (checkWeaponSystem() == false)
 			{
-				submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
+				submarine->setSubmarineLocation(submarine->getXSubLoc(), submarine->getYSubLoc() - 1);
 				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 				break;
 			}
 		}
 
-		if (checkEnemyLocation() == true)
+		if (checkEnemyLocation() != -1)
 		{
-			enemyEncounter();
+			enemyEncounter(checkEnemyLocation());
 		}
 
 		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
 		displayCurrentSubLocation();
-		
-		
-	
 		break;
-	case 4:
-		if (submarine->getXSubLoc() - 1 < 0)
-		{
-			cout << "WARNING!! Submarine can't travel into uncharted waters" << endl;
-			break;
-		}
-		ocean->setSeenPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		submarine->setSubmarineLocation(submarine->getXSubLoc()-1, submarine->getYSubLoc());
 
-		if (checkEnemyLocation() == true)
-		{
-			if (checkWeaponSystem() == false)
-			{
-				submarine->setSubmarineLocation(submarine->getXSubLoc()+1, submarine->getYSubLoc());
-				ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-				break;
-			}
-		}
-
-		if (checkEnemyLocation() == true)
-		{
-			enemyEncounter();
-		}
-
-		ocean->setSubPosition(submarine->getXSubLoc(), submarine->getYSubLoc());
-		displayCurrentSubLocation();
-		
-	
-
-		break;
 	default:
 		cout << "invalid";
 		getCurrentRoom();
@@ -573,7 +577,14 @@ bool Game::checkSubWin()
 	
 	if (submarine->getYSubLoc() == ocean->getWinY() && submarine->getXSubLoc() == ocean->getWinX())
 	{
-		cout << "You have naviagated the sub to the winning location. Congrats!" << endl;
+		if (enemies.empty() == false)
+		{
+			cout << "This is where we need to be Captain, however there are still dangerous creatures that pose a threat to Atlantis!" << endl;
+			cout << "Let us fight them before we retire our vessel." << endl;
+			return false;
+		}
+		cout << "You have naviagated the submarine to Atlantis! Congrats!" << endl;
+		cout << "The people of Atlantis bestow upon you Posiden's Tridant as a reward for defeating the many creatures that threaten Atlantis' way of life. " << endl;
 		return true;
 	}
 	else
@@ -652,30 +663,30 @@ void Game::updatePlayer()
 }
 
 
-void Game::enemyAttack() {
+void Game::enemyAttack(int enemyIndex) {
 	subHealth = submarine->getSubmarineHealth();
 	attackDamage = rand() % 10; // Low Damage, but high percentage to hit.
 	hitChance = rand() % 100; // Any number 80 or below will do damage.
 	if (hitChance <= 80)
 	{
-		cout << "The " << kraken->getEnemyType() << " inflicted " << attackDamage << " damage to your Submarine!\n";
+		cout << "The " << enemies[enemyIndex]->getEnemyType() << " inflicted " << attackDamage << " damage to your Submarine!\n";
 		subHealth -= attackDamage;
 		submarine->setSubmarineHealth(subHealth);
 	}
 	else
 	{
-		cout << "The " << kraken->getEnemyType() << " missed their attack!!\n";
+		cout << "The " << enemies[enemyIndex]->getEnemyType() << " missed their attack!!\n";
 	}
 }
-void Game::enemyEncounter()
+void Game::enemyEncounter(int enemyIndex)
 {
 	encounterOver = false;
-	cout << "Captain! There is a " << kraken->getEnemyType() << "! Set General Quarters! Man your BATTLE STATION!" << endl;
-	enemyHealth = kraken->getEnemyHealth();
+	cout << "Captain! There is a " << enemies[enemyIndex]->getEnemyType() << "! Set General Quarters! Man your BATTLE STATION!" << endl;
+	enemyHealth = enemies[enemyIndex]->getEnemyHealth();
 	system("Pause");
 	do
 	{
-		enemyAttack();
+		enemyAttack(enemyIndex);
 		system("Pause");
 		if (subHealth <= 0)
 		{
@@ -685,7 +696,7 @@ void Game::enemyEncounter()
 		}
 		system("CLS");
 		cout << "----------------------------------\n"
-			<< "\tEnemy: " << kraken->getEnemyType() << endl << "\tHP: " << kraken->getEnemyHealth() << endl
+			<< "\tEnemy: " << enemies[enemyIndex]->getEnemyType() << endl << "\tHP: " << enemies[enemyIndex]->getEnemyHealth() << endl
 			<< "----------------------------------\n"
 			<< "\tSubmarine HP: " << submarine->getSubmarineHealth() << endl << endl
 			<< "********WEAPON SYSTEM TERMINAL********" << endl
@@ -703,12 +714,13 @@ void Game::enemyEncounter()
 			if (hitChance <= 80)
 			{
 				enemyHealth -= attackDamage;
-				kraken->setEnemyHealth(enemyHealth);
+				enemies[enemyIndex]->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
 				cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << " damage!\n";
 				if (enemyHealth <= 0)
 				{
 					encounterOver = true;
+					enemies.erase(enemies.begin() + enemyIndex);
 					break;
 				}
 			}
@@ -725,12 +737,13 @@ void Game::enemyEncounter()
 			if (hitChance <= 40)
 			{
 				enemyHealth -= attackDamage;
-				kraken->setEnemyHealth(enemyHealth);
+				enemies[enemyIndex]->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
 				cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << " damage!\n";
 				if (enemyHealth <= 0)
 				{
 					encounterOver = true;
+					enemies.erase(enemies.begin() + enemyIndex);
 					break;
 				}
 			}
@@ -747,12 +760,13 @@ void Game::enemyEncounter()
 			if (hitChance <= 90)
 			{
 				enemyHealth -= attackDamage;
-				kraken->setEnemyHealth(enemyHealth);
+				enemies[enemyIndex]->setEnemyHealth(enemyHealth);
 				//DO DAMAGE
 				cout << "SUCCESS! Your Laser Railgun did " << attackDamage << " damage!\n";
 				if (enemyHealth <= 0)
 				{
 					encounterOver = true;
+					enemies.erase(enemies.begin() + enemyIndex);
 					break;
 				}
 			}
@@ -767,13 +781,13 @@ void Game::enemyEncounter()
 			evasiveChance = rand() % 3; // 25% chance that enemy will miss.
 			if (evasiveChance == 1)
 			{
-				cout << "SUCCESS! You evaded the " << kraken->getEnemyType() << " and have tactical advantage!\n";
+				cout << "SUCCESS! You evaded the " << enemies[enemyIndex]->getEnemyType() << " and have tactical advantage!\n";
 				do {
 					system("Pause");
 					system("CLS");
 					cout << "Extra Attack for Successful Evasion!\n";
 					cout << "----------------------------------\n"
-						<< "\tEnemy: " << kraken->getEnemyType() << endl << "\tHP: " << kraken->getEnemyHealth() << endl
+						<< "\tEnemy: " << enemies[enemyIndex]->getEnemyType() << endl << "\tHP: " << enemies[enemyIndex]->getEnemyHealth() << endl
 						<< "----------------------------------\n\n"
 						<< "***************WEAPON SYSTEM TERMINAL***************" << endl
 						<< "1. Deploy Heat-Seeking Torpedos" << endl
@@ -789,12 +803,13 @@ void Game::enemyEncounter()
 						if (hitChance <= 80)
 						{
 							enemyHealth -= attackDamage;
-							kraken->setEnemyHealth(enemyHealth);
+							enemies[enemyIndex]->setEnemyHealth(enemyHealth);
 							//DO DAMAGE
 							cout << "SUCCESS! Your Heat-Seeking Torpedos did " << attackDamage << " damage!\n";
 							if (enemyHealth <= 0)
 							{
 								encounterOver = true;
+								enemies.erase(enemies.begin() + enemyIndex);
 								break;
 							}
 						}
@@ -812,12 +827,13 @@ void Game::enemyEncounter()
 						if (hitChance <= 40)
 						{
 							enemyHealth -= attackDamage;
-							kraken->setEnemyHealth(enemyHealth);
+							enemies[enemyIndex]->setEnemyHealth(enemyHealth);
 							//DO DAMAGE
 							cout << "SUCCESS! Your Dummy Torpedos did " << attackDamage << " damage!\n";
 							if (enemyHealth <= 0)
 							{
 								encounterOver = true;
+								enemies.erase(enemies.begin() + enemyIndex);
 								break;
 							}
 						}
@@ -835,12 +851,13 @@ void Game::enemyEncounter()
 						if (hitChance <= 90)
 						{
 							enemyHealth -= attackDamage;
-							kraken->setEnemyHealth(enemyHealth);
+							enemies[enemyIndex]->setEnemyHealth(enemyHealth);
 							//DO DAMAGE
 							cout << "SUCCESS! Your Laser Railgun did " << attackDamage << " damage!\n";
 							if (enemyHealth <= 0)
 							{
 								encounterOver = true;
+								enemies.erase(enemies.begin() + enemyIndex);
 								break;
 							}
 						}
@@ -891,18 +908,16 @@ bool Game::checkWeaponSystem()
 
 }
 
-bool Game::checkEnemyLocation()
+int Game::checkEnemyLocation()
 {
-
-	if (kraken->getEnemyLocationX() == submarine->getXSubLoc() && kraken->getEnemyLocationY() == submarine->getYSubLoc())
+	for (int i = 0; i < enemies.size(); i++)
 	{
-		return true;
+		if (enemies[i]->getEnemyLocationX() == submarine->getXSubLoc() && enemies[i]->getEnemyLocationY() == submarine->getYSubLoc())
+		{
+			return i;
+		}
 	}
-	else
-	{
-		return false;
-	}
-
+	return -1;
 }
 
 

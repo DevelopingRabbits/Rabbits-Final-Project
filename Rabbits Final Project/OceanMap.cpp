@@ -3,30 +3,32 @@
 #include"SUBMARINE.h"
 
 #include <iostream>
-#include<iomanip>
+#include <iomanip>
+#include <stdio.h>      /* printf, scanf, puts, NULL */
+#include <stdlib.h>     /* srand, rand */
+#include <time.h>       /* time */
 
 using namespace std;
 
 
 OceanMap::OceanMap()
 {
-    //Current method for setting the win cordinates. May be changed later to be randomly generated.
-    winXOcean = 0;
-    winYOcean = 1;
+  srand(time(NULL));
+
+  //Random Winning Location
+  winXOcean = rand() % 2 + 2;
+  winYOcean = rand() % 2 + 1;
+
+  cout << winXOcean << "  &  " << winYOcean << endl;
     
     //Traverse the entire 2d array and set each value to an unseen(+) value.
     for (int i = 0; i < mapSizeY; i++)
     {
         for(int j = 0; j < mapSizeX; j++)
         {
-
-        oceanMapArray[j][i] = '+';
-        
-        
+        oceanMapArray[j][i] = '+';        
         }  
-        
     }
-    
 }
 
 void OceanMap::displayOceanMap()

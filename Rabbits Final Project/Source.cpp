@@ -31,11 +31,24 @@ int main()
     Enemy kraken;
     kraken.setEnemyType("Kraken");
     kraken.setEnemyHealth(100);
-    kraken.setEnemyLocation(3, 0);
+    kraken.setEnemyLocation(1, 1);
+
+    Enemy nessie;
+    nessie.setEnemyType("Nessie of Loch Ness");
+    nessie.setEnemyHealth(100);
+    nessie.setEnemyLocation(2, 2);
+
+    Enemy hostileSub;
+    hostileSub.setEnemyType("Hostile Submarine");
+    hostileSub.setEnemyHealth(100);
+    hostileSub.setEnemyLocation(3, 3);
 
     // INIT GAME
     Game game;
-    game.createGame(player1, submarine, game, ocean, kraken);
+    game.createGame(player1, submarine, game, ocean);
+    game.addEnemy(&kraken);
+    game.addEnemy(&hostileSub);
+    game.addEnemy(&nessie);
 
 
     //INIT NULL DOORS
@@ -199,9 +212,14 @@ int main()
 
         //playerName=ui.getPlayerName();
         //playerName=ui.stringInputValidation(playerName);
+        
 
-        game.enemyEncounter();
         game.startGame();
+
+        //DEBUGGING MODE - SET EVERYTHING TO TRUE
+        player1.setCanSeeInDarkRoom(true);
+        submarine.setPowerOn(true);
+        submarine.setWeaponStatus(true);
         do
         {
             // Initalize the turn.

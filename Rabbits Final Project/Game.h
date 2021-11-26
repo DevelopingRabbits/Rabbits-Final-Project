@@ -47,6 +47,7 @@ private:
   int roomActionItemsSize;
   vector<Item*> inventory;
   vector<Item*> actionItems;
+  vector<Enemy*> enemies;
 
 
   string cannotMoveMessage;
@@ -70,7 +71,7 @@ private:
 public:
   // INIT Options
   Game();
-  void createGame(Player &player, Submarine &sub, Game &gameArg, OceanMap &oceanarg, Enemy &enemyarg);
+  void createGame(Player &player, Submarine &sub, Game &gameArg, OceanMap &oceanarg);
   void startGame();
 
   // Set Options
@@ -113,9 +114,10 @@ public:
   bool playLightsOut();
 
   //enemy
-  void enemyEncounter();
-  void enemyAttack();
-  bool checkEnemyLocation();
+  void addEnemy(Enemy* enemy);
+  void enemyEncounter(int enemyIndex);
+  void enemyAttack(int enemyIndex);
+  int checkEnemyLocation();
   bool checkWeaponSystem();
 
  
