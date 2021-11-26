@@ -28,13 +28,13 @@ Game::Game()
 };
 
 
-void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap &oceanarg)
+void Game::createGame(Player &playerArg, Submarine &sub, Game &gameArg, OceanMap &oceanarg, Door &NULLDOOR)
 {
 	player = &playerArg;
 	submarine = &sub;
 	game = &gameArg;
 	ocean = &oceanarg;
-
+	nullDoor = &NULLDOOR;
 }
 
 void Game::addEnemy(Enemy* enemy)
@@ -186,41 +186,54 @@ void Game::playerTurn(Game* gameArg)
 
 	userInputValid = false;
 	do {
-		cout << "Do you want to:\n(1) Look for Items\n(2) Move\n(3) Inventory\n(4) Interact\n(5) Get Help\n(6) Quit\n";
+		cout << "Do you want to:\n(1) Move\n(2) Look for Items\n(3) Inventory\n(4) Interact\n(5) Get Help\n(9) Quit\n";
 		// Items or Move
 		gameSystemsProgramming.yourChoiceMessage();
 		cin >> userInput;
 		userInput=gameSystemsProgramming.integerInputValidation(userInput);
 		switch (userInput)
 		{
-		case 1:
-			lookForItems();
-			updateRoom();
-			userInputValid = true;
-			break;
 
-		case 2:
+		case 1:
+			system("Pause");
+			system("CLS");
 			moveFunction();
 			updateRoom();
 			userInputValid = true;
 			break;
 
+		case 2:
+			system("Pause");
+			system("CLS");
+			lookForItems();
+			updateRoom();
+			userInputValid = true;
+			break;
+
 		case 3:
+			system("Pause");
+			system("CLS");
 			interactWithInventory();
 			updateRoom();
 			userInputValid = true;
 			break;
 		case 4:
+			system("Pause");
+			system("CLS");
 			interactWithRoom();
 			updateRoom();
 			userInputValid = true;
 			break;
 		case 5:
+			system("Pause");
+			system("CLS");
 			getHelp();
 			updateRoom();
 			userInputValid = true;
 			break;
-		case 6:
+		case 9:
+			system("Pause");
+			system("CLS");
 			gameArg->setGameOver(true);
 			userInputValid = true;
 			cout << "The game has successfully shut down"<<endl;
@@ -230,6 +243,8 @@ void Game::playerTurn(Game* gameArg)
 			cout << "Invalid Option. The program is currently in Game::playerTurn()\n";
 			break;
 		}
+		system("Pause");
+		system("CLS");
 	} while (userInputValid == false);
 
 };

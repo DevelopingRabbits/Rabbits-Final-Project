@@ -40,6 +40,7 @@ private:
   Door* downDoor;
   Door* rightDoor;
   Door* leftDoor;
+  Door* nullDoor;
   Item* item1;
   OceanMap* ocean;
   Enemy* kraken;
@@ -71,7 +72,7 @@ private:
 public:
   // INIT Options
   Game();
-  void createGame(Player &player, Submarine &sub, Game &gameArg, OceanMap &oceanarg);
+  void createGame(Player &player, Submarine &sub, Game &gameArg, OceanMap &oceanarg, Door &NULLDOOR);
   void startGame();
 
   // Set Options

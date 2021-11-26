@@ -26,6 +26,9 @@ int main()
         //INIT OCEANMAP
         OceanMap ocean;
         ocean.setSubPosition(submarine.getXSubLoc(), submarine.getYSubLoc());
+        //INIT NULL DOORS
+        Door NULLDOOR;
+        NULLDOOR.createDoor("Inaccessible", false, NULLDOOR);
 
     //INIT ENEMY
     Enemy kraken;
@@ -45,15 +48,12 @@ int main()
 
     // INIT GAME
     Game game;
-    game.createGame(player1, submarine, game, ocean);
+    game.createGame(player1, submarine, game, ocean, NULLDOOR);
     game.addEnemy(&kraken);
     game.addEnemy(&hostileSub);
     game.addEnemy(&nessie);
 
 
-    //INIT NULL DOORS
-    Door NULLDOOR;
-    NULLDOOR.createDoor("Null Door", false, NULLDOOR);
 
   // How to INIT Room Objects
   /*
