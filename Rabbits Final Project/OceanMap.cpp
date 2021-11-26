@@ -19,7 +19,8 @@ OceanMap::OceanMap()
   winXOcean = rand() % 2 + 2;
   winYOcean = rand() % 2 + 1;
 
-  cout << winXOcean << "  &  " << winYOcean << endl;
+  ////DEBUGGING MODE
+  //cout << winXOcean << "  &  " << winYOcean << endl;
     
     //Traverse the entire 2d array and set each value to an unseen(+) value.
     for (int i = 0; i < mapSizeY; i++)

@@ -229,10 +229,10 @@ Example:
 
         game.startGame();
 
-        //DEBUGGING MODE - SET EVERYTHING TO TRUE
-        player1.setCanSeeInDarkRoom(true);
-        submarine.setPowerOn(true);
-        submarine.setWeaponStatus(true);
+        ////DEBUGGING MODE - SET EVERYTHING TO TRUE
+        //player1.setCanSeeInDarkRoom(true);
+        //submarine.setPowerOn(true);
+        //submarine.setWeaponStatus(true);
         do
         {
             // Initalize the turn.

@@ -51,5 +51,7 @@ void Enemy::setEnemyLocation(int min, int max)
   enemyLocationX = rand() % 3 + 0;
   enemyLocationY = max;
 
-  cout << enemyName << enemyLocationX << enemyLocationY << endl;
+
+  ////DEBUGGING MODE
+  //cout << enemyName << enemyLocationX << enemyLocationY << endl;
 }
