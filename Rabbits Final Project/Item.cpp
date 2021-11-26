@@ -150,6 +150,7 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
           cout << "Error in Item::interactWithActionItem\n";
         }
     case false:
+      //Action Items of value should be added here. Match the ItemID to what you would like to be displayed.
       switch (itemID)
       {
       case 9998:

@@ -55,27 +55,40 @@ int main()
     Door NULLDOOR;
     NULLDOOR.createDoor("Null Door", false, NULLDOOR);
 
-    // How to INIT Room Objects
-    /*
-  *****************************************************************
-  1. Create the room object
-  2. Create the doors for the object.
-  3. room.createRoom(string name, int rID, UP door, DOWN door,
-                      LEFT door, RIGHT door, int row, int col);
-                      UP DOWN LEFT RIGHT
-  4. submarine.addRoom(room object, room row, room col)
-  *****************************************************************
-  */
-        // START: Topside Room/Door Objects
-        Room topSide;
-        Door topSideHatch;
-        topSideHatch.createDoor("Topside Hatch", true, topSideHatch);
-        topSide.createRoom("Topside", 0, NULLDOOR.getDoorPtr(), topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 0, 3);
-        topSide.setRoomDescription("You are standing on the topside of the submarine.\nThe weather outside is quite nice. The sea is calm and the sky is clear.\nThe sun glimmers on the calm ocean waves.");
-        topSide.setIsDark(false);
-        submarine.addRoom(topSide, topSide.getRoomRow(), topSide.getRoomCol());
-        // END: Topside Room/Door Objects
-          // *****************************************************************
+  // How to INIT Room Objects
+  /*
+*****************************************************************
+1. Create the room object
+2. Create the doors for the object.
+3. room.createRoom(string name, int rID, UP door, DOWN door,
+                    LEFT door, RIGHT door, int row, int col);
+                    UP DOWN LEFT RIGHT
+4. submarine.addRoom(room object, room row, room col)
+*****************************************************************
+*/
+
+// How to INIT Action Item Objects
+/*
+*****************************************************************
+1. Create the item object
+2. createActionItem(string name, int id, Item& iPtr, bool subPower, bool needKey)
+3. room.addItem(room object, room row, room col)
+Example:
+  Item captainsLog;
+  captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
+  captainsRoom.addActionItem(&captainsLog);
+*****************************************************************
+*/
+  // START: Topside Room/Door Objects
+  Room topSide;
+  Door topSideHatch;
+  topSideHatch.createDoor("Topside Hatch", true, topSideHatch);
+  topSide.createRoom("Topside", 0, NULLDOOR.getDoorPtr(), topSideHatch.getDoorPtr(), NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), 0, 3);
+  topSide.setRoomDescription("You are standing on the topside of the submarine.\nThe weather outside is quite nice. The sea is calm and the sky is clear.\nThe sun glimmers on the calm ocean waves.");
+  topSide.setIsDark(false);
+  submarine.addRoom(topSide, topSide.getRoomRow(), topSide.getRoomCol());
+  // END: Topside Room/Door Objects
+    // *****************************************************************
 
 
         // START: Control Room Room/Door Objects
