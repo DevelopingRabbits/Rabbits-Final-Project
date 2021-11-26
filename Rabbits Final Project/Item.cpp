@@ -154,12 +154,17 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
       switch (itemID)
       {
       case 9998:
-        cout << "The captain's log reads 'Alas, there is secrets at 0, 1'\n\n"; // Hardcoded Winning Location TEMP
+        cout << "The captain's log reads 'Alas, I believe that Atlantis could be at X: " << winX << " Y: " << winY << "'" << endl; // Hardcoded Winning Location TEMP
       }
     }
   }
 }
 
+void Item::storeWinningCoordinates(int x, int y)
+{
+  winX = x;
+  winY = y;
+}
 bool Item::checkIsKey()
 {
   return isKey;

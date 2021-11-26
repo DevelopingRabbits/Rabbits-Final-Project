@@ -101,6 +101,7 @@ void GameSystemsProgramming::loseMessage()
 
 void GameSystemsProgramming::yourChoiceMessage()
 {
+  cout << "\n=============\n";
   cout << "Your Choice: ";
 }
 

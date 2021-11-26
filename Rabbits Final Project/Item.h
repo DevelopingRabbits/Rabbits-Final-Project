@@ -34,6 +34,8 @@ private:
   Item* key;
   Game* game;
 
+  int winX, winY;
+
 public:
   Item();
   void createItem(string name, int id, int itemType, Item& iPtr);
@@ -42,6 +44,7 @@ public:
   void createActionItem(string name, int id, Item& iPtr, bool subPower, bool needKey);
   string getItemName();
 
+  void storeWinningCoordinates(int x, int y);
   int getKeyCode();
 
 

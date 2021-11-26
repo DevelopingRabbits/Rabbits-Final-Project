@@ -176,6 +176,7 @@ Example:
         Item captainsLog;
         captainsLog.createActionItem("Captain's Log", 9998, captainsLog, false, false);
         captainsRoom.addActionItem(&captainsLog);
+        captainsLog.storeWinningCoordinates(ocean.getWinX(), ocean.getWinY());
         // *****************************************************************
         // END: Captain's Room Objects
 
@@ -230,6 +231,7 @@ Example:
         game.startGame();
 
         ////DEBUGGING MODE - SET EVERYTHING TO TRUE
+        //game.enemyEncounter(1);
         //player1.setCanSeeInDarkRoom(true);
         //submarine.setPowerOn(true);
         //submarine.setWeaponStatus(true);

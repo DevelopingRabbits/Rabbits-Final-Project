@@ -195,7 +195,6 @@ void Game::playerTurn(Game* gameArg)
 		{
 
 		case 1:
-			system("Pause");
 			system("CLS");
 			moveFunction();
 			updateRoom();
@@ -203,7 +202,6 @@ void Game::playerTurn(Game* gameArg)
 			break;
 
 		case 2:
-			system("Pause");
 			system("CLS");
 			lookForItems();
 			updateRoom();
@@ -211,28 +209,24 @@ void Game::playerTurn(Game* gameArg)
 			break;
 
 		case 3:
-			system("Pause");
 			system("CLS");
 			interactWithInventory();
 			updateRoom();
 			userInputValid = true;
 			break;
 		case 4:
-			system("Pause");
 			system("CLS");
 			interactWithRoom();
 			updateRoom();
 			userInputValid = true;
 			break;
 		case 5:
-			system("Pause");
 			system("CLS");
 			getHelp();
 			updateRoom();
 			userInputValid = true;
 			break;
 		case 9:
-			system("Pause");
 			system("CLS");
 			gameArg->setGameOver(true);
 			userInputValid = true;
@@ -255,14 +249,16 @@ void Game::lookForItems()
 	switch (currentRoom->getRoomEmpty())
 	{
 	case false:
-		cout << "You chose to Look For Items\n\n";
+		cout << "------------------------------\n";
+		cout << "You chose to Look For Items\n";
+		cout << "------------------------------\n";
 		displayItems();
 		gameSystemsProgramming.yourChoiceMessage();
 		cin >> userInput;
 		switch (userInput)
 		{
 		case 1:
-			cout << "You picked up the " << item1->getItemName() << endl << endl;
+			cout << "You picked up the " << item1->getItemName() << endl;
 			player->addToInventory(item1->getItemPtr());
 			currentRoom->removeItem();
 			break;
@@ -271,7 +267,9 @@ void Game::lookForItems()
 		}
 		break;
 	case true:
-		cout << "You don't see any items.\n\n";
+		cout << "------------------------------------------\n";
+		cout << "You don't see any items.\n";
+		cout << "------------------------------------------\n";
 		break;
 	default:
 		cout << "Error in Game::LookForItems";
@@ -280,8 +278,10 @@ void Game::lookForItems()
 }
 void Game::moveFunction()
 {
-	cout << "You chose to Move out of " << currentRoom->getRoomName() << endl << endl;
-	cout << "Which door would you like to go through?\n";
+	cout << "------------------------------------------\n";
+	cout << "You chose to Move out of " << currentRoom->getRoomName() << endl;
+	cout << "------------------------------------------\n";
+	cout << "Which door would you like to go through?";
 	displayDoors();
 	gameSystemsProgramming.yourChoiceMessage();
 	cin >> userInput;
@@ -324,24 +324,30 @@ void Game::moveFunction()
 			cout << cannotMoveMessage;
 		break;
 	default:
-		cout << "invalid";
+		cout << "\nInvalid input.\n";
 		getCurrentRoom();
 	};
 }
 void Game::interactWithInventory()
 {
-	cout << "You chose to Interact with Inventory\n\n";
+	cout << "------------------------------------------\n";
+	cout << "You chose to Interact with Inventory\n";
+	cout << "------------------------------------------\n";
 	switch (player->getInventoryEmpty())
 	{
 	case true:
 	{
-		cout << "\n\nYour inventory is empty.\n\n";
+		cout << "------------------------------------------\n";
+		cout << "Your inventory is empty.\n";
+		cout << "------------------------------------------\n";
 		break;
 	}
 	case false:
 	{
+		cout << "------------------------------------------\n";
 		displayPlayerInventory();
-		cout << "\n\nWhich item would you like to use?\n";
+		cout << "------------------------------------------\n";
+		cout << "Which item would you like to use?\n";
 		gameSystemsProgramming.yourChoiceMessage();
 		cin >> userInput;
 		switch (userInput)
@@ -367,18 +373,24 @@ void Game::interactWithRoom()
 { 
 	
 	int actionReturn;
-	cout << "You chose to Interact with Room\n\n";
+	cout << "------------------------------------------\n";
+	cout << "You chose to Interact with Room\n";
+	cout << "------------------------------------------\n";
 	switch (player->getCanSeeInDarkRoom())
 	{
 	case true:
 		switch (currentRoom->getRoomActionItemsEmpty())
 		{
 		case(true):
-			cout << "There is nothing to interact with.\n\n";
+			cout << "------------------------------------------\n";
+			cout << "There is nothing to interact with.\n";
+			cout << "------------------------------------------\n";
 			break;
 		case(false):
 			displayRoomActionItems();
-			cout << "Which item would you like to interact with?\n\n";
+			cout << "------------------------------------------\n";
+			cout << "Which item would you like to interact with?\n";
+			cout << "------------------------------------------\n";
 			gameSystemsProgramming.yourChoiceMessage();
 			cin >> userInput;
 			switch (userInput)
@@ -407,7 +419,9 @@ void Game::interactWithRoom()
 		}
 		break;
 	case false:
+		cout << "------------------------------------------------------------------------------------------\n";
 		cout << "\n\n It's too dark in this room. You don't see anything.\n\n";
+		cout << "------------------------------------------------------------------------------------------\n";
 		break;
 	default:
 		cout << "\n\n *********Unexpected Input in Game::interactWithRoom() **********\n\n";
@@ -438,8 +452,10 @@ void Game::moveSubFunction()
 	
 	do
 	{
-	cout << "\n\nYou chose to move the submarine\n\n";
-	cout << "\n\nWhich direction would you like to move the submarine?\n\n";
+		cout << "------------------------------------------\n";
+	cout << "You chose to move the submarine\n";
+	cout << "Which direction would you like to move the submarine?\n";
+	cout << "------------------------------------------\n";
 	cout << "1. North" << endl;
 	cout << "2. South" << endl;
 	cout << "3. West" << endl;
@@ -735,7 +751,6 @@ void Game::enemyEncounter(int enemyIndex)
 				if (enemyHealth <= 0)
 				{
 					encounterOver = true;
-					enemies.erase(enemies.begin() + enemyIndex);
 					break;
 				}
 			}
@@ -758,7 +773,6 @@ void Game::enemyEncounter(int enemyIndex)
 				if (enemyHealth <= 0)
 				{
 					encounterOver = true;
-					enemies.erase(enemies.begin() + enemyIndex);
 					break;
 				}
 			}
@@ -781,7 +795,6 @@ void Game::enemyEncounter(int enemyIndex)
 				if (enemyHealth <= 0)
 				{
 					encounterOver = true;
-					enemies.erase(enemies.begin() + enemyIndex);
 					break;
 				}
 			}
@@ -824,7 +837,6 @@ void Game::enemyEncounter(int enemyIndex)
 							if (enemyHealth <= 0)
 							{
 								encounterOver = true;
-								enemies.erase(enemies.begin() + enemyIndex);
 								break;
 							}
 						}
@@ -848,7 +860,6 @@ void Game::enemyEncounter(int enemyIndex)
 							if (enemyHealth <= 0)
 							{
 								encounterOver = true;
-								enemies.erase(enemies.begin() + enemyIndex);
 								break;
 							}
 						}
@@ -872,7 +883,6 @@ void Game::enemyEncounter(int enemyIndex)
 							if (enemyHealth <= 0)
 							{
 								encounterOver = true;
-								enemies.erase(enemies.begin() + enemyIndex);
 								break;
 							}
 						}
@@ -903,6 +913,10 @@ void Game::enemyEncounter(int enemyIndex)
 			system("Pause");
 		}
 	} while (encounterOver == false);
+	cout << "The " << enemies[enemyIndex]->getEnemyType() << " has been defeated!! Congratulations Captain " << player->getName() << endl;
+	enemies.erase(enemies.begin() + enemyIndex);
+	system("pause");
+	system("CLS");
 }
 
 bool Game::checkWeaponSystem()
