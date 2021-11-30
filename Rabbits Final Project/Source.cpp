@@ -219,6 +219,16 @@ Example:
         berthingBed.createActionItem("Berthing Bed", 9994, berthingBed, false, false);
         berthing.addActionItem(&berthingBed);
 
+        Item propellerWire;
+        propellerWire.createActionItem("Propeller Wire", 9993, propellerWire, false, false);
+        propellerRoom.addActionItem(&propellerWire);
+
+        Item repairTool;
+        repairTool.createActionItem("Repair Tool Kit", 9992, repairTool, false, false);
+        repairRoom.addActionItem(&repairTool);
+
+
+
         /******************************************************************
         GAME STARTS BELOW
         ******************************************************************/

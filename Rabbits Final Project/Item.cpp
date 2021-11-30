@@ -155,7 +155,6 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
       {
       case 9998:
         cout << "The captain's log reads 'Alas, there is secrets at 0, 1'\n\n"; // Hardcoded Winning Location TEMP
-    
       }
       switch (itemID)
       {
@@ -171,6 +170,16 @@ int Item::interactWithActionItem(Player* player, Submarine* sub, Item* item, Gam
       {
       case 9994:
           cout << "There is no time for a nap right now I need to focus!\n";
+      }
+      switch (itemID)
+      {
+      case 9993:
+          cout << "I probably shouldn't touch that, the submarine might sink!\n";
+      }
+      switch (itemID)
+      {
+      case 9992:
+          cout << "This might be useful in the near future, I should come back to it if I need it.\n";
       }
     }
   }
