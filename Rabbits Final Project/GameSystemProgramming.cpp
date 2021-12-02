@@ -70,6 +70,7 @@ int GameSystemsProgramming::integerInputValidation(int input)
 
         if (cin.good())
         {
+            
             //the input is a valid integer, break out of the loop.
             valid = true;
         }
@@ -88,6 +89,46 @@ int GameSystemsProgramming::integerInputValidation(int input)
 
 
     return input;//return the name that now only consists of letters
+}
+
+int GameSystemsProgramming::stringToIntegerInputValidation(string input)
+{   
+    int returnInput;
+    int stringSize = input.size();
+    
+    bool valid = false;
+    while (!valid)
+    {
+
+        for (int i = 0; i < stringSize; i++)
+        {
+            
+            if (!isdigit(input[i]))
+            {
+                cin.clear(); //reset the buffer
+
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');//empty the buffer
+                cout << "Invalid Input..." << endl;
+
+                cout << " Enter your choice: "; // Display Options to user
+                cin >> input; // Collect User Input and compare it to the switch statement.
+                stringSize = input.size();
+                i = -1;
+            }
+            else if(i == stringSize-1)
+            {
+
+               returnInput = stoi(input);
+               valid = true;
+            }
+            
+        }
+       
+    }
+
+
+
+    return returnInput;//return the name that now only consists of letters
 }
 void GameSystemsProgramming::clearBuffer()
 {

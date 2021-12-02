@@ -66,9 +66,7 @@ int main()
     game.addEnemy(&nessie);
 
 
-                //INIT NULL DOORS
-                Door NULLDOOR;
-                NULLDOOR.createDoor("Null Door", false, NULLDOOR);
+              
 
                 // How to INIT Room Objects
                 /*
