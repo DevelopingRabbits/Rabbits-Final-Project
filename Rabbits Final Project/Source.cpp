@@ -212,7 +212,7 @@ Example:
        
         Item snack;
         snack.createActionItem("Snack", 9995, snack, false, false);
-        messDeck.addItem(&snack);
+        messDeck.addActionItem(&snack);
 
         Item berthingBed;
         berthingBed.createActionItem("Berthing Bed", 9994, berthingBed, false, false);
