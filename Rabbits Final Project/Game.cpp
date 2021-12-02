@@ -52,9 +52,9 @@ void Game::addEnemy(Enemy* enemy)
 
 void Game::startGame()
 {
-	cout << "\nWelcome to a Developing Rabbits Production!\n\n";
-	cout << "Start Game!\n\n";
-	
+	cout << "All Hands Man Your Battle Stations!!\n";
+	system("Pause");
+	system("CLS");
 	cout << "What is your name? ";
 	cin >> stringUserInput;
 	

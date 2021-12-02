@@ -13,17 +13,18 @@ using namespace std;
 int main()
 {
     bool restart = true;
-    string choice;
+    int choice;
     int choiceInt;
     do {
-            cout << "\nWelcome to a Developing Rabbits Production!\n\n";
+            cout << "Welcome to a Developing Rabbits Production!\n\n";
+            cout << "\nSUBMARINE ADVENTURE\n";
             cout << "\n1. Start Game\n2. Help\n3. Quit\nYour choice:" << endl;
             cin >> choice;
 
             GameSystemsProgramming gameSystemsProgramming;
-            choiceInt=gameSystemsProgramming.stringToIntegerInputValidation(choice);
+            //choiceInt=gameSystemsProgramming.stringToIntegerInputValidation(choice);
 
-            switch (choiceInt)
+            switch (choice)
             {
 
             case 1:
@@ -64,11 +65,6 @@ int main()
     game.addEnemy(&kraken);
     game.addEnemy(&hostileSub);
     game.addEnemy(&nessie);
-
-
-                //INIT NULL DOORS
-                Door NULLDOOR;
-                NULLDOOR.createDoor("Null Door", false, NULLDOOR);
 
                 // How to INIT Room Objects
                 /*
