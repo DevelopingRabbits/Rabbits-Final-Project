@@ -210,9 +210,8 @@ Example:
         captainChair.createActionItem("Captain's Chair", 9996, captainChair, false, false);
         captainsRoom.addActionItem(&captainChair);
        
-
         Item snack;
-        snack.createItem("Snack", 1,1, snack);
+        snack.createActionItem("Snack", 9995, snack, false, false);
         messDeck.addItem(&snack);
 
         Item berthingBed;
