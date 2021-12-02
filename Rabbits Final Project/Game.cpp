@@ -52,8 +52,9 @@ void Game::addEnemy(Enemy* enemy)
 
 void Game::startGame()
 {
-	cout << "\nStart Game!\n\n";
-	
+	cout << "\nMan your BATTLE STATIONS!\n\n";
+	system("Pause");
+	system("CLS");
 	cout << "What is your name? ";
 	cin >> stringUserInput;
 	

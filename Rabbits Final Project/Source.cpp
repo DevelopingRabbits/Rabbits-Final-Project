@@ -16,7 +16,8 @@ int main()
     string choice;
     int choiceInt;
     do {
-            cout << "\nWelcome to a Developing Rabbits Production!\n\n";
+            cout << "Welcome to a Developing Rabbits Production!\n\n";
+            cout << "\nSubmarine Adventure Game\n";
             cout << "\n1. Start Game\n2. Help\n3. Quit\nYour choice:" << endl;
             cin >> choice;
 
