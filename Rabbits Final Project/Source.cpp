@@ -182,7 +182,7 @@ int main()
 
         // Room Creation
         Room captainsRoom;
-        captainsRoom.createRoom("Captain's Room", 3, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), repairRoomDoor.getDoorPtr(), 1, 4);
+        captainsRoom.createRoom("Captain's Room", 8, NULLDOOR.getDoorPtr(), NULLDOOR.getDoorPtr(), controlRoomDoor.getDoorPtr(), repairRoomDoor.getDoorPtr(), 1, 4);
         captainsRoom.setRoomDescription("You are in the Captain's State Room.");
         captainsRoom.setDarkRoomDescription("You can't see anything. It's pitch black.");
         submarine.addRoom(captainsRoom, captainsRoom.getRoomRow(), captainsRoom.getRoomCol());
@@ -233,10 +233,32 @@ int main()
                 berthing.setDarkRoomDescription("You can't see anything. It's pitch black.");
                 submarine.addRoom(berthing, berthing.getRoomRow(), berthing.getRoomCol());
 
+        // Action Items
+        Item captainChair;
+        captainChair.createActionItem("Captain's Chair", 9996, captainChair, false, false);
+        captainsRoom.addActionItem(&captainChair);
+       
+        Item snack;
+        snack.createActionItem("Snack", 9995, snack, false, false);
+        messDeck.addActionItem(&snack);
 
-                /******************************************************************
-                GAME STARTS BELOW
-                ******************************************************************/
+        Item berthingBed;
+        berthingBed.createActionItem("Berthing Bed", 9994, berthingBed, false, false);
+        berthing.addActionItem(&berthingBed);
+
+        Item propellerWire;
+        propellerWire.createActionItem("Propeller Wire", 9993, propellerWire, false, false);
+        propellerRoom.addActionItem(&propellerWire);
+
+        Item repairTool;
+        repairTool.createActionItem("Repair Tool Kit", 9992, repairTool, false, false);
+        repairRoom.addActionItem(&repairTool);
+
+
+
+        /******************************************************************
+        GAME STARTS BELOW
+        ******************************************************************/
 
         //playerName=ui.getPlayerName();
         //playerName=ui.stringInputValidation(playerName);
